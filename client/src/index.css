@@ -1,4 +1,125 @@
+@import url("https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap");
 @import "tailwindcss";
-@plugin "daisyui" {
-  themes: light --default;
+
+@theme {
+  /* Primary palette */
+  --color-primary-900: #4d5d53; /* Darkest */
+  --color-primary-500: #667b6e; /* Base */
+  --color-primary-100: #83978b; /* Lightest */
+
+  /* Secondary palette */
+  --color-secondary-900: #d0d0b8; /* Darkest */
+  --color-secondary-500: #e7e7da; /* Base */
+  --color-secondary-100: #efefe6; /* Lightest */
+
+  --text-h1: var(--text-4xl);
+  --text-h2: var(--text-3xl);
+  --text-h3: var(--text-xl);
+
+  --font-weight-heading: 700;
+}
+
+@layer base {
+  body {
+    font-family: "Onest", sans-serif;
+    background-color: var(--color-secondary-100);
+    color: var(--color-primary-900);
+  }
+
+  h1 {
+    font-size: var(--text-h1);
+    font-weight: var(--font-weight-heading);
+    color: var(--color-primary-900);
+  }
+
+  h2 {
+    font-size: var(--text-h2);
+    font-weight: var(--font-weight-heading);
+    color: var(--color-primary-900);
+  }
+
+  h3 {
+    font-size: var(--text-h3);
+    font-weight: var(--font-weight-heading);
+    color: var(--color-primary-900);
+  }
+}
+
+.card {
+  display: block;
+  background: #fff;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+  color: inherit;
+  text-decoration: none;
+}
+
+.card-figure {
+  position: relative;
+}
+
+.card-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.card-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: #fff;
+  color: #000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+}
+
+.card-badge p {
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 0.3px;
+}
+
+.card-favorite-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+  transition: scale 0.15s ease;
+}
+
+.card-favorite-icon:hover {
+  scale: 1.12;
+}
+
+.card-body {
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem;
+}
+
+.card-title,
+.card-price {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.card-price {
+  text-align: right;
+}
+
+.card-brand {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #666;
 }
