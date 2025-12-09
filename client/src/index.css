@@ -45,7 +45,82 @@
   }
 }
 
-.card {
+@layer components {
+  .card {
+    @apply block bg-white w-full rounded overflow-hidden 
+      shadow-md transition-transform duration-200 ease-in-out 
+      text-inherit no-underline;
+  }
+
+  .card:hover {
+    @apply shadow-lg;
+  }
+
+  .card-figure {
+    @apply relative;
+  }
+
+  .card-figure img {
+    @apply block w-full h-auto object-cover;
+  }
+
+  .card-badge {
+    @apply absolute top-4 left-4 bg-secondary-100 text-primary-900 text-sm font-bold shadow-md 
+      px-3 py-1 rounded-md;
+  }
+
+  .card-badge p {
+    @apply text-xs font-bold tracking-wide;
+  }
+
+  .card-favorite-icon {
+    @apply absolute top-4 right-4 cursor-pointer transition-transform duration-150;
+  }
+
+  .card-favorite-icon:hover {
+    @apply scale-110;
+  }
+
+  .card-body {
+    @apply p-4 grid grid-cols-[1fr_auto] gap-2;
+  }
+
+  .card-title,
+  .card-price {
+    @apply text-sm font-semibold;
+  }
+
+  .card-price {
+    @apply text-right;
+  }
+
+  .card-brand {
+    @apply text-xs font-medium text-gray-600;
+  }
+}
+@layer utilities {
+  .text-4xl {
+    font-size: 2.25rem; /* 36px */
+  }
+
+  .text-3xl {
+    font-size: 1.875rem; /* 30px */
+  }
+
+  .text-xl {
+    font-size: 1.25rem; /* 20px */
+  }
+}
+
+.card-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+/* .card {
   display: block;
   background: #fff;
   width: 100%;
@@ -123,3 +198,4 @@
   font-weight: 500;
   color: #666;
 }
+ */

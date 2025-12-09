@@ -1,31 +1,38 @@
-import { FaRegHeart } from "react-icons/fa6";
+import { FaRegHeart, FaHeart } from "react-icons/fa6";
 
 // ProductCard.jsx
 export default function ProductCard({ product }) {
+  const productIsNew = true; // Example condition for "New" badge
+  const productFaved = true; // Example condition for favorite icon
+
   return (
     <a href="/" className="card">
-      <div className="card-figure">
+      <figure className="card-figure">
         <img src="https://picsum.photos/200/300" alt="Card Image" />
-        <FaRegHeart
-          fill="rgba(255, 255, 255, 0.8)"
-          size={30}
-          style={{
-            filter: "drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4))",
-            overflow: "hidden",
-          }}
-          className="card-favorite-icon"
-        />
+        <div className="card-overlay">
+          <FaHeart
+            fill={productFaved ? "#4d5d53" : "none"}
+            stroke="#efefe6"
+            strokeWidth={34}
+            size={34}
+            width={40}
+            height={40}
+            viewBox="0 0 512 600"
+            style={{
+              filter: "drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4))",
+            }}
+            className="top-4 right-4 card-favorite-icon transition hover:scale-110"
+          />
 
-        <div className="card-badge">
-          <p>New!</p>
+          {productIsNew && <p className="card-badge">New</p>}
         </div>
-      </div>
+      </figure>
 
-      <div className="card-body">
+      <section className="card-body">
         <p className="card-title">Title</p>
         <p className="card-price">199 SEK</p>
         <p className="card-brand">Brand</p>
-      </div>
+      </section>
     </a>
   );
 }
