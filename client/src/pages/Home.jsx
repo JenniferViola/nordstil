@@ -1,7 +1,14 @@
 // /pages/Home.jsx
-import ThemeTest from "./ThemeTest";
+import Hero from "../components/Hero";
+import ProductGrid from "../components/ProductGrid";
+
 function Home() {
-  return <ThemeTest />;
+  return (
+    <>
+      <Hero />
+      <ProductGrid />
+    </>
+  );
 }
 
 export default Home;

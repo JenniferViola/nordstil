@@ -2,16 +2,16 @@ import { FaRegHeart, FaHeart } from "react-icons/fa6";
 
 // ProductCard.jsx
 export default function ProductCard({ product }) {
-  const productIsNew = true; // Example condition for "New" badge
-  const productFaved = true; // Example condition for favorite icon
+  const isNew = true; // Example condition for "New" badge
+  const isFaved = false; // Example condition for favorite icon
 
   return (
     <a href="/" className="card">
       <figure className="card-figure">
-        <img src="https://picsum.photos/200/300" alt="Card Image" />
+        <img src="https://picsum.photos/400/600" alt="Card Image" />
         <div className="card-overlay">
           <FaHeart
-            fill={productFaved ? "#4d5d53" : "none"}
+            fill={isFaved ? "#4d5d53" : "none"}
             stroke="#efefe6"
             strokeWidth={34}
             size={34}
@@ -24,7 +24,7 @@ export default function ProductCard({ product }) {
             className="top-4 right-4 card-favorite-icon transition hover:scale-110"
           />
 
-          {productIsNew && <p className="card-badge">New</p>}
+          {isNew && <p className="card-badge">New</p>}
         </div>
       </figure>
 
