@@ -1,4 +1,4 @@
-import { FaRegHeart, FaHeart } from "react-icons/fa6";
+import { FaHeart } from "react-icons/fa6";
 
 // ProductCard.jsx
 export default function ProductCard({ product }) {
