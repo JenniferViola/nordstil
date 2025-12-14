@@ -1,4 +1,5 @@
-// /pages/Home.jsx
+// Home.jsx
+
 import Hero from "../components/Hero";
 import ProductGrid from "../components/ProductGrid";
 

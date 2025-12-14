@@ -41,28 +41,26 @@
   h1 {
     font-size: var(--text-h1);
     font-weight: var(--font-weight-heading);
-    color: var(--color-primary-900);
+    color: var(--color-primary-800);
   }
 
   h2 {
     font-size: var(--text-h2);
     font-weight: var(--font-weight-heading);
-    color: var(--color-primary-900);
+    color: var(--color-primary-800);
   }
 
   h3 {
     font-size: var(--text-h3);
     font-weight: var(--font-weight-heading);
-    color: var(--color-primary-900);
+    color: var(--color-primary-800);
   }
 }
 
 @layer components {
   /* ---- CARD COMPONENT ---- */
   .card {
-    @apply block bg-white max-w-full rounded 
-      shadow-md transition-transform duration-200 ease-in-out 
-      text-inherit no-underline;
+    @apply block max-w-full rounded bg-white text-inherit no-underline shadow-md transition-transform duration-200 ease-in-out;
   }
 
   .card:hover {
@@ -74,12 +72,11 @@
   }
 
   .card-figure img {
-    @apply block w-full h-auto object-cover;
+    @apply block h-auto w-full object-cover;
   }
 
   .card-badge {
-    @apply absolute top-4 left-4 bg-secondary-100 text-primary-900 text-sm font-bold shadow-md 
-      px-3 py-1 rounded-md;
+    @apply absolute top-4 left-4 rounded-md bg-secondary-100 px-3 py-1 text-sm font-bold text-primary-900 shadow-md;
   }
 
   .card-badge p {
@@ -95,7 +92,7 @@
   }
 
   .card-body {
-    @apply p-4 grid grid-cols-[1fr_auto] gap-2;
+    @apply grid grid-cols-[1fr_auto] gap-2 p-4;
   }
 
   .card-title,
@@ -113,8 +110,7 @@
 
   .card-overlay {
     /* ---- Reverse this gradient from transparent to black ---- */
-    @apply absolute inset-0 rounded-sm 
-      bg-linear-to-t from-transparent via-black/20 to-black/40;
+    @apply absolute inset-0 rounded-sm bg-linear-to-t from-transparent via-black/20 to-black/40;
   }
 
   /* ---- HERO COMPONENT ---- */
@@ -127,29 +123,27 @@
   }
 
   .hero-image {
-    @apply w-full h-150
-      object-cover;
+    @apply h-150 w-full object-cover;
   }
 
   .hero-overlay {
-    @apply absolute inset-0  
-      bg-linear-to-t from-black/55 via-black/20 to-transparent;
+    @apply absolute inset-0 bg-linear-to-t from-black/55 via-black/20 to-transparent;
   }
 
   .hero-content {
-    @apply absolute inset-x-0 bottom-0 px-4 sm:px-6 pb-5 sm:pb-7;
+    @apply absolute inset-x-0 bottom-0 px-4 pb-5 sm:px-6 sm:pb-7;
   }
 
   .hero-tagline {
-    @apply text-xs sm:text-sm text-secondary-500/80;
+    @apply text-xs text-secondary-500/80 sm:text-sm;
   }
 
   .hero-title {
-    @apply text-2xl sm:text-3xl font-bold text-secondary-500;
+    @apply text-2xl font-bold text-secondary-500 sm:text-3xl;
   }
 
   .hero-text {
-    @apply mt-1 text-xs sm:text-sm text-secondary-500/90;
+    @apply mt-1 text-xs text-secondary-500/90 sm:text-sm;
   }
 }
 

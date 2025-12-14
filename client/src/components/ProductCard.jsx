@@ -6,9 +6,9 @@ export default function ProductCard({ product }) {
   const isFaved = false; // Example condition for favorite icon
 
   return (
-    <a href="/" className="card">
+    <a href="/products/:slug" className="card">
       <figure className="card-figure">
-        <img src="https://picsum.photos/400/600" alt="Card Image" />
+        <img src="https://picsum.photos/600/800" alt="Card Image" />
         <div className="card-overlay">
           <FaHeart
             fill={isFaved ? "#4d5d53" : "none"}
@@ -21,7 +21,8 @@ export default function ProductCard({ product }) {
             style={{
               filter: "drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4))",
             }}
-            className="top-4 right-4 card-favorite-icon transition hover:scale-110"
+            className="top-4 right-4 card-favorite-icon transition
+              hover:scale-110"
           />
 
           {isNew && <p className="card-badge">New</p>}

@@ -27,24 +27,25 @@ export default function Layout(props) {
   }, []);
 
   // Helper Component for Icons to reduce repetition
-  const ActionButton = ({ icon }) => (
-    <button
-      className="relative hover:scale-110 hover:text-primary-900 transition-all
-        duration-200 drop-shadow-md"
+  const ActionButton = ({ icon, link, label }) => (
+    <a
+      href={link}
+      aria-label={label}
+      className="relative inline-flex hover:scale-110 hover:text-primary-900
+        transition-all duration-200 drop-shadow-md"
     >
       {icon}
-    </button>
+    </a>
   );
 
   return (
-    <div id="layout" className="grid min-h-screen w-full">
+    <div id="layout" className="flex flex-col min-h-screen w-full absolute">
       <header
-        className={`sticky top-0 z-50 w-full transition-all duration-300
-          bg-primary-500 text-secondary-500 border-b border-secondary-300/30 ${
-            isScrolled
-              ? "shadow-md py-1 backdrop-blur-md bg-primary-500/95"
-              : "py-2 sm:py-2"
-          } `}
+        className={`${
+          isScrolled ? "shadow-md py-1 bg-primary-500/95" : "py-2 sm:py-2"
+        }
+          sticky top-0 z-50 w-full max-h-20 transition-all duration-300
+          bg-primary-500 text-secondary-500 border-b border-secondary-300/30 `}
       >
         <div
           id="header-container"
@@ -90,7 +91,7 @@ export default function Layout(props) {
           <div id="logo-container" className="flex">
             <a href="/" className="relative block group">
               <img
-                src="images/nordstil-logo-header-light.webp"
+                src="/images/nordstil-logo-header-light.webp"
                 alt="Nordstil"
                 className={`transition-all duration-300 mb-1
                   ${isScrolled ? "h-10 lg:h-12" : "h-12 lg:h-14"}`}
@@ -142,8 +143,16 @@ export default function Layout(props) {
 
             {/* Icons */}
             <div className="flex items-center gap-4 text-secondary-500">
-              <ActionButton icon={<FaHeart size={18} />} />
-              <ActionButton icon={<FaBasketShopping size={18} />} />
+              <ActionButton
+                icon={<FaHeart size={18} />}
+                link="/favorites"
+                label="Favorites"
+              />
+              <ActionButton
+                icon={<FaBasketShopping size={18} />}
+                link="/cart"
+                label="Cart"
+              />
             </div>
           </div>
         </div>
@@ -173,8 +182,7 @@ export default function Layout(props) {
           id="mobile-nav-container"
           className={`shadow-xl lg:hidden absolute left-0 top-full w-[60%]
             min-h-screen bg-primary-500 text-secondary-400 transition-all
-            duration-250 ease-in-out
-            ${menuOpen ? "opacity-100" : "max-h-0 opacity-0"}`}
+            duration-250 ease-in-out ${menuOpen ? "block" : "max-h-0 hidden"}`}
         >
           <nav
             className="flex min-h-screen flex-col px-4 pt-6 pb-10 shadow-xl
@@ -252,7 +260,7 @@ export default function Layout(props) {
       </header>
 
       <main
-        className="mx-auto grid max-w-[2056px] gap-8 md:w-full"
+        className="mx-auto grid max-w-[2056px] gap-8 w-full"
         onClick={() => {
           if (!headerOpen) return;
           setSearchOpen(false);
@@ -262,12 +270,20 @@ export default function Layout(props) {
         {props.children}
       </main>
       <footer
-        className="w-full border-t border-secondary-300 bg-primary-500 py-6
-          text-[0.8rem] text-secondary-500"
+        className="w-full absolute bottom-0 border-t border-secondary-300
+          bg-primary-500 py-6 text-[0.8rem]"
       >
-        <div className="mx-auto max-w-[1200px] px-4 text-center">
-          <p>&copy; 2025 Nordstil. All rights reserved.</p>
-          <p className="mt-2">Designed with Scandinavian simplicity.</p>
+        <div
+          className="grid gap-2 items-center justify-center mx-auto
+            max-w-[1200px] px-4 text-center"
+        >
+          <p className="text-secondary-500/90">
+            Designed with Scandinavian simplicity.
+          </p>
+          <div className="border-b border-secondary-300/30 w-[50%]"></div>
+          <p className="text-xs text-secondary-500/70">
+            &copy; 2025 Nordstil. All rights reserved.
+          </p>
         </div>
       </footer>
     </div>
