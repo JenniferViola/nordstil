@@ -5,8 +5,9 @@ function getPublishedProducts() {
   return repo.findPublished();
 }
 
-function getPublishedProductBySlug() {
-  return repo.findPublishedBySlug();
+function getPublishedProductBySlug(slug) {
+  console.log("Service: fetching product by slug from repo");
+  return repo.findPublishedBySlug(slug);
 }
 
 module.exports = {
