@@ -1,5 +1,5 @@
 import "./App.css";
-import Layout from "./components/Layout";
+import Layout from "./components/layout/Layout";
 import Cart from "./pages/Cart";
 import Home from "./pages/Home";
 import ProductDetails from "./pages/ProductDetails";

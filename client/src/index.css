@@ -72,7 +72,7 @@
   }
 
   .card-figure img {
-    @apply block h-auto w-full object-cover;
+    @apply block h-100 w-200 rounded-t-sm object-cover;
   }
 
   .card-badge {
@@ -109,7 +109,6 @@
   }
 
   .card-overlay {
-    /* ---- Reverse this gradient from transparent to black ---- */
     @apply absolute inset-0 rounded-sm bg-linear-to-t from-transparent via-black/20 to-black/40;
   }
 
@@ -123,7 +122,7 @@
   }
 
   .hero-image {
-    @apply h-150 w-full object-cover;
+    @apply h-150 w-full object-cover object-top;
   }
 
   .hero-overlay {
@@ -139,11 +138,22 @@
   }
 
   .hero-title {
-    @apply text-2xl font-bold text-secondary-500 sm:text-3xl;
+    @apply text-2xl text-secondary-500 lg:text-3xl;
   }
 
   .hero-text {
-    @apply mt-1 text-xs text-secondary-500/90 sm:text-sm;
+    @apply text-xs text-secondary-500/90 lg:text-sm;
+  }
+
+  .spot-overlay {
+    @apply absolute inset-0 bg-linear-to-t from-black/55 via-black/20 to-transparent;
+  }
+
+  .divider-l {
+    @apply w-[50%] border-b border-secondary-300/50;
+  }
+  .divider-d {
+    @apply w-[50%] border-b border-secondary-300/50;
   }
 }
 

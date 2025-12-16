@@ -2,13 +2,13 @@ import { FaHeart } from "react-icons/fa6";
 
 // ProductCard.jsx
 export default function ProductCard({ product }) {
-  const isNew = true; // Example condition for "New" badge
+  const isNew = false; // Example condition for "New" badge
   const isFaved = false; // Example condition for favorite icon
 
   return (
-    <a href="/products/:slug" className="card">
+    <a href={`/products/${product.slug}`} className="card">
       <figure className="card-figure">
-        <img src="https://picsum.photos/600/800" alt="Card Image" />
+        <img src={product.img_url} alt="Card Image" />
         <div className="card-overlay">
           <FaHeart
             fill={isFaved ? "#4d5d53" : "none"}
@@ -30,9 +30,9 @@ export default function ProductCard({ product }) {
       </figure>
 
       <section className="card-body">
-        <p className="card-title">Title</p>
-        <p className="card-price">199 SEK</p>
-        <p className="card-brand">Brand</p>
+        <p className="card-title">{product.title}</p>
+        <p className="card-price">{product.price}</p>
+        <p className="card-brand">{product.brand}</p>
       </section>
     </a>
   );
