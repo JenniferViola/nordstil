@@ -4,7 +4,7 @@ import useProductBySlug from "../hooks/useProductBySlug";
 import useProducts from "../hooks/useProducts";
 import ProductCard from "../features/products/productCard";
 import Breadcrumbs from "../components/ui/breadcrumbs";
-import { Button } from "../components/ui/button";
+import { RippleButton } from "../components/ui/ripple-button";
 
 export default function ProductDetails() {
   const { slug } = useParams<{ slug: string }>();
@@ -14,6 +14,7 @@ export default function ProductDetails() {
   if (!product) return <div>Loading...</div>;
   return (
     <div className="mx-auto max-w-7xl mt-6">
+      <RippleButton>Click me</RippleButton>
       <section id="product-details-container" className="grid gap-6 2 mb-12">
         <div className="grid">
           <div className="grid gap-8 sm:grid-cols-2">
@@ -25,7 +26,6 @@ export default function ProductDetails() {
               <h1 className="text-3xl">{product.title}</h1>
               <p>{product.description}</p>
               <p>{product.price}</p>
-              <Button>Click me</Button>
             </div>
           </div>
         </div>
