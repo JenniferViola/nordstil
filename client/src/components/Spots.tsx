@@ -1,10 +1,9 @@
-// Spots.jsx
-
+// Spots.tsx
+import type { Spot } from "../types/spots";
 import useSpots from "../hooks/useSpots";
 
 export default function Spots() {
-  const spots = useSpots();
-
+  const spots: Spot[] = useSpots();
   return (
     <section id="spots-container" className="hidden lg:flex gap-2">
       {spots.map((spot) => (
@@ -16,7 +15,7 @@ export default function Spots() {
           <img
             src={spot.img_url}
             alt={spot.title}
-            className="w-full h-[315px] aspect-3/2 object-cover rounded-sm"
+            className="w-full h-78.75 aspect-3/2 object-cover rounded-sm"
           />
           <div className="spot-overlay"></div>
           <div
@@ -33,13 +32,3 @@ export default function Spots() {
     </section>
   );
 }
-/*   .spot-item img {
-    width: 100%;
-    height: 315px;
-    aspect-ratio: 10 / 7;
-    object-fit: cover;
-    border-top-left-radius: 0.3rem;
-    border-top-right-radius: 0.3rem;
-    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
-    display: block; 
-  } */

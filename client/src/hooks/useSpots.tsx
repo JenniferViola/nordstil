@@ -1,10 +1,11 @@
-// useSpots.jsx
+// useSpots.tsx
+import type { Spot } from "../types/spots";
+import { useEffect, useState } from "react";
 
-import { useEffect, usEffect, useState } from "react";
 const BASE_URL = import.meta.env.VITE_API_URL;
 
-export default function useSpots() {
-  const [spots, setSpots] = useState([]);
+export default function useSpots(): Spot[] {
+  const [spots, setSpots] = useState<Spot[]>([]);
 
   useEffect(() => {
     fetch(`${BASE_URL}/spots`)

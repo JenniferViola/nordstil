@@ -1,9 +1,12 @@
-// Hero.jsx
+// Hero.tsx
 
 import useHero from "../hooks/useHero";
+import type { Hero as HeroType } from "../types/hero";
 
 export default function Hero() {
-  const hero = useHero();
+  const hero: HeroType | null = useHero();
+  if (!hero) return null;
+
   return (
     <section className="hero">
       <div className="hero-inner">

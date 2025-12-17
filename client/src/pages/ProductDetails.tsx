@@ -5,6 +5,7 @@ import useProducts from "../hooks/useProducts";
 import ProductCard from "../components/ProductCard";
 import Breadcrumbs from "../components/Breadcrumbs";
 import Button from "../components/Button.jsx";
+import type { Product } from "../types/product";
 
 export default function ProductDetails() {
   const { slug } = useParams();

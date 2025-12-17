@@ -7,7 +7,7 @@ export default function Footer() {
         text-[0.8rem]"
     >
       <div
-        className="grid gap-2 items-center justify-center mx-auto max-w-[1200px]
+        className="grid gap-2 items-center justify-center mx-auto max-w-300
           px-4 text-center"
       >
         <p className="text-secondary-500/90">

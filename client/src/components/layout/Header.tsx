@@ -1,5 +1,6 @@
 // components/layout/Header.jsx
 import { useEffect, useState } from "react";
+import type React from "react";
 import {
   FaBars,
   FaHeart,
@@ -9,16 +10,22 @@ import {
   FaUser,
 } from "react-icons/fa6";
 
+type Props = {
+  menuOpen: boolean;
+  searchOpen: boolean;
+  onToggleMenu: () => void;
+  onToggleSearch: () => void;
+  onClose: () => void;
+};
+
 export default function Header({
   menuOpen,
   searchOpen,
   onToggleMenu,
   onToggleSearch,
   onClose,
-}) {
+}: Props) {
   const [isScrolled, setIsScrolled] = useState(false);
-
-  const headerOpen = menuOpen || searchOpen;
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 0);
@@ -26,7 +33,13 @@ export default function Header({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const ActionButton = ({ icon, href, label }) => (
+  type ActionButtonProps = {
+    icon: React.ReactNode;
+    href: string;
+    label: string;
+  };
+
+  const ActionButton = ({ icon, href, label }: ActionButtonProps) => (
     <a
       href={href}
       aria-label={label}
@@ -48,7 +61,7 @@ export default function Header({
     >
       <div
         id="header-container"
-        className="mx-auto grid max-w-[1400px] grid-cols-[1fr_auto_1fr]
+        className="mx-auto grid max-w-350 grid-cols-[1fr_auto_1fr]
           items-center px-4 lg:px-6"
       >
         {/* NAV */}

@@ -1,10 +1,10 @@
+import { BrowserRouter, Routes, Route } from "react-router";
 import "./App.css";
 import Layout from "./components/layout/Layout";
-import Cart from "./pages/Cart";
 import Home from "./pages/Home";
 import ProductDetails from "./pages/ProductDetails";
+import Cart from "./pages/Cart";
 import Favorites from "./pages/Favorites";
-import { BrowserRouter, Routes, Route } from "react-router";
 
 function App() {
   return (

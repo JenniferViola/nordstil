@@ -1,19 +1,25 @@
-export default function Breadcrumbs({ product }) {
+import type { Product } from "../types/product";
+
+type Props = {
+  product: Product;
+};
+
+export default function Breadcrumbs({ product }: Props) {
   return (
     <>
-      <nav class="flex mb-2.5" aria-label="Breadcrumb">
+      <nav className="flex mb-2.5" aria-label="Breadcrumb">
         <ol
-          class="inline-flex items-center space-x-1 md:space-x-2
+          className="inline-flex items-center space-x-1 md:space-x-2
             rtl:space-x-reverse"
         >
-          <li class="inline-flex items-center">
+          <li className="inline-flex items-center">
             <a
               href="/"
-              class="inline-flex items-center text-sm font-medium text-body
+              className="inline-flex items-center text-sm font-medium text-body
                 hover:text-fg-brand"
             >
               <svg
-                class="w-4 h-4 me-1.5"
+                className="w-4 h-4 me-1.5"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -33,9 +39,9 @@ export default function Breadcrumbs({ product }) {
             </a>
           </li>
           <li>
-            <div class="flex items-center space-x-1.5">
+            <div className="flex items-center space-x-1.5">
               <svg
-                class="w-3.5 h-3.5 rtl:rotate-180 text-body"
+                className="w-3.5 h-3.5 rtl:rotate-180 text-body"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -53,7 +59,7 @@ export default function Breadcrumbs({ product }) {
               </svg>
               <a
                 href="/categories/:slug"
-                class="inline-flex items-center text-sm font-medium text-body
+                className="inline-flex items-center text-sm font-medium text-body
                   hover:text-fg-brand"
               >
                 Category
@@ -61,9 +67,9 @@ export default function Breadcrumbs({ product }) {
             </div>
           </li>
           <li aria-current="page">
-            <div class="flex items-center space-x-1.5">
+            <div className="flex items-center space-x-1.5">
               <svg
-                class="w-3.5 h-3.5 rtl:rotate-180 text-body"
+                className="w-3.5 h-3.5 rtl:rotate-180 text-body"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -80,7 +86,7 @@ export default function Breadcrumbs({ product }) {
                 />
               </svg>
               <span
-                class="inline-flex items-center text-sm font-medium
+                className="inline-flex items-center text-sm font-medium
                   text-body-subtle"
               >
                 {product.title}

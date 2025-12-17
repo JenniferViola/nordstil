@@ -1,7 +1,12 @@
+// ProductCard.tsx
 import { FaHeart } from "react-icons/fa6";
+import type { Product } from "../types/product";
 
-// ProductCard.jsx
-export default function ProductCard({ product }) {
+type Props = {
+  product: Product;
+};
+
+export default function ProductCard({ product }: Props) {
   const isNew = false; // Example condition for "New" badge
   const isFaved = false; // Example condition for favorite icon
 

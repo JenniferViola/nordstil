@@ -1,10 +1,11 @@
 // useHero.jsx
-
+import type { Hero } from "../types/hero";
 import { useEffect, useState } from "react";
+
 const BASE_URL = import.meta.env.VITE_API_URL;
 
-export default function useHero() {
-  const [hero, setHero] = useState([]);
+export default function useHero(): Hero | null {
+  const [hero, setHero] = useState<Hero | null>(null);
 
   useEffect(() => {
     fetch(`${BASE_URL}/hero`)

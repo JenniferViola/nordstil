@@ -1,5 +1,4 @@
-// Home.jsx
-
+// Home.tsx
 import Hero from "../components/Hero";
 import Spots from "../components/Spots";
 import ProductGrid from "../components/ProductGrid";

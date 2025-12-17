@@ -1,9 +1,10 @@
-// ProductGrid.jsx
+// ProductGrid.tsx
 import ProductCard from "../components/ProductCard";
 import useProducts from "../hooks/useProducts";
+import type { Product } from "../types/product";
 
 export default function ProductGrid() {
-  const products = useProducts();
+  const products: Product[] = useProducts();
 
   return (
     <div
