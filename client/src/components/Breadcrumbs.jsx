@@ -1,12 +1,16 @@
-export default function Breadcrumbs() {
+export default function Breadcrumbs({ product }) {
   return (
     <>
       <nav class="flex mb-2.5" aria-label="Breadcrumb">
-        <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+        <ol
+          class="inline-flex items-center space-x-1 md:space-x-2
+            rtl:space-x-reverse"
+        >
           <li class="inline-flex items-center">
             <a
-              href="#"
-              class="inline-flex items-center text-sm font-medium text-body hover:text-fg-brand"
+              href="/"
+              class="inline-flex items-center text-sm font-medium text-body
+                hover:text-fg-brand"
             >
               <svg
                 class="w-4 h-4 me-1.5"
@@ -25,7 +29,7 @@ export default function Breadcrumbs() {
                   d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5"
                 />
               </svg>
-              Home
+              Nordstil
             </a>
           </li>
           <li>
@@ -48,10 +52,11 @@ export default function Breadcrumbs() {
                 />
               </svg>
               <a
-                href="#"
-                class="inline-flex items-center text-sm font-medium text-body hover:text-fg-brand"
+                href="/categories/:slug"
+                class="inline-flex items-center text-sm font-medium text-body
+                  hover:text-fg-brand"
               >
-                Projects
+                Category
               </a>
             </div>
           </li>
@@ -74,8 +79,11 @@ export default function Breadcrumbs() {
                   d="m9 5 7 7-7 7"
                 />
               </svg>
-              <span class="inline-flex items-center text-sm font-medium text-body-subtle">
-                Flowbite
+              <span
+                class="inline-flex items-center text-sm font-medium
+                  text-body-subtle"
+              >
+                {product.title}
               </span>
             </div>
           </li>

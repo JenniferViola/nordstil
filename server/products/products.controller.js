@@ -12,8 +12,10 @@ async function getPublished(req, res, next) {
 
 async function getPublishedBySlug(req, res, next) {
   try {
+    console.log("Controller: fetching product with slug:", req.params.slug);
     const slug = req.params.slug;
     const product = await service.getPublishedProductBySlug(slug);
+    console.log("Controller: fetched product:", product);
     res.json(product);
   } catch (err) {
     next(err);
