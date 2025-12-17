@@ -4,6 +4,7 @@ import useProduct from "../hooks/useProduct";
 import useProducts from "../hooks/useProducts";
 import ProductCard from "../components/ProductCard";
 import Breadcrumbs from "../components/Breadcrumbs";
+import Button from "../components/Button.jsx";
 
 export default function ProductDetails() {
   const { slug } = useParams();
@@ -15,16 +16,19 @@ export default function ProductDetails() {
     <div className="mx-auto max-w-7xl mt-6">
       <section id="product-details-container" className="grid gap-6 2 mb-12">
         <div className="grid">
-          <Breadcrumbs />
           <div className="grid gap-8 sm:grid-cols-2">
             <div id="image-container">
               <img src={product.img_url} alt={product.title} />
             </div>
             <div>
+              <Breadcrumbs product={product} />
               <h1 className="text-3xl">{product.title}</h1>
               <p>{product.description}</p>
               <p>{product.price}</p>
-              <button className="btn">Add to basket</button>
+              <Button
+                label="Add to basket"
+                onClick={() => alert("Added to basket")}
+              />
             </div>
           </div>
         </div>
