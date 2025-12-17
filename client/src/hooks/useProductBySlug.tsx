@@ -1,16 +1,12 @@
-// useProduct.tsx
+// useProductBySlug.tsx
 import type { Product } from "../types/product";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
-type Params = {
-  slug: string;
-};
-
-export default function useProduct(): Product | null {
-  const { slug } = useParams<Params>();
+export default function useProductBySlug(
+  slug: string | undefined,
+): Product | null {
   const [product, setProduct] = useState<Product | null>(null);
 
   useEffect(() => {

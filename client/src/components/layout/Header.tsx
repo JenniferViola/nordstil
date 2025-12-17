@@ -61,8 +61,8 @@ export default function Header({
     >
       <div
         id="header-container"
-        className="mx-auto grid max-w-350 grid-cols-[1fr_auto_1fr]
-          items-center px-4 lg:px-6"
+        className="mx-auto grid max-w-350 grid-cols-[1fr_auto_1fr] items-center
+          px-4 lg:px-6"
       >
         {/* NAV */}
         <div className="flex items-center justify-start">

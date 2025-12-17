@@ -1,7 +1,7 @@
 // Hero.tsx
 
-import useHero from "../hooks/useHero";
-import type { Hero as HeroType } from "../types/hero";
+import useHero from "../../hooks/useHero";
+import type { Hero as HeroType } from "../../types/hero";
 
 export default function Hero() {
   const hero: HeroType | null = useHero();

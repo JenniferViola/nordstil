@@ -1,4 +1,4 @@
-import type { Product } from "../types/product";
+import type { Product } from "../../types/product";
 
 type Props = {
   product: Product;
@@ -59,8 +59,8 @@ export default function Breadcrumbs({ product }: Props) {
               </svg>
               <a
                 href="/categories/:slug"
-                className="inline-flex items-center text-sm font-medium text-body
-                  hover:text-fg-brand"
+                className="inline-flex items-center text-sm font-medium
+                  text-body hover:text-fg-brand"
               >
                 Category
               </a>

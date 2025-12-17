@@ -1,6 +1,6 @@
 // Spots.tsx
-import type { Spot } from "../types/spots";
-import useSpots from "../hooks/useSpots";
+import type { Spot } from "../../types/spots";
+import useSpots from "../../hooks/useSpots";
 
 export default function Spots() {
   const spots: Spot[] = useSpots();

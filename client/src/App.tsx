@@ -1,17 +1,17 @@
 import { BrowserRouter, Routes, Route } from "react-router";
 import "./App.css";
-import Layout from "./components/layout/Layout";
-import Home from "./pages/Home";
-import ProductDetails from "./pages/ProductDetails";
-import Cart from "./pages/Cart";
-import Favorites from "./pages/Favorites";
+import Layout from "./components/layout/layout";
+import Index from "./pages/index";
+import ProductDetails from "./pages/productDetails";
+import Cart from "./pages/cart";
+import Favorites from "./pages/favorites";
 
 function App() {
   return (
     <BrowserRouter>
       <Layout>
         <Routes>
-          <Route index element={<Home />} />
+          <Route index element={<Index />} />
           <Route path="/products/:slug" element={<ProductDetails />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/favorites" element={<Favorites />} />

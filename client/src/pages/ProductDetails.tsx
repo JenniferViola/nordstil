@@ -1,15 +1,14 @@
-// ProductDetails.jsx
+// ProductDetails.tsx
 import { useParams } from "react-router";
-import useProduct from "../hooks/useProduct";
+import useProductBySlug from "../hooks/useProductBySlug";
 import useProducts from "../hooks/useProducts";
-import ProductCard from "../components/ProductCard";
-import Breadcrumbs from "../components/Breadcrumbs";
-import Button from "../components/Button.jsx";
-import type { Product } from "../types/product";
+import ProductCard from "../features/products/productCard";
+import Breadcrumbs from "../components/ui/breadcrumbs";
+import { Button } from "../components/ui/button";
 
 export default function ProductDetails() {
-  const { slug } = useParams();
-  const product = useProduct(slug);
+  const { slug } = useParams<{ slug: string }>();
+  const product = useProductBySlug(slug);
   const similarProducts = useProducts();
 
   if (!product) return <div>Loading...</div>;
@@ -26,10 +25,7 @@ export default function ProductDetails() {
               <h1 className="text-3xl">{product.title}</h1>
               <p>{product.description}</p>
               <p>{product.price}</p>
-              <Button
-                label="Add to basket"
-                onClick={() => alert("Added to basket")}
-              />
+              <Button>Click me</Button>
             </div>
           </div>
         </div>

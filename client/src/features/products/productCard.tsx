@@ -1,6 +1,6 @@
 // ProductCard.tsx
 import { FaHeart } from "react-icons/fa6";
-import type { Product } from "../types/product";
+import type { Product } from "../../types/product";
 
 type Props = {
   product: Product;

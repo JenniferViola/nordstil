@@ -1,8 +1,8 @@
 // components/layout/Layout.jsx
 import type { ReactNode } from "react";
 import { useState } from "react";
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "./header";
+import Footer from "./footer";
 
 type Props = {
   children: ReactNode;
