@@ -1,5 +1,5 @@
 // useSpots.tsx
-import type { Spot } from "../types/spots";
+import type { Spot } from "@/types/spots";
 import { useEffect, useState } from "react";
 
 const BASE_URL = import.meta.env.VITE_API_URL;

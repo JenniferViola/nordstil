@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router";
 import "./App.css";
-import Layout from "./components/layout/layout";
-import Index from "./pages/index";
-import ProductDetails from "./pages/productDetails";
-import Cart from "./pages/cart";
-import Favorites from "./pages/favorites";
+import Layout from "./components/layout/Layout";
+import Index from "./pages/Index";
+import ProductDetails from "./pages/ProductDetails";
+import Cart from "./pages/Cart";
+import Favorites from "./pages/Favorites";
 
 function App() {
   return (

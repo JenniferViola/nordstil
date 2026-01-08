@@ -24,3 +24,4 @@
 *.sw?
 server/data/data.db
 server/data.db
+server/data.db

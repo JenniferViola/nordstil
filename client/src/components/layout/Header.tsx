@@ -1,6 +1,6 @@
 // components/layout/Header.jsx
 import { useEffect, useState } from "react";
-import type React from "react";
+import { Link } from "react-router";
 import {
   FaBars,
   FaHeart,
@@ -9,6 +9,7 @@ import {
   FaXmark,
   FaUser,
 } from "react-icons/fa6";
+import IconButton from "@/components/ui/IconButton";
 
 type Props = {
   menuOpen: boolean;
@@ -32,24 +33,6 @@ export default function Header({
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  type ActionButtonProps = {
-    icon: React.ReactNode;
-    href: string;
-    label: string;
-  };
-
-  const ActionButton = ({ icon, href, label }: ActionButtonProps) => (
-    <a
-      href={href}
-      aria-label={label}
-      className="relative inline-flex items-center justify-center p-2
-        hover:scale-110 hover:text-primary-900 transition-all duration-200
-        drop-shadow-md"
-    >
-      {icon}
-    </a>
-  );
 
   return (
     <header
@@ -77,9 +60,9 @@ export default function Header({
 
           <nav className="hidden lg:flex gap-8">
             {["Home", "Shop", "About"].map((item) => (
-              <a
+              <Link
                 key={item}
-                href="/"
+                to="/"
                 className="group relative text-sm font-semibold tracking-wide
                   hover:text-primary-900 transition-colors"
               >
@@ -88,14 +71,14 @@ export default function Header({
                   className="absolute -bottom-1 left-0 h-0.5 w-0 bg-primary-900
                     transition-all duration-300 group-hover:w-full"
                 />
-              </a>
+              </Link>
             ))}
           </nav>
         </div>
 
         {/* LOGO */}
         <div className="flex">
-          <a href="/" className="relative block group">
+          <Link to="/" className="relative block group">
             <img
               src="/images/nordstil-logo-header-light.webp"
               alt="Nordstil"
@@ -103,7 +86,7 @@ export default function Header({
                 isScrolled ? "h-10 lg:h-12" : "h-12 lg:h-14"
               }`}
             />
-          </a>
+          </Link>
         </div>
 
         {/* ACTIONS */}
@@ -140,12 +123,12 @@ export default function Header({
 
           {/* Icons */}
           <div className="flex items-center gap-1 text-secondary-500">
-            <ActionButton
+            <IconButton
               icon={<FaHeart size={18} />}
               href="/favorites"
               label="Favorites"
             />
-            <ActionButton
+            <IconButton
               icon={<FaBasketShopping size={18} />}
               href="/cart"
               label="Cart"
@@ -185,29 +168,29 @@ export default function Header({
       >
         <nav className="flex min-h-screen flex-col px-4 pt-6 pb-10 gap-2">
           {["Home", "Magazine", "About"].map((item) => (
-            <a
+            <Link
               key={item}
-              href="/"
+              to="/"
               className="w-full py-2.5 px-2 font-medium hover:text-primary-900
                 transition-colors"
               onClick={onClose}
             >
               {item}
-            </a>
+            </Link>
           ))}
 
           <div className="border-t border-secondary-400/40" />
 
           {["New Arrivals", "Best Sellers", "Clothing"].map((item) => (
-            <a
+            <Link
               key={item}
-              href="/"
+              to="/"
               className="w-full py-2.5 px-2 font-medium hover:text-primary-900
                 transition-colors"
               onClick={onClose}
             >
               {item}
-            </a>
+            </Link>
           ))}
 
           <div className="mt-14 pt-4 flex flex-col gap-1">
@@ -216,14 +199,14 @@ export default function Header({
                 size={18}
                 style={{ filter: "drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))" }}
               />
-              <a
-                href="/account"
+              <Link
+                to="/account"
                 className="py-3 px-2 text-sm font-light hover:text-primary-900
                   transition-colors"
                 onClick={onClose}
               >
                 My Account
-              </a>
+              </Link>
             </div>
           </div>
         </nav>

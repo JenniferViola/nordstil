@@ -1,4 +1,5 @@
 // Footer.jsx
+import { Divider } from "@/components/ui/Divider";
 
 export default function Footer() {
   return (
@@ -13,7 +14,7 @@ export default function Footer() {
         <p className="text-secondary-500/90">
           Designed with Scandinavian simplicity.
         </p>
-        <div className="divider-l w-full opacity-70"></div>
+        <Divider variant="light" />
         <p className="text-xs text-secondary-500/70">
           &copy; 2025 Nordstil. All rights reserved.
         </p>

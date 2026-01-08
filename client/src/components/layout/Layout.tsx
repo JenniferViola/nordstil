@@ -1,8 +1,8 @@
 // components/layout/Layout.jsx
 import type { ReactNode } from "react";
 import { useState } from "react";
-import Header from "./header";
-import Footer from "./footer";
+import Header from "./Header";
+import Footer from "./Footer";
 
 type Props = {
   children: ReactNode;
@@ -36,7 +36,7 @@ export default function Layout({ children }: Props) {
       />
 
       <main
-        className="flex-1 mx-auto grid max-w-514 gap-8 w-full"
+        className="flex-1 mx-auto max-w-514 grid gap-4 w-full"
         onClick={() => {
           if (!headerOpen) return;
           closeHeader();

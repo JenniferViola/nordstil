@@ -1,7 +1,8 @@
 // Hero.tsx
-
-import useHero from "../../hooks/useHero";
-import type { Hero as HeroType } from "../../types/hero";
+import { Divider } from "@/components/ui/Divider";
+import useHero from "@/hooks/useHero";
+import type { Hero as HeroType } from "@/types/hero";
+import { Link } from "react-router";
 
 export default function Hero() {
   const hero: HeroType | null = useHero();
@@ -14,12 +15,12 @@ export default function Hero() {
 
         <div className="hero-overlay" />
 
-        <div className="hero-content flex flex-col gap-2">
+        <Link to="/" className="hero-content flex flex-col gap-2">
           <p className="hero-tagline">{hero.tagline} · from 499 SEK</p>
           <h1 className="hero-title">{hero.title}</h1>
-          <div className="divider-l w-full opacity-80"></div>
+          <Divider variant="light" className="w-full opacity-50" />
           <p className="hero-text">{hero.text}</p>
-        </div>
+        </Link>
       </div>
     </section>
   );

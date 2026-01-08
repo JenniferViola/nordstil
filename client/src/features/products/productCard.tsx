@@ -1,6 +1,7 @@
 // ProductCard.tsx
 import { FaHeart } from "react-icons/fa6";
-import type { Product } from "../../types/product";
+import type { Product } from "@/types/product";
+import { Link } from "react-router";
 
 type Props = {
   product: Product;
@@ -11,7 +12,7 @@ export default function ProductCard({ product }: Props) {
   const isFaved = false; // Example condition for favorite icon
 
   return (
-    <a href={`/products/${product.slug}`} className="card">
+    <Link to={`/products/${product.slug}`} className="card">
       <figure className="card-figure">
         <img src={product.img_url} alt="Card Image" />
         <div className="card-overlay">
@@ -39,6 +40,6 @@ export default function ProductCard({ product }: Props) {
         <p className="card-price">{product.price}</p>
         <p className="card-brand">{product.brand}</p>
       </section>
-    </a>
+    </Link>
   );
 }

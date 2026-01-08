@@ -1,5 +1,5 @@
 // useProductBySlug.tsx
-import type { Product } from "../types/product";
+import type { Product } from "@/types/product";
 import { useEffect, useState } from "react";
 
 const BASE_URL = import.meta.env.VITE_API_URL;

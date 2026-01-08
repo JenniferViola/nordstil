@@ -1,15 +1,16 @@
 // Spots.tsx
 import type { Spot } from "../../types/spots";
 import useSpots from "../../hooks/useSpots";
+import { Link } from "react-router";
 
 export default function Spots() {
   const spots: Spot[] = useSpots();
   return (
     <section id="spots-container" className="hidden lg:flex gap-2">
       {spots.map((spot) => (
-        <a
+        <Link
           key={spot.id}
-          href={spot.link_url}
+          to={spot.link_url}
           className="flex-1 relative text-center shadow-md"
         >
           <img
@@ -27,7 +28,7 @@ export default function Spots() {
             <div className="divider-l"></div>
             <p className="text-base text-secondary-300">{spot.subtitle}</p>
           </div>
-        </a>
+        </Link>
       ))}
     </section>
   );
