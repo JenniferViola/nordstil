@@ -7,6 +7,8 @@ export interface Product {
   price?: number;
   description?: string;
   img_url: string;
+  color_name: string;
+  color_hex: string;
   slug: string;
 }
 

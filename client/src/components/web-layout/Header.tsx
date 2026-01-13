@@ -91,6 +91,16 @@ export default function Header({
 
         {/* ACTIONS */}
         <div className="flex items-center justify-end gap-4">
+          {/* Search mobile */}
+          <Link
+            to="/search"
+            className="lg:hidden hover:scale-110 transition-transform"
+            onClick={onToggleSearch}
+            aria-label="Toggle Search"
+          >
+            <FaMagnifyingGlass size={18} />
+          </Link>
+
           {/* Search desktop */}
           <div className="hidden lg:flex items-center w-70">
             <div className="relative w-full flex items-center">
@@ -103,23 +113,15 @@ export default function Header({
                   focus:border-secondary-100 transition-all duration-300
                   ease-out"
               />
-              <button
+              <Link
+                to="/search"
                 className="z-10 hover:scale-110 transition-transform p-1"
                 aria-label="Search"
               >
                 <FaMagnifyingGlass size={18} />
-              </button>
+              </Link>
             </div>
           </div>
-
-          {/* Search mobile */}
-          <button
-            className="lg:hidden hover:scale-110 transition-transform"
-            onClick={onToggleSearch}
-            aria-label="Toggle Search"
-          >
-            <FaMagnifyingGlass size={18} />
-          </button>
 
           {/* Icons */}
           <div className="flex items-center gap-1 text-secondary-500">

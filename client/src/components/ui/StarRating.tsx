@@ -19,7 +19,7 @@ export function StarRating({
   readOnly = false,
   onChange,
   className,
-  size = 18,
+  size = 15,
 }: StarRatingProps) {
   const [value, setValue] = React.useState(defaultValue);
   const [hover, setHover] = React.useState<number | null>(null);

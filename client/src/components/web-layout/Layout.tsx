@@ -36,7 +36,7 @@ export default function Layout({ children }: Props) {
       />
 
       <main
-        className="flex-1 mx-auto max-w-514 grid gap-4 w-full"
+        className="mx-auto w-full max-w-514 grid gap-4 justify-center"
         onClick={() => {
           if (!headerOpen) return;
           closeHeader();
