@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router";
 import "./App.css";
-import WebLayout from "./components/web-layout/Layout";
+import WebLayout from "./components/layout/web/Layout";
 import Index from "./pages/web/Index";
 import NotFound from "./pages/web/NotFound";
 import ProductDetails from "./pages/web/ProductDetails";

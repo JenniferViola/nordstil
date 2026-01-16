@@ -1,10 +1,12 @@
 // Spots.tsx
-import type { Spot } from "../../types/spots";
-import useSpots from "../../hooks/useSpots";
 import { Link } from "react-router";
+import type { Spot as SpotsType } from "@/types/spots";
 
-export default function Spots() {
-  const spots: Spot[] = useSpots();
+interface SpotsProps {
+  spots: SpotsType[];
+}
+
+export default function Spots({ spots }: SpotsProps) {
   return (
     <section id="spots-container" className="hidden lg:flex gap-2">
       {spots.map((spot) => (

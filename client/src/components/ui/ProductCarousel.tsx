@@ -1,6 +1,5 @@
-import ProductCard from "@/features/products/ProductCard";
-import useProducts from "@/hooks/useProducts";
-import type { Product } from "@/types/product";
+// ProductCarousel.tsx
+import ProductCard from "@/components/ui/ProductCard";
 import {
   Carousel,
   CarouselContent,
@@ -8,13 +7,17 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/Carousel";
+import type { Product } from "@/types/product";
 
-export function ProductCarousel() {
-  const products: Product[] = useProducts();
+type ProductCarouselProps = {
+  products: Product[];
+};
+
+export function ProductCarousel({ products }: ProductCarouselProps) {
   return (
     <Carousel className="w-full max-w-7xl overflow-auto">
       <CarouselContent className="-ml-1 relative">
-        {products.map((product) => (
+        {products.slice(0, 8).map((product) => (
           <CarouselItem
             key={product.id}
             className="pl-1 sm:basis-1/3 lg:basis-1/4"

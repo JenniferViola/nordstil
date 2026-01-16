@@ -1,13 +1,13 @@
 // Hero.tsx
-import { Divider } from "@/components/ui/Divider";
-import useHero from "@/hooks/useHero";
-import type { Hero as HeroType } from "@/types/hero";
 import { Link } from "react-router";
+import { Divider } from "@/components/ui/Divider";
+import type { Hero as HeroType } from "@/types/hero";
 
-export default function Hero() {
-  const hero: HeroType | null = useHero();
-  if (!hero) return null;
+interface HeroProps {
+  hero: HeroType;
+}
 
+export default function Hero({ hero }: HeroProps) {
   return (
     <section className="hero">
       <div className="hero-inner">

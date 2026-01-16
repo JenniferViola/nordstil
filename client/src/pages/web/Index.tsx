@@ -1,14 +1,28 @@
-// Home.tsx
-import Hero from "@/features/home/Hero";
-import Spots from "@/features/home/Spots";
-import ProductGrid from "@/features/products/ProductGrid";
+// Index.tsx
+import Hero from "@/components/ui/Hero";
+import Spots from "@/components/ui/Spots";
+import ProductGrid from "@/components/ui/ProductGrid";
+
+import useHero from "@/hooks/useHero";
+import useSpots from "@/hooks/useSpots";
+import useProducts from "@/hooks/useProducts";
+
+import type { Product } from "@/types/product";
+import type { Hero as HeroType } from "@/types/hero";
+import type { Spot as SpotsType } from "@/types/spots";
 
 export default function Index() {
+  const products: Product[] = useProducts();
+  const hero: HeroType | null = useHero();
+  const spots: SpotsType[] = useSpots();
+
+  if (!products || !hero || !spots) return <div>Loading...</div>;
+
   return (
     <div id="index-container" className="grid gap-2 mb-2">
-      <Hero />
-      <Spots />
-      <ProductGrid />
+      <Hero hero={hero} />
+      <Spots spots={spots} />
+      <ProductGrid products={products} />
     </div>
   );
 }
