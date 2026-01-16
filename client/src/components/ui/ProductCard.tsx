@@ -50,7 +50,7 @@ export default function ProductCard({ product }: Props) {
 
       <section className="card-body">
         <p className="card-title">{product.title}</p>
-        <p className="card-price">{product.price}</p>
+        <p className="card-price">{product.price} SEK</p>
         <p className="card-brand">{product.brand}</p>
       </section>
     </Link>

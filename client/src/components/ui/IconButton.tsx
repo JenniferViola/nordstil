@@ -14,7 +14,7 @@ export default function IconButton({ icon, href, label }: IconButtonProps) {
       aria-label={label}
       className="relative inline-flex items-center justify-center p-2
         hover:scale-110 hover:text-primary-900 transition-all duration-200
-        drop-shadow-md"
+        drop-shadow-sm"
     >
       {icon}
     </Link>

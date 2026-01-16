@@ -36,12 +36,16 @@ export default function Layout({ children }: Props) {
       />
 
       <main
-        className="mx-auto w-full max-w-514 grid gap-4 justify-center"
+        className={
+          "mx-auto w-full max-w-514 grid gap-4 justify-center relative"
+        }
         onClick={() => {
           if (!headerOpen) return;
           closeHeader();
         }}
       >
+        {searchOpen && <div className="absolute inset-0 bg-black/40 z-10" />}
+
         {children}
       </main>
 

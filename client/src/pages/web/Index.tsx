@@ -19,7 +19,7 @@ export default function Index() {
   if (!products || !hero || !spots) return <div>Loading...</div>;
 
   return (
-    <div id="index-container" className="grid gap-2 mb-2">
+    <div id="index-container" className="grid gap-2 mx-2">
       <Hero hero={hero} />
       <Spots spots={spots} />
       <ProductGrid products={products} />

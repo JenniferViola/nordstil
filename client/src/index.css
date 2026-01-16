@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Onest:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -150,6 +150,9 @@
 
   .spot-overlay {
     @apply absolute inset-0 bg-linear-to-t from-black/55 via-black/20 to-transparent;
+  }
+  .logo-text {
+    font-family: "Playfair Display", serif;
   }
 }
 
