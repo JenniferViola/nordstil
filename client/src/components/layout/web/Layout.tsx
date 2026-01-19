@@ -20,7 +20,7 @@ export default function Layout({ children }: Props) {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col">
+    <div className="h-full w-full flex flex-col">
       <Header
         menuOpen={menuOpen}
         searchOpen={searchOpen}
@@ -36,9 +36,7 @@ export default function Layout({ children }: Props) {
       />
 
       <main
-        className={
-          "mx-auto w-full max-w-514 grid gap-4 justify-center relative"
-        }
+        className={"w-full m-2 grid gap-4 justify-center items-center relative"}
         onClick={() => {
           if (!headerOpen) return;
           closeHeader();

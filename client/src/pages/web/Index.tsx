@@ -16,10 +16,15 @@ export default function Index() {
   const hero: HeroType | null = useHero();
   const spots: SpotsType[] = useSpots();
 
-  if (!products || !hero || !spots) return <div>Loading...</div>;
+  if (!products || !hero || !spots)
+    return (
+      <div id="index-container" className="grid gap-2 max-w-full min-h-screen">
+        <p className="text-2xl">Loading...</p>
+      </div>
+    );
 
   return (
-    <div id="index-container" className="grid gap-2 mx-2">
+    <div id="index-container" className="grid gap-2 max-w-full min-h-screen">
       <Hero hero={hero} />
       <Spots spots={spots} />
       <ProductGrid products={products} />

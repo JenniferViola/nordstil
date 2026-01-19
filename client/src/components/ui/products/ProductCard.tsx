@@ -16,17 +16,23 @@ function ProductCard({ product, className }: Props) {
   return (
     <Link
       to={`/products/${product.slug}`}
-      className={`card min-h-100 w-full ${className || ""}`}
+      className={`block w-full min-w-0 max-h-[1050px] rounded bg-white
+        text-inherit no-underline shadow-md transition-transform duration-200
+        ease-in-out ${className || ""}`}
     >
-      <figure className="card-figure">
+      <figure className="relative">
         <img
           src={product.img_url}
           alt={product.title}
-          width={100}
-          height={200}
-          loading="lazy"
+          width="700"
+          height="1050"
+          className="relative block aspect-2/3 w-full rounded-t-sm object-cover"
         />
-        <div className="card-overlay">
+        <div
+          id="overlay"
+          className="absolute inset-0 rounded-sm bg-linear-to-t from-transparent
+            via-black/20 to-black/40"
+        >
           <FaHeart
             fill={isFaved ? "#efefe6" : "none"}
             stroke={isFaved ? "#efefe6" : "#efefe6"}
@@ -38,8 +44,8 @@ function ProductCard({ product, className }: Props) {
             style={{
               filter: "drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4))",
             }}
-            className="top-4 right-4 card-favorite-icon transition
-              hover:scale-110"
+            className="top-4 right-4 absolute cursor-pointer
+              transition-transform duration-150 hover:scale-110"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
@@ -47,14 +53,25 @@ function ProductCard({ product, className }: Props) {
             }}
           />
 
-          {isNew && <p className="card-badge">New</p>}
+          {isNew && (
+            <p
+              id="badge"
+              className="absolute top-4 left-4 rounded-md bg-secondary-100 px-3
+                py-1 text-sm font-bold text-primary-900 shadow-md tracking-wide"
+            >
+              New
+            </p>
+          )}
         </div>
       </figure>
 
-      <section className="card-body">
-        <p className="card-title">{product.title}</p>
-        <p className="card-price">{product.price} SEK</p>
-        <p className="card-brand">{product.brand}</p>
+      <section
+        id="card-body"
+        className="grid grid-cols-[1fr_auto] gap-2 p-4 min-w-0"
+      >
+        <p className="text-sm font-semibold">{product.title}</p>
+        <p className="text-sm font-semibold text-right">{product.price} SEK</p>
+        <p className="text-xs font-medium text-gray-600">{product.brand}</p>
       </section>
     </Link>
   );

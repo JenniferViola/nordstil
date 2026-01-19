@@ -15,10 +15,7 @@ export default function ProductDetails() {
 
   if (!product) return <div>Loading...</div>;
   return (
-    <div
-      id="page-container"
-      className="max-w-7xl mt-4 lg:mt-4 grid gap-4 sm:gap-8 mx-4 mb-8 sm:mb-2"
-    >
+    <div id="page-container" className="grid gap-4 sm:gap-8 min-h-screen">
       <Breadcrumbs product={product} className="sm:hidden flex" />
       <ProductDetailsSection product={product} />
       <Divider variant="dark" className="sm:hidden" />

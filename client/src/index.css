@@ -60,70 +60,15 @@
   }
 }
 
-@layer components {
-  /* ---- CARD COMPONENT ---- */
-  .card {
-    @apply block max-w-full rounded bg-white text-inherit no-underline shadow-md transition-transform duration-200 ease-in-out;
-  }
-
-  .card:hover {
-    @apply shadow-lg;
-  }
-
-  .card-figure {
-    @apply relative;
-  }
-
-  .card-figure img {
-    @apply block h-100 w-200 rounded-t-sm object-cover;
-  }
-
-  .card-badge {
-    @apply absolute top-4 left-4 rounded-md bg-secondary-100 px-3 py-1 text-sm font-bold text-primary-900 shadow-md;
-  }
-
-  .card-badge p {
-    @apply text-xs font-bold tracking-wide;
-  }
-
-  .card-favorite-icon {
-    @apply absolute top-4 right-4 cursor-pointer transition-transform duration-150;
-  }
-
-  .card-favorite-icon:hover {
-    @apply scale-110;
-  }
-
-  .card-body {
-    @apply grid grid-cols-[1fr_auto] gap-2 p-4;
-  }
-
-  .card-title,
-  .card-price {
-    @apply text-sm font-semibold;
-  }
-
-  .card-price {
-    @apply text-right;
-  }
-
-  .card-brand {
-    @apply text-xs font-medium text-gray-600;
-  }
-
-  .card-overlay {
-    @apply absolute inset-0 rounded-sm bg-linear-to-t from-transparent via-black/20 to-black/40;
+@layer utilities {
+  header.scrolled {
+    @apply bg-secondary-100/93 py-2 shadow-xl/5;
   }
 
   .logo-text {
     font-family: "Playfair Display", serif;
   }
-}
 
-@layer utilities {
-  header.scrolled {
-    @apply bg-secondary-100/93 py-2 shadow-xl/5;
-  }
   .text-4xl {
     font-size: 2.25rem;
   }

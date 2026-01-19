@@ -8,7 +8,10 @@ interface SpotsProps {
 
 export default function Spots({ spots }: SpotsProps) {
   return (
-    <section id="spots-container" className="flex gap-2">
+    <section
+      id="spots-container"
+      className="hidden sm:flex sm:gap-2 box-border"
+    >
       {spots.map((spot) => (
         <Link
           key={spot.id}
@@ -19,8 +22,6 @@ export default function Spots({ spots }: SpotsProps) {
             <img
               src={spot.img_url}
               alt={spot.title}
-              loading="lazy"
-              decoding="async"
               className="absolute inset-0 h-full w-full object-cover rounded-sm"
             />
           </div>

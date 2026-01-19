@@ -9,17 +9,20 @@ interface HeroProps {
 
 export default function Hero({ hero }: HeroProps) {
   return (
-    <section className="relative w-full">
+    <section className="relative">
       <div
         id="hero-container"
-        className="relative mx-auto h-[80vh] w-full overflow-hidden"
+        className="relative mx-auto aspect-4/5 md:aspect-16/10 max-h-[800px]
+          w-full max-w-[1440px] overflow-hidden"
       >
         <img
           src={hero.img_url}
           alt={hero.title}
-          loading="eager"
-          decoding="async"
-          className="absolute inset-0 h-full w-full object-cover object-top"
+          width={1440}
+          height={800}
+          fetchPriority="high"
+          className="absolute inset-0 h-full w-full max-w-[1440px] max-h-[800p]
+            object-cover object-top"
         />
 
         <div
