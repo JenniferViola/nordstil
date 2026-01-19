@@ -37,7 +37,7 @@ export default function Header({
   return (
     <header
       className={`${
-        isScrolled ? "shadow-md py-2 bg-secondary-100/93" : "py-3 sm:py-3"
+        isScrolled ? "shadow-xl/5 py-2 bg-secondary-100/93" : "py-3 sm:py-3"
       }
         sticky top-0 z-50 w-full max-h-20 transition-all duration-300
         bg-secondary-100 text-primary-800-500`}

@@ -4,10 +4,10 @@ import { Link } from "react-router";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import { RippleButton } from "@/components/ui/RippleButton";
 import { StarRating } from "@/components/ui/StarRating";
-import type { Product } from "@/types/product";
+import type { ProductWithCategories } from "@/types/product";
 
 interface ProductSectionProps {
-  product: Product;
+  product: ProductWithCategories;
 }
 
 export default function ProductDetailsSection({

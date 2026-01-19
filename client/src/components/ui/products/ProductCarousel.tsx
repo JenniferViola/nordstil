@@ -1,5 +1,5 @@
 // ProductCarousel.tsx
-import ProductCard from "@/components/ui/ProductCard";
+import ProductCard from "@/components/ui/products/ProductCard";
 import {
   Carousel,
   CarouselContent,

@@ -52,7 +52,7 @@ export function StarRating({
     <div
       role="radiogroup"
       aria-label="Rating"
-      className={cn("inline-flex gap-0.5", className)}
+      className={cn("inline-flex gap-0.5 cursor-pointer", className)}
       onMouseLeave={() => setHover(null)}
     >
       {Array.from({ length: max }).map((_, index) => {
@@ -69,7 +69,8 @@ export function StarRating({
             onMouseEnter={() => !readOnly && setHover(index + 1)}
             onKeyDown={(e) => handleKeyDown(e, index)}
             className={cn(
-              "rounded-full p-0.5 focus-visible:ring-2 focus-visible:ring-ring",
+              `rounded-full p-0.5 focus-visible:ring-2 focus-visible:ring-ring
+              cursor-pointer`,
               readOnly && "cursor-default",
             )}
           >

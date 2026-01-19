@@ -1,13 +1,14 @@
-import type { Product } from "@/types/product";
+import type { ProductWithCategories } from "@/types/product";
 import { FaHouse } from "react-icons/fa6";
 import { Link } from "react-router";
 
 type Props = {
-  product: Product;
+  product: ProductWithCategories;
   className?: string;
 };
 
 export default function Breadcrumbs({ product, className }: Props) {
+  const categoryTitle = product.categories[0]?.title ?? "";
   return (
     <>
       <nav className={`flex ${className}`} aria-label="Breadcrumb">
@@ -55,7 +56,7 @@ export default function Breadcrumbs({ product, className }: Props) {
                 className="inline-flex items-center text-sm font-medium
                   text-body hover:text-fg-brand"
               >
-                Category
+                {categoryTitle}
               </Link>
             </div>
           </li>

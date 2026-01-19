@@ -1,7 +1,7 @@
 // ProductDetails.tsx
-import ProductDetailsSection from "@/components/ui/ProductDetailsSection";
+import ProductDetailsSection from "@/components/ui/products/ProductDetailsSection";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
-import { ProductCarousel } from "@/components/ui/ProductCarousel";
+import { ProductCarousel } from "@/components/ui/products/ProductCarousel";
 import { Divider } from "@/components/ui/Divider";
 
 import { useParams } from "react-router";
@@ -23,7 +23,9 @@ export default function ProductDetails() {
       <ProductDetailsSection product={product} />
       <Divider variant="dark" className="sm:hidden" />
       {
-        // TODO: Implement similar products logic
+        // TODO:
+        // 1. Similar products logic,
+        // 2. Make carousel arrows white
       }
       <section id="similar-products-container" className="hidden sm:grid gap-4">
         <h1 className="text-center text-3xl">Similar Products</h1>

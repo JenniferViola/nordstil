@@ -25,6 +25,28 @@ export function getPublishedBySlug(
   }
 }
 
+export function getProductWithCategories(
+  req: Request<{ slug: string }>,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const { slug } = req.params;
+    if (!slug) {
+      return res.status(400).json({ message: 'Missing slug' });
+    }
+
+    const productWithCategories = service.getProductCategoriesBySlug(slug);
+
+    if (!productWithCategories) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+    return res.json(productWithCategories);
+  } catch (err) {
+    next(err);
+  }
+}
+
 export function getCategory(req: Request, res: Response, next: NextFunction) {
   try {
     const productId = Number(req.params.id);

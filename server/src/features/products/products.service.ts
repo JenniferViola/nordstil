@@ -11,6 +11,20 @@ export function getPublishedProductBySlug(slug: string): Product | null {
   return repo.findPublishedBySlug(slug);
 }
 
+export function getProductCategoriesBySlug(
+  slug: string,
+): ProductWithCategories | null {
+  const product = repo.findPublishedBySlug(slug);
+  if (!product) return null;
+
+  const categories = repo.findCategoriesByProductId(product.id);
+
+  return {
+    ...product,
+    categories,
+  };
+}
+
 export function getCategoriesByProduct(id: number): ProductWithCategories {
   // fetch the product itself
   const product = repo.findProductById(id);

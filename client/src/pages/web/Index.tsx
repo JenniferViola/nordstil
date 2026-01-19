@@ -1,7 +1,7 @@
 // Index.tsx
 import Hero from "@/components/ui/Hero";
 import Spots from "@/components/ui/Spots";
-import ProductGrid from "@/components/ui/ProductGrid";
+import ProductGrid from "@/components/ui/products/ProductGrid";
 
 import useHero from "@/hooks/useHero";
 import useSpots from "@/hooks/useSpots";
