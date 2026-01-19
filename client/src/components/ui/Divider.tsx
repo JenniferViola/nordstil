@@ -8,7 +8,7 @@ export function Divider({ variant = "dark", className }: DividerProps) {
     <hr
       className={`border-b-0 ${
         variant === "light"
-          ? "border-secondary-300/50"
+          ? "border-secondary-200/50"
           : "border-primary-600/50"
         }${className ? ` ${className}` : ""}`}
     />

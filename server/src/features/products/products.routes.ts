@@ -1,11 +1,11 @@
 // products.routes.ts
 import { Router } from 'express';
-import { getPublished, getPublishedBySlug } from './products.controller';
+import * as controller from './products.controller';
 
 const router = Router();
 
-router.get('/', getPublished);
-
-router.get('/:slug', getPublishedBySlug);
+router.get('/', controller.getPublished);
+router.get('/:slug', controller.getPublishedBySlug);
+router.get('/:id/categories', controller.getCategory);
 
 export default router;

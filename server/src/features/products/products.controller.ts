@@ -1,13 +1,10 @@
 // products.controller.ts
 import { Request, Response, NextFunction } from 'express';
-import {
-  getPublishedProducts,
-  getPublishedProductBySlug,
-} from './products.service';
+import * as service from './products.service';
 
 export function getPublished(req: Request, res: Response, next: NextFunction) {
   try {
-    const products = getPublishedProducts();
+    const products = service.getPublishedProducts();
     res.json(products);
   } catch (err) {
     next(err);
@@ -21,8 +18,22 @@ export function getPublishedBySlug(
 ) {
   try {
     const slug = req.params.slug;
-    const product = getPublishedProductBySlug(slug);
+    const product = service.getPublishedProductBySlug(slug);
     res.json(product);
+  } catch (err) {
+    next(err);
+  }
+}
+
+export function getCategory(req: Request, res: Response, next: NextFunction) {
+  try {
+    const productId = Number(req.params.id);
+    if (Number.isNaN(productId)) {
+      return res.status(400).json({ message: 'Invalid product id' });
+    }
+    const productWithCategories = service.getCategoriesByProduct(productId);
+
+    return res.json(productWithCategories);
   } catch (err) {
     next(err);
   }

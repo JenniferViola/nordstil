@@ -14,6 +14,7 @@ export default function ProductDetailsSection({
   product,
 }: ProductSectionProps) {
   const [rating, setRating] = useState(0);
+  const [selectedProductColor, setSelectedProductColor] = useState<string>("");
   const productSizes = ["S", "M", "L", "XL"] as const;
 
   if (!product) return <div>Loading...</div>;
@@ -24,7 +25,7 @@ export default function ProductDetailsSection({
     >
       <div
         id="image-container"
-        className="w-full aspect-3/4 overflow-hidden rounded-sm shadow-sm"
+        className="w-full aspect-3/4 overflow-hidden rounded-xs shadow-sm"
       >
         <img
           src={product.img_url}
@@ -53,7 +54,7 @@ export default function ProductDetailsSection({
           </div>
         </div>
 
-        <div id="details-body" className="flex flex-col gap-8 lg:gap-4">
+        <div id="product-options" className="flex flex-col gap-8 lg:gap-4">
           <p className="lg:text-lg">{product.description}</p>
           <div className="flex flex-col gap-4">
             <div id="product-color" className="flex flex-col gap-2">
@@ -61,13 +62,28 @@ export default function ProductDetailsSection({
                 <span className="font-bold">Color:</span>
                 {product.color_name}
               </p>
-              <span
-                className="w-6 h-6 rounded-full border border-gray-300"
-                style={{ backgroundColor: product.color_hex }}
-              ></span>
+
+              <ul className="flex gap-4 lg:gap-6 flex-wrap decoration-0">
+                <li
+                  onClick={() => setSelectedProductColor(product.color_hex)}
+                  className={`${
+                    selectedProductColor
+                      ? "border-[1.5px] border-primary-700/60 cursor-pointer"
+                      : "border border-gray-300"
+                    } w-6 h-6 rounded-full`}
+                  style={{ backgroundColor: product.color_hex }}
+                ></li>
+                <li
+                  className="w-6 h-6 rounded-full border border-gray-300"
+                  style={{ backgroundColor: "#d9d9c8" }}
+                ></li>
+              </ul>
             </div>
+
             <div id="product-size" className="flex flex-col gap-2">
-              <p className="flex items-center gap-2 font-bold">Sizes:</p>
+              <p className="flex items-center gap-2">
+                <span className="font-bold">Size:</span> Small
+              </p>
               <ul className="flex gap-4 lg:gap-6 flex-wrap">
                 {productSizes.map((size) => (
                   <Link
@@ -88,7 +104,8 @@ export default function ProductDetailsSection({
         <div id="button-container">
           <RippleButton
             onClick={() => console.log("Clicked")}
-            className="w-full lg:w-1/2 font-bold"
+            className="w-full lg:w-1/2 font-bold bg-primary-600
+              text-secondary-200"
           >
             Add to Cart
           </RippleButton>

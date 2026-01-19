@@ -27,6 +27,7 @@ CREATE TABLE products (
 CREATE TABLE categories (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   title TEXT NOT NULL,
+  description TEXT,
   img_url TEXT,
   slug TEXT NOT NULL UNIQUE
 );
