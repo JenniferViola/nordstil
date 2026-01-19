@@ -78,94 +78,94 @@ INSERT INTO products (
 ) VALUES
 ('SKU001', '2025-11-06', 'T-Shirt', 'CottonWear', 199,
  'Soft cotton t-shirt with relaxed fit.',
- 'https://plus.unsplash.com/premium_photo-1690349404248-3ddd9be40eb1?...',
+ '../images/products/tshirt.webp',
  'Soft White', '#F5F5F3', 'tshirt'),
 
 ('SKU002', '2025-11-06', 'Floral Coat', 'PreppyStyle', 949,
  'Long, lightweight coat with black floral print.',
- 'https://images.unsplash.com/photo-1564485377539-4af72d1f6a2f?...',
+ '../images/products/floral-coat.webp',
  'Charcoal Black', '#2B2B2B', 'floral-coat'),
 
 ('SKU003', '2025-11-06', 'Leather Boots', 'RuggedWear', 1499,
  'Durable boots with lace-up design.',
- 'https://plus.unsplash.com/premium_photo-1673367753702-362ea0bf5932?...',
+ '../images/products/leather-boots.webp',
  'Warm Brown', '#6F4E37', 'leather-boots'),
 
 ('SKU004', '2025-11-06', 'Plaid Scarf', 'CozyWraps', 249,
  'Warm scarf made from soft acrylic yarn.',
- 'https://images.unsplash.com/photo-1738774106908-04ea849dec8e?...',
+ '../images/products/plaid-scarf.webp',
  'Muted Yellow', '#b4a863', 'plaid-scarf'),
 
-('SKU005', '2025-11-06', 'Floral Summer Dress', 'SunBloom', 749,
+('SKU005', '2025-11-06', 'Floral Dress', 'SunBloom', 749,
  'Light and flowy dress with floral pattern.',
- 'https://images.unsplash.com/photo-1759992878336-a5dd342ea245?...',
- 'Cream White', '#eee8d7', 'floral-summer-dress'),
+ '../images/products/floral-dress.webp',
+ 'Cream White', '#eee8d7', 'floral-dress'),
 
 ('SKU006', '2025-11-06', 'Leather Belt', 'Form&Fit', 299,
  'Genuine leather belt with silver buckle.',
- 'https://images.unsplash.com/photo-1623393807193-e095f7944161?...',
+ '../images/products/leather-belt.webp',
  'Dark Cognac', '#5A3A28', 'leather-belt'),
 
 ('SKU007', '2025-11-06', 'Sneakers', 'WalkEase', 999,
  'Minimalist sneakers with rubber sole.',
- 'https://images.unsplash.com/photo-1600411953419-53cc2faf0c81?...',
+ '../images/products/sneakers.webp',
  'Off White', '#EFEFEA', 'sneakers'),
 
-('SKU008', '2025-11-06', 'Black Beanie', 'ColdProof', 199,
+('SKU008', '2025-11-06', 'Beanie', 'ColdProof', 199,
  'Knitted beanie made from warm acrylic.',
- 'https://images.unsplash.com/photo-1610737249253-1405407a33ad?...',
- 'Soft Black', '#1E1E1E', 'black-beanie'),
+ '../images/products/beanie.webp',
+ 'Soft Black', '#1E1E1E', 'Beanie'),
 
 ('SKU009', '2025-11-06', 'Plaid Shirt', 'CasualVibe', 399,
  'Button-up shirt with classic plaid pattern.',
- 'https://plus.unsplash.com/premium_photo-1723773910301-c91de3cdd855?...',
+ '../images/products/plaid-shirt.webp',
  'Dusty Blue', '#6E8CA0', 'plaid-shirt'),
 
 ('SKU010', '2025-11-06', 'Wristwatch', 'TimeKeeper', 2499,
  'Classic wristwatch with stainless steel band.',
- 'https://images.unsplash.com/photo-1762331236910-6be44652a5f4?...',
+ '../images/products/wristwatch.webp',
  'Silver', '#C9CCD1', 'wristwatch'),
 
 ('SKU011', '2025-11-06', 'Plaid Jacket', 'FormalEdge', 1299,
  'Tailored plaid jacket with notched lapels.',
- 'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?...',
+ '../images/products/plaid-jacket.webp',
  'Dark Blue', '#284b64', 'plaid-jacket'),
 
 ('SKU012', '2025-11-06', 'Denim Jacket', 'UrbanEdge', 899,
  'Light-wash denim jacket with metal buttons.',
- 'https://images.unsplash.com/photo-1626387133160-02364bcac6ed?...',
+ '../images/products/denim-jacket.webp',
  'Washed Blue', '#7A9BBE', 'denim-jacket'),
 
 ('SKU013', '2025-11-06', 'Knit Sweater', 'WarmThreads', 699,
  'Crewneck sweater made from soft wool blend.',
- 'https://images.unsplash.com/photo-1667586680656-6b8e381cddb5?...',
+ '../images/products/knit-sweater.webp',
  'Soft Grey', '#B0B0B0', 'knit-sweater'),
 
 ('SKU014', '2025-11-06', 'Leather Jacket', 'MotoStyle', 1599,
  'Fitted leather jacket with zippered pockets.',
- 'https://plus.unsplash.com/premium_photo-1698749344903-2639d1cc31a1?...',
+ '../images/products/leather-jacket.webp',
  'Deep Black', '#141414', 'leather-jacket'),
 
 ('SKU015', '2025-11-06', 'Ankle Boots', 'ChicStep', 1299,
  'Stylish ankle boots with block heel.',
- 'https://plus.unsplash.com/premium_photo-1671718110912-2bf5ce67d504?...',
+ '../images/products/ankle-boots.webp',
  'Glossy Black', '#242424', 'ankle-boots'),
 
-('SKU016', '2025-11-06', 'Hoodie', 'CozyLayer', 499,
- 'Pullover hoodie with kangaroo pocket.',
- 'https://images.unsplash.com/photo-1737139282698-b78009a06133?...',
- 'Cream White', '#eee8d7', 'hoodie');
+('SKU016', '2025-11-06', 'Ribbed V-Neck Sweater', 'CozyLayer', 499,
+ 'Comfortable ribbed pullover with V-neckline.',
+ '../images/products/ribbed-v-neck-sweater.webp',
+ 'Off-White', '#e9e1cb', 'ribbed-v-neck-sweater');
 
 
 -- CATEGORIES DATA
 INSERT INTO categories (title, img_url, slug) VALUES
-('Tops', '/images/categories-tops.png', 'tops'),
-('Sweaters', '/images/categories-sweaters.png', 'sweaters'),
-('Bottoms', '/images/categories-bottoms.png', 'bottoms'),
-('Dresses', '/images/categories-dresses.png', 'dresses'),
-('Outerwear', '/images/categories-outerwear.png', 'outerwear'),
-('Shoes', '/images/categories-shoes.png', 'shoes'),
-('Accessories', '/images/categories-accessories.png', 'accessories');
+('Tops', '/../images/categories-tops.png', 'tops'),
+('Sweaters', '/../images/categories-sweaters.png', 'sweaters'),
+('Bottoms', '/../images/categories-bottoms.png', 'bottoms'),
+('Dresses', '/../images/categories-dresses.png', 'dresses'),
+('Outerwear', '/../images/categories-outerwear.png', 'outerwear'),
+('Shoes', '/../images/categories-shoes.png', 'shoes'),
+('Accessories', '/../images/categories-accessories.png', 'accessories');
 
 -- CATEGORY_PRODUCTS DATA
 INSERT INTO category_products (category_id, product_id) VALUES
@@ -195,18 +195,18 @@ INSERT INTO hero (
   link_url,
   active
 ) VALUES (
-  'New Collection',
+  'New Collection · from 499 SEK',
   'Timeless Scandinavian design',
   'Carefully crafted pieces inspired by Nordic simplicity. Designed to last, made to be worn every day.',
-  './images/hero1.webp',
+  '../images/hero/hero1.webp',
   '/shop',
   1
 );
-
+-- ../images/
 -- SPOTS DATA
 INSERT INTO spots (title, subtitle, img_url, link_url) VALUES
-('Best Sellers', 'Shop our most popular items.', 'https://images.unsplash.com/photo-1738774107000-7847e9036795?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=774', '/'),
-('Knitwear', 'Cozy and stylish knitwear for chilly days.', 'https://images.unsplash.com/photo-1760013529817-f50db943ffe2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=774', '/'),
-('New Arrivals', 'Check out the latest arrivals.', 'https://images.unsplash.com/photo-1635866091268-87ca924abc9a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=930', '/');
+('Best Sellers', 'Shop our most popular items.', '../images/spots/spot1.webp', '/'),
+('Knitwear', 'Cozy and stylish knitwear for chilly days.', '../images/spots/spot2.webp', '/'),
+('New Arrivals', 'Check out the latest arrivals.', '../images/spots/spot3.webp', '/');
 
 

@@ -1,5 +1,5 @@
 // components/layout/Header.jsx
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router";
 import {
   FaBars,
@@ -26,21 +26,25 @@ export default function Header({
   onToggleSearch,
   onClose,
 }: Props) {
-  const [isScrolled, setIsScrolled] = useState(false);
-
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 0);
+    const header = document.querySelector("header");
+
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        header?.classList.add("scrolled");
+      } else {
+        header?.classList.remove("scrolled");
+      }
+    };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <header
-      className={`${
-        isScrolled ? "shadow-xl/5 py-2 bg-secondary-100/93" : "py-3 sm:py-3"
-      }
-        sticky top-0 z-50 w-full max-h-20 transition-all duration-300
-        bg-secondary-100 text-primary-800-500`}
+      className="py-3 sm:py-3 sticky top-0 z-50 w-full max-h-20 transition-all
+        duration-300 bg-secondary-100 text-primary-800-500"
     >
       <div
         id="header-container"

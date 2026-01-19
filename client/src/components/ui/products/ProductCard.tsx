@@ -2,26 +2,29 @@
 import { FaHeart } from "react-icons/fa6";
 import type { Product } from "@/types/product";
 import { Link } from "react-router";
-import { useState } from "react";
+import { useState, memo } from "react";
 
 type Props = {
   product: Product;
+  className?: string;
 };
 
-export default function ProductCard({ product }: Props) {
+function ProductCard({ product, className }: Props) {
   const isNew = false;
   const [isFaved, setIsFaved] = useState(false);
 
   return (
-    <Link to={`/products/${product.slug}`} className="card">
+    <Link
+      to={`/products/${product.slug}`}
+      className={`card min-h-100 w-full ${className || ""}`}
+    >
       <figure className="card-figure">
         <img
           src={product.img_url}
           alt={product.title}
-          className="opacity-0 transition-opacity duration-500"
+          width={100}
+          height={200}
           loading="lazy"
-          decoding="async"
-          onLoad={(e) => (e.currentTarget.style.opacity = "1")}
         />
         <div className="card-overlay">
           <FaHeart
@@ -56,3 +59,5 @@ export default function ProductCard({ product }: Props) {
     </Link>
   );
 }
+
+export default memo(ProductCard);

@@ -9,17 +9,41 @@ interface HeroProps {
 
 export default function Hero({ hero }: HeroProps) {
   return (
-    <section className="hero">
-      <div className="hero-inner">
-        <img src={hero.img_url} alt={hero.title} className="hero-image" />
+    <section className="relative w-full">
+      <div
+        id="hero-container"
+        className="relative mx-auto h-[80vh] w-full overflow-hidden"
+      >
+        <img
+          src={hero.img_url}
+          alt={hero.title}
+          loading="eager"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover object-top"
+        />
 
-        <div className="hero-overlay" />
+        <div
+          id="overlay"
+          className="absolute inset-0 bg-linear-to-t from-black/55 via-black/20
+            to-transparent"
+        />
 
-        <Link to="/" className="hero-content flex flex-col gap-2">
-          <p className="hero-tagline">{hero.tagline} · from 499 SEK</p>
-          <h1 className="hero-title">{hero.title}</h1>
+        <Link
+          to="/"
+          id="content"
+          className="absolute inset-x-0 bottom-0 px-4 pb-5 sm:px-6 sm:pb-7
+            lg:w-1/2 flex flex-col gap-2"
+        >
+          <p id="tagline" className="text-xs text-secondary-500/80 sm:text-sm">
+            {hero.tagline}
+          </p>
+          <h1 id="title" className="text-2xl text-secondary-500 lg:text-3xl">
+            {hero.title}
+          </h1>
           <Divider variant="light" className="w-full opacity-50" />
-          <p className="hero-text">{hero.text}</p>
+          <p id="text" className="text-xs text-secondary-500/90 lg:text-sm">
+            {hero.text}
+          </p>
         </Link>
       </div>
     </section>

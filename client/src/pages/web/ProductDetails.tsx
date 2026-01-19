@@ -24,8 +24,7 @@ export default function ProductDetails() {
       <Divider variant="dark" className="sm:hidden" />
       {
         // TODO:
-        // 1. Similar products logic,
-        // 2. Make carousel arrows white
+        // 1. Similar products logic: same category, tags, etc.
       }
       <section id="similar-products-container" className="hidden sm:grid gap-4">
         <h1 className="text-center text-3xl">Similar Products</h1>

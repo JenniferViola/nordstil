@@ -115,48 +115,15 @@
     @apply absolute inset-0 rounded-sm bg-linear-to-t from-transparent via-black/20 to-black/40;
   }
 
-  /* ---- HERO COMPONENT ---- */
-  .hero {
-    @apply relative max-w-full;
-  }
-
-  .hero-inner {
-    @apply relative mx-auto;
-  }
-
-  .hero-image {
-    @apply h-150 w-full object-cover object-top;
-  }
-
-  .hero-overlay {
-    @apply absolute inset-0 bg-linear-to-t from-black/55 via-black/20 to-transparent;
-  }
-
-  .hero-content {
-    @apply absolute inset-x-0 bottom-0 px-4 pb-5 sm:px-6 sm:pb-7 lg:w-1/2;
-  }
-
-  .hero-tagline {
-    @apply text-xs text-secondary-500/80 sm:text-sm;
-  }
-
-  .hero-title {
-    @apply text-2xl text-secondary-500 lg:text-3xl;
-  }
-
-  .hero-text {
-    @apply text-xs text-secondary-500/90 lg:text-sm;
-  }
-
-  .spot-overlay {
-    @apply absolute inset-0 bg-linear-to-t from-black/55 via-black/20 to-transparent;
-  }
   .logo-text {
     font-family: "Playfair Display", serif;
   }
 }
 
 @layer utilities {
+  header.scrolled {
+    @apply bg-secondary-100/93 py-2 shadow-xl/5;
+  }
   .text-4xl {
     font-size: 2.25rem;
   }

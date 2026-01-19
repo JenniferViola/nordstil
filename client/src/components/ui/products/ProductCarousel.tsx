@@ -11,9 +11,10 @@ import type { Product } from "@/types/product";
 
 type ProductCarouselProps = {
   products: Product[];
+  className?: string;
 };
 
-export function ProductCarousel({ products }: ProductCarouselProps) {
+export function ProductCarousel({ products, className }: ProductCarouselProps) {
   return (
     <Carousel className="w-full max-w-7xl overflow-auto">
       <CarouselContent className="-ml-1 relative">
