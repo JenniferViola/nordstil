@@ -21,8 +21,7 @@ export default function Hero({ hero }: HeroProps) {
           width={1440}
           height={800}
           fetchPriority="high"
-          className="absolute inset-0 h-full w-full max-h-[800p] object-cover
-            object-top"
+          className="absolute inset-0 h-full w-full object-cover object-top"
         />
 
         <div
@@ -44,7 +43,10 @@ export default function Hero({ hero }: HeroProps) {
             {hero.title}
           </h1>
           <Divider variant="light" className="w-full opacity-50" />
-          <p id="text" className="text-xs text-secondary-500/90 lg:text-sm">
+          <p
+            id="text"
+            className="truncate text-xs text-secondary-500/90 lg:text-sm"
+          >
             {hero.text}
           </p>
         </Link>

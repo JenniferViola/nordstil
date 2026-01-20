@@ -4,12 +4,17 @@ import { Link } from "react-router";
 import {
   FaBars,
   FaHeart,
-  FaMagnifyingGlass,
   FaBasketShopping,
   FaXmark,
   FaUser,
 } from "react-icons/fa6";
 import IconButton from "@/components/ui/IconButton";
+import Logo from "@/components/ui/brand/Logo";
+import {
+  SearchMobile,
+  SearchToggle,
+  SearchDesktop,
+} from "@/components/ui/Search";
 
 type Props = {
   menuOpen: boolean;
@@ -49,7 +54,7 @@ export default function Header({
       <div
         id="header-container"
         className="mx-auto grid max-w-350 grid-cols-[1fr_auto_1fr] items-center
-          px-4 lg:px-6"
+          justify-center px-4 lg:px-6"
       >
         <div className="flex items-center justify-start">
           {/* MOBILE NAV/SEARCH TOGGLE */}
@@ -60,17 +65,14 @@ export default function Header({
               className="lg:hidden z-50"
               aria-label="Toggle Menu"
             >
-              {menuOpen ? <FaXmark size={22} /> : <FaBars size={20} />}
+              {menuOpen ? <FaXmark size={20} /> : <FaBars size={20} />}
             </button>
 
             {/* SEARCH TOGGLE */}
-            <div
-              className="lg:hidden hover:scale-110 transition-transform"
-              onClick={onToggleSearch}
-              aria-label="Toggle Search"
-            >
-              <FaMagnifyingGlass size={18} />
-            </div>
+            <SearchToggle
+              onToggleSearch={onToggleSearch}
+              searchOpen={searchOpen}
+            />
           </div>
 
           {/* NAV - DESKTOP */}
@@ -95,41 +97,12 @@ export default function Header({
         </div>
 
         {/* LOGO */}
-        <div className="flex">
-          <Link to="/" className="relative block group">
-            <p
-              className="logo-text text-[1.65rem] font-medium tracking-tight
-                text-primary leading-none pb-1.5 border-b"
-            >
-              NORDSTIL
-            </p>
-          </Link>
-        </div>
+        <Logo />
 
         {/* ACTIONS */}
         <div className="flex items-center justify-end gap-4">
-          {/* Search desktop */}
-          <div className="hidden lg:flex items-center lg:w-60 xl:w-70">
-            <div className="relative w-full flex items-center">
-              <input
-                type="text"
-                placeholder="Search..."
-                className="flex-1 pr-8 py-1 bg-transparent border-b
-                  border-primary-500/50 text-sm placeholder:text-primary-500/50
-                  focus:outline-none focus:border-primary-500 transition-all
-                  duration-300 ease-out"
-              />
-              <Link
-                to="/"
-                className="z-10 hover:scale-110 transition-transform p-1"
-                aria-label="Search"
-              >
-                <FaMagnifyingGlass size={18} />
-              </Link>
-            </div>
-          </div>
+          <SearchDesktop />
 
-          {/* Icons */}
           <div className="flex items-center gap-1 text-primary-500">
             <IconButton
               icon={<FaHeart size={18} />}
@@ -145,28 +118,11 @@ export default function Header({
         </div>
       </div>
 
-      {/* Mobile search */}
-      <div
-        className={` lg:hidden absolute left-0 top-full w-full bg-secondary-100
-          text-body overflow-hidden transition-all duration-300 ease-out
-          shadow-xl/10
-          ${searchOpen ? "max-h-28 opacity-100" : "max-h-0 opacity-0"} `}
-      >
-        <div className="px-6 py-4">
-          <input
-            autoFocus={searchOpen}
-            type="text"
-            placeholder="Search products"
-            className="w-full rounded-none bg-transparent border-b
-              border-body/30 pb-2 text-base placeholder:text-body/40
-              focus:outline-none"
-          />
-        </div>
-      </div>
+      <SearchMobile searchOpen={searchOpen} />
 
       {/* Mobile nav */}
       <div
-        className={` lg:hidden fixed inset-0 z-40 bg-secondary-100 text-body
+        className={`lg:hidden fixed inset-0 z-40 bg-secondary-100 text-body
           transition-opacity duration-300
           ${menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
           `}

@@ -206,7 +206,7 @@ INSERT INTO hero (
 -- SPOTS DATA
 INSERT INTO spots (title, subtitle, img_url, link_url) VALUES
 ('Best Sellers', 'Shop our most popular items.', '../images/spots/spot1.webp', '/'),
-('Knitwear', 'Cozy and stylish knitwear for chilly days.', '../images/spots/spot2.webp', '/'),
+('Knitwear', 'Cozy knitwear for chilly days.', '../images/spots/spot2.webp', '/'),
 ('New Arrivals', 'Check out the latest arrivals.', '../images/spots/spot3.webp', '/');
 
 

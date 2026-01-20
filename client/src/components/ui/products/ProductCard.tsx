@@ -16,9 +16,9 @@ function ProductCard({ product, className }: Props) {
   return (
     <Link
       to={`/products/${product.slug}`}
-      className={`block w-full min-w-0 max-h-[1050px] rounded bg-white
-        text-inherit no-underline shadow-md transition-transform duration-200
-        ease-in-out ${className || ""}`}
+      className={`block w-full min-w-0 max-h-[1050px] rounded bg-secondary-100
+        text-inherit no-underline transition-transform duration-200 ease-in-out
+        ${className || ""}`}
     >
       <figure className="relative">
         <img
