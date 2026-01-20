@@ -17,17 +17,13 @@ export default function Index() {
   const spots: SpotsType[] = useSpots();
 
   if (!products || !hero || !spots)
-    return (
-      <div id="index-container" className="grid gap-2 max-w-full min-h-screen">
-        <p className="text-2xl">Loading...</p>
-      </div>
-    );
+    return <p className="text-2xl">Loading...</p>;
 
   return (
-    <div id="index-container" className="grid gap-2 max-w-full min-h-screen">
+    <>
       <Hero hero={hero} />
       <Spots spots={spots} />
       <ProductGrid products={products} />
-    </div>
+    </>
   );
 }

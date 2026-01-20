@@ -13,7 +13,7 @@ export default function Hero({ hero }: HeroProps) {
       <div
         id="hero-container"
         className="relative mx-auto aspect-4/5 md:aspect-16/10 max-h-[800px]
-          w-full max-w-[1440px] overflow-hidden"
+          w-full overflow-hidden"
       >
         <img
           src={hero.img_url}
@@ -21,8 +21,8 @@ export default function Hero({ hero }: HeroProps) {
           width={1440}
           height={800}
           fetchPriority="high"
-          className="absolute inset-0 h-full w-full max-w-[1440px] max-h-[800p]
-            object-cover object-top"
+          className="absolute inset-0 h-full w-full max-h-[800p] object-cover
+            object-top"
         />
 
         <div

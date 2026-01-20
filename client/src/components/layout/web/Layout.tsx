@@ -20,7 +20,7 @@ export default function Layout({ children }: Props) {
   };
 
   return (
-    <div className="h-full w-full flex flex-col">
+    <div className="min-h-screen w-full flex flex-col">
       <Header
         menuOpen={menuOpen}
         searchOpen={searchOpen}
@@ -36,15 +36,19 @@ export default function Layout({ children }: Props) {
       />
 
       <main
-        className={"w-full m-2 grid gap-4 justify-center items-center relative"}
+        className={
+          " flex-1 grid gap-4 m-2 justify-center items-center relative"
+        }
         onClick={() => {
           if (!headerOpen) return;
           closeHeader();
         }}
       >
-        {searchOpen && <div className="absolute inset-0 bg-black/40 z-10" />}
+        <div id="page-container" className="grid gap-2 max-w-[1920px]">
+          {searchOpen && <div className="absolute inset-0 bg-black/40 z-10" />}
 
-        {children}
+          {children}
+        </div>
       </main>
 
       <Footer />

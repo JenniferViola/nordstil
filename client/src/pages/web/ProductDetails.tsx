@@ -15,7 +15,7 @@ export default function ProductDetails() {
 
   if (!product) return <div>Loading...</div>;
   return (
-    <div id="page-container" className="grid gap-4 sm:gap-8 min-h-screen">
+    <>
       <Breadcrumbs product={product} className="sm:hidden flex" />
       <ProductDetailsSection product={product} />
       <Divider variant="dark" className="sm:hidden" />
@@ -27,6 +27,6 @@ export default function ProductDetails() {
         <h1 className="text-center text-3xl">Similar Products</h1>
         <ProductCarousel products={similarProducts} />
       </section>
-    </div>
+    </>
   );
 }
