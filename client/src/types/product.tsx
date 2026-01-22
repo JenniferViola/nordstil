@@ -1,3 +1,5 @@
+import type { Category } from "./category";
+
 export interface Product {
   id: number;
   sku: string;
@@ -7,7 +9,11 @@ export interface Product {
   price?: number;
   description?: string;
   img_url: string;
+  color_name: string;
+  color_hex: string;
   slug: string;
 }
 
-// Need to add categories later
+export interface ProductWithCategories extends Product {
+  categories: Category[];
+}

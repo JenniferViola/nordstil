@@ -1,3 +1,5 @@
+import type { Category } from '../categories/category.types';
+
 export interface Product {
   id: number;
   sku: string;
@@ -8,4 +10,8 @@ export interface Product {
   description: string;
   img_url: string;
   slug: string;
+}
+
+export interface ProductWithCategories extends Product {
+  categories: Category[];
 }
