@@ -1,20 +1,17 @@
-// data/db.ts
-
 import Database from 'better-sqlite3';
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
-// Paths
 const sqlFile = path.join(__dirname, 'data.sql');
 const dbFile = path.join(__dirname, 'data.db');
 
-// Read SQL schema and seed data
 const sql = fs.readFileSync(sqlFile, 'utf8');
 
-// Create or open database
-const db = new Database('data.db');
+// Optionally delete old db
+if (fs.existsSync(dbFile)) fs.unlinkSync(dbFile);
 
-// Rebuild database each time (drops + recreates)
+const db = new Database(dbFile);
+
 console.log('Loading SQL from:', sqlFile);
 
 try {
