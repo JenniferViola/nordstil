@@ -15,6 +15,28 @@ export function findPublished(): Product[] {
   return rows as Product[];
 }
 
+//Search for products
+export function searchPublished(query: string): Product[] {
+  const stmt = db.prepare(`
+    SELECT DISTINCT p.*
+    FROM products p
+    LEFT JOIN category_products cp ON p.id = cp.product_id
+    LEFT JOIN categories c ON c.id = cp.category_id
+    WHERE p.published_date IS NOT NULL
+      AND (
+        p.title LIKE ?
+        OR p.brand LIKE ?
+        OR p.description LIKE ?
+        OR c.title LIKE ?
+      )
+    ORDER BY p.published_date DESC
+  `);
+
+  const like = `%${query.trim()}%`;
+
+  return stmt.all(like, like, like, like) as Product[];
+}
+
 // fetch a published product by its slug
 export function findPublishedBySlug(slug: string): Product | null {
   const row = db

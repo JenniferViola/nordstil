@@ -7,6 +7,10 @@ export function getPublishedProducts(): Product[] {
   return repo.findPublished();
 }
 
+export function searchPublishedProducts(query: string): Product[] {
+  return repo.searchPublished(query);
+}
+
 export function getPublishedProductBySlug(slug: string): Product | null {
   return repo.findPublishedBySlug(slug);
 }

@@ -49,8 +49,8 @@ export default function Header({ menuOpen, onToggleMenu, onClose }: Props) {
     >
       <div
         id="header-container"
-        className="mx-auto grid max-w-350 grid-cols-[1fr_auto_1fr] items-center
-          justify-center px-4 lg:px-6"
+        className="grid w-full px-2 grid-cols-[1fr_auto_1fr] items-center
+          justify-center"
       >
         <div className="flex items-center justify-start">
           {/* MOBILE NAV/SEARCH TOGGLE */}

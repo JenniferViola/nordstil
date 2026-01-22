@@ -7,7 +7,7 @@ type Props = {
   className?: string;
 };
 
-export default function Breadcrumbs({ product, className }: Props) {
+export default function ProductBreadcrumbs({ product, className }: Props) {
   const categoryTitle = product.categories[0]?.title ?? "";
   return (
     <>
