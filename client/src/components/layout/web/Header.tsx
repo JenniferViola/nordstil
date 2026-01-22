@@ -1,5 +1,5 @@
 // components/layout/Header.jsx
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import {
   FaBars,
@@ -12,8 +12,8 @@ import IconButton from "@/components/ui/IconButton";
 import Logo from "@/components/ui/brand/Logo";
 import {
   SearchMobile,
-  SearchToggle,
   SearchDesktop,
+  SearchToggle,
 } from "@/components/ui/Search";
 
 type Props = {
@@ -24,13 +24,9 @@ type Props = {
   onClose: () => void;
 };
 
-export default function Header({
-  menuOpen,
-  searchOpen,
-  onToggleMenu,
-  onToggleSearch,
-  onClose,
-}: Props) {
+export default function Header({ menuOpen, onToggleMenu, onClose }: Props) {
+  const [searchOpen, setSearchOpen] = useState(false);
+
   useEffect(() => {
     const header = document.querySelector("header");
 
@@ -69,10 +65,7 @@ export default function Header({
             </button>
 
             {/* SEARCH TOGGLE */}
-            <SearchToggle
-              onToggleSearch={onToggleSearch}
-              searchOpen={searchOpen}
-            />
+            <SearchToggle onToggle={() => setSearchOpen((prev) => !prev)} />
           </div>
 
           {/* NAV - DESKTOP */}
@@ -118,7 +111,10 @@ export default function Header({
         </div>
       </div>
 
-      <SearchMobile searchOpen={searchOpen} />
+      <SearchMobile
+        searchOpen={searchOpen}
+        onClose={() => setSearchOpen(false)}
+      />
 
       {/* Mobile nav */}
       <div
