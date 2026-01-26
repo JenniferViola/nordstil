@@ -24,7 +24,10 @@ export default function ProductDetails() {
         // TODO:
         // 1. Similar products logic: same category, tags, etc.
       }
-      <section id="similar-products-container" className="hidden sm:grid gap-4">
+      <section
+        id="similar-products-container"
+        className="hidden sm:grid gap-4 mt-4 justify-center items-center"
+      >
         <h1 className="text-center text-3xl">Similar Products</h1>
         <ProductCarousel products={similarProducts} />
       </section>

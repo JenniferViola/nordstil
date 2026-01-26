@@ -1,4 +1,4 @@
-// Index.tsx
+// web/Index.tsx
 import PageTitle from "@/components/layout/shared/PageTitle";
 import Hero from "@/components/ui/Hero";
 import Spots from "@/components/ui/Spots";

@@ -1,20 +1,18 @@
 // Header.jsx
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
-import {
-  FaBars,
-  FaHeart,
-  FaBasketShopping,
-  FaXmark,
-  FaUser,
-} from "react-icons/fa6";
-import IconButton from "@/components/ui/IconButton";
-import Logo from "@/components/ui/brand/Logo";
+import { Link, NavLink } from "react-router";
+import { useCart } from "@/hooks/useCart";
 import {
   SearchMobile,
   SearchDesktop,
   SearchToggle,
 } from "@/components/features/Search";
+
+import { SlBag, SlHeart, SlMenu, SlUser } from "react-icons/sl";
+import { TfiClose } from "react-icons/tfi";
+
+import IconButton from "@/components/ui/IconButton";
+import Logo from "@/components/ui/brand/Logo";
 
 type Props = {
   menuOpen: boolean;
@@ -26,6 +24,15 @@ type Props = {
 
 export default function Header({ menuOpen, onToggleMenu, onClose }: Props) {
   const [searchOpen, setSearchOpen] = useState(false);
+  const { items } = useCart();
+  const navLinks = [
+    { id: 1, title: "Home", url: "/" },
+    { id: 2, title: "Shop", url: "/search" },
+    { id: 3, title: "Magazine", url: "/magazine" },
+  ];
+
+  // derive total quantity
+  const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
 
   useEffect(() => {
     const header = document.querySelector("header");
@@ -53,37 +60,38 @@ export default function Header({ menuOpen, onToggleMenu, onClose }: Props) {
           items-center justify-center"
       >
         <div className="flex items-center justify-start">
-          <div className="flex gap-4 text-primary">
-            {/* NAV TOGGLE */}
+          <div className="flex gap-4 text-primary-600">
+            {/* TO DO: Make navs into component */}
+
+            {/* TOGGLES */}
             <button
               onClick={onToggleMenu}
               className="lg:hidden z-50"
               aria-label="Toggle Menu"
             >
-              {menuOpen ? <FaXmark size={20} /> : <FaBars size={20} />}
+              {menuOpen ? <TfiClose size={20} /> : <SlMenu size={20} />}
             </button>
 
-            {/* SEARCH TOGGLE */}
             <SearchToggle onToggle={() => setSearchOpen((prev) => !prev)} />
           </div>
 
           {/* NAV - DESKTOP */}
           <nav className="hidden lg:flex items-center gap-10">
-            {["Home", "Shop", "Magazine"].map((item) => (
-              <Link
-                key={item}
-                to="/"
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.id}
+                to={link.url}
                 className="relative text-[0.85rem] font-medium tracking-wide
                   text-body transition-colors duration-200
                   hover:text-primary-900"
               >
-                {item}
+                {link.title}
                 <span
                   className="absolute left-0 -bottom-1 h-px w-full bg-current
                     scale-x-0 origin-left transition-transform duration-200
                     hover:scale-x-100"
                 />
-              </Link>
+              </NavLink>
             ))}
           </nav>
         </div>
@@ -95,17 +103,23 @@ export default function Header({ menuOpen, onToggleMenu, onClose }: Props) {
         <div className="flex items-center justify-end gap-4">
           <SearchDesktop />
 
-          <div className="flex items-center gap-1 text-primary-500">
-            <IconButton
-              icon={<FaHeart size={18} />}
-              href="/favorites"
-              label="Favorites"
-            />
-            <IconButton
-              icon={<FaBasketShopping size={18} />}
-              href="/cart"
-              label="Cart"
-            />
+          <div className="flex items-center gap-1 text-primary-600">
+            <Link to={"/favorites"} id="favorites">
+              <IconButton icon={<SlHeart size={20} />} label="Favorites" />
+            </Link>
+            <Link to={"/cart"} id="cart" className="relative">
+              <IconButton icon={<SlBag size={20} />} label="Cart" />
+
+              {totalItems > 0 && (
+                <span
+                  className="absolute bottom-0 -right-1 inline-flex items-center
+                    justify-center h-5 w-5 text-[0.7rem] font-bold text-white
+                    bg-primary-900 rounded-full shadow-sm/30"
+                >
+                  {totalItems}
+                </span>
+              )}
+            </Link>
           </div>
         </div>
       </div>
@@ -124,15 +138,15 @@ export default function Header({ menuOpen, onToggleMenu, onClose }: Props) {
       >
         <nav className="flex h-full flex-col px-6 pt-16">
           <div className="flex flex-col gap-6">
-            {["Home", "Shop", "Magazine"].map((item) => (
+            {navLinks.map((link) => (
               <Link
-                key={item}
-                to="/"
+                key={link.id}
+                to={link.url}
                 className="text-2xl font-medium tracking-tight hover:opacity-60
                   transition"
                 onClick={onClose}
               >
-                {item}
+                {link.title}
               </Link>
             ))}
           </div>
@@ -159,7 +173,7 @@ export default function Header({ menuOpen, onToggleMenu, onClose }: Props) {
                 hover:opacity-60 transition"
               onClick={onClose}
             >
-              <FaUser size={16} />
+              <SlUser size={16} />
               My Account
             </Link>
           </div>

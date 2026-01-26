@@ -1,3 +1,4 @@
+// types/product.tsx
 import type { Category } from "./category";
 
 export interface Product {
@@ -6,7 +7,7 @@ export interface Product {
   published_date?: string | null;
   title: string;
   brand: string;
-  price?: number;
+  price: number;
   description?: string;
   img_url: string;
   color_name: string;

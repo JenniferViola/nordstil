@@ -1,6 +1,7 @@
 // ProductDetailsSection.tsx
 import { useState } from "react";
 import { Link } from "react-router";
+import { useCart } from "@/hooks/useCart";
 import Breadcrumbs from "@/components/ui/ProductBreadcrumbs";
 import { RippleButton } from "@/components/ui/RippleButton";
 import { StarRating } from "@/components/ui/StarRating";
@@ -16,6 +17,19 @@ export default function ProductDetailsSection({
   const [rating, setRating] = useState(0);
   const [selectedProductColor, setSelectedProductColor] = useState<string>("");
   const productSizes = ["S", "M", "L", "XL"] as const;
+  const { addItem } = useCart();
+
+  const handleAddToCart = () => {
+    addItem({
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      img_url: product.img_url,
+      color_name: product.color_name,
+      slug: product.slug,
+      quantity: 1,
+    });
+  };
 
   if (!product) return <div>Loading...</div>;
   return (
@@ -34,7 +48,10 @@ export default function ProductDetailsSection({
         />
       </div>
 
-      <div className="flex flex-col gap-6 sm:gap-4 w-full max-w-lg">
+      <div
+        id="info-container"
+        className="flex flex-col gap-6 sm:gap-4 w-full max-w-lg"
+      >
         <Breadcrumbs product={product} className="hidden sm:flex" />
 
         <div id="details-header" className="flex flex-col gap-2">
@@ -104,7 +121,7 @@ export default function ProductDetailsSection({
 
         <div id="button-container">
           <RippleButton
-            onClick={() => console.log("Clicked")}
+            onClick={handleAddToCart}
             className="w-full lg:w-1/2 font-bold bg-primary-600
               text-secondary-200"
           >
