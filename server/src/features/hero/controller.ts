@@ -1,6 +1,6 @@
 // hero.controller.ts
 import { Request, Response, NextFunction } from 'express';
-import { getActiveHero } from './hero.service';
+import { getActiveHero } from './service';
 
 export function getHero(req: Request, res: Response, next: NextFunction) {
   try {

@@ -31,7 +31,11 @@ function SearchInput({
     if (query.trim()) {
       navigate(`/search?query=${encodeURIComponent(query)}`);
       onSubmit?.();
+    } else {
+      navigate(`/search`);
+      onSubmit?.();
     }
+    setQuery("");
   };
 
   return (

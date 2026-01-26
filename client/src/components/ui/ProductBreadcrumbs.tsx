@@ -52,7 +52,7 @@ export default function ProductBreadcrumbs({ product, className }: Props) {
                 />
               </svg>
               <Link
-                to="/categories/:slug"
+                to={`/search?query=${categoryTitle}`}
                 className="inline-flex items-center text-sm font-medium
                   text-body hover:text-fg-brand"
               >

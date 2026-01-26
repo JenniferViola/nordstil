@@ -1,7 +1,7 @@
 // categories.service.ts
-import * as repo from './categories.repo';
-import type { Category } from './category.types';
-import type { Product } from '../products/product.types';
+import * as repo from './repo';
+import type { Category } from './types';
+import type { Product } from '../products/types';
 
 export function getCategories(): Category[] {
   return repo.findCategories();

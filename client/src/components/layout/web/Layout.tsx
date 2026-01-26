@@ -1,4 +1,4 @@
-// components/layout/Layout.jsx
+// Layout.jsx
 import type { ReactNode } from "react";
 import { useState } from "react";
 import Header from "./Header";

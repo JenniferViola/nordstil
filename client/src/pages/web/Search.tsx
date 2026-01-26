@@ -1,7 +1,5 @@
 // Search.tsx
-
-// TO DO: Fix layout when no results are found
-
+import PageTitle from "@/components/layout/shared/PageTitle";
 import { useSearchParams } from "react-router";
 import { Link } from "react-router";
 import useSearchProducts from "@/hooks/useSearchProducts";
@@ -14,9 +12,15 @@ export default function Search() {
   const pageTitle = "Search results";
 
   const products = useSearchProducts(query);
+  const noResults = products.length === 0;
 
   return (
-    <section id="search-results" className="grid gap-4 sm:gap-8 mt-4">
+    <section
+      id="search-results"
+      className={`grid gap-4 sm:gap-6
+        ${noResults ? "absolute top-0 left-0" : ""}`}
+    >
+      <PageTitle title={`Search results – Nordstil`} />
       <div id="breadcrumbs">
         <nav className={"flex"} aria-label="Breadcrumb">
           <ol
@@ -70,7 +74,10 @@ export default function Search() {
         </nav>
       </div>
 
-      <div id="results-header" className="flex flex-col">
+      <div
+        id="results-header"
+        className={`flex flex-col ${noResults ? "" : ""}`}
+      >
         <h1 className="text-2xl sm:text-xl font-semibold leading-tight">
           {`Found ${products.length} results: ${query}`}
         </h1>

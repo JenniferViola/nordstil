@@ -1,4 +1,4 @@
-// components/layout/Header.jsx
+// Header.jsx
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import {
@@ -14,7 +14,7 @@ import {
   SearchMobile,
   SearchDesktop,
   SearchToggle,
-} from "@/components/ui/Search";
+} from "@/components/features/Search";
 
 type Props = {
   menuOpen: boolean;
@@ -49,11 +49,10 @@ export default function Header({ menuOpen, onToggleMenu, onClose }: Props) {
     >
       <div
         id="header-container"
-        className="grid w-full px-2 grid-cols-[1fr_auto_1fr] items-center
-          justify-center"
+        className="grid w-full px-2 sm:px-4 grid-cols-[1fr_auto_1fr]
+          items-center justify-center"
       >
         <div className="flex items-center justify-start">
-          {/* MOBILE NAV/SEARCH TOGGLE */}
           <div className="flex gap-4 text-primary">
             {/* NAV TOGGLE */}
             <button

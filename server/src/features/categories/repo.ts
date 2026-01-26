@@ -1,7 +1,7 @@
 // db/categories.repo.ts
 import db from '../../data/db';
-import type { Category } from './category.types';
-import type { Product } from '../products/product.types';
+import type { Category } from './types';
+import type { Product } from '../products/types';
 
 export function findCategories(): Category[] {
   const rows = db.prepare(`SELECT * FROM categories`).all();

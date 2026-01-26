@@ -1,9 +1,9 @@
 // api/index.ts
 import { Router } from 'express';
-import productsRoutes from '../features/products/products.routes';
-import categoryRoutes from '../features/categories/categories.routes';
-import heroRoutes from '../features/hero/hero.routes';
-import spotsRoutes from '../features/spots/spots.routes';
+import productsRoutes from '../features/products/routes';
+import categoryRoutes from '../features/categories/routes';
+import heroRoutes from '../features/hero/routes';
+import spotsRoutes from '../features/spots/routes';
 
 const router = Router();
 

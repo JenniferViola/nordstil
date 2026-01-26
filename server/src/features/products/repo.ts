@@ -1,7 +1,7 @@
 // db/products.repo.ts
 import db from '../../data/db';
-import type { Product } from './product.types';
-import type { Category } from '../categories/category.types';
+import type { Product } from './types';
+import type { Category } from '../categories/types';
 
 // fetch all published products
 export function findPublished(): Product[] {
@@ -10,6 +10,19 @@ export function findPublished(): Product[] {
       `SELECT * FROM products 
       WHERE published_date IS NOT NULL 
       ORDER BY published_date DESC`,
+    )
+    .all();
+  return rows as Product[];
+}
+
+export function findFeatured(): Product[] {
+  const rows = db
+    .prepare(
+      `SELECT * FROM products 
+      WHERE published_date IS NOT NULL 
+      AND featured = 1 
+      ORDER BY published_date DESC
+      LIMIT 8`,
     )
     .all();
   return rows as Product[];

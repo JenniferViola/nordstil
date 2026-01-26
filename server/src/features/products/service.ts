@@ -1,10 +1,14 @@
 // products.service.ts
-import * as repo from './products.repo';
-import type { Product } from './product.types';
-import type { ProductWithCategories } from './product.types';
+import * as repo from './repo';
+import type { Product } from './types';
+import type { ProductWithCategories } from './types';
 
 export function getPublishedProducts(): Product[] {
   return repo.findPublished();
+}
+
+export function getFeaturedProducts(): Product[] {
+  return repo.findFeatured();
 }
 
 export function searchPublishedProducts(query: string): Product[] {
