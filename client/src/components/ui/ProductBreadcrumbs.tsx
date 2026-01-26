@@ -7,7 +7,7 @@ type Props = {
   className?: string;
 };
 
-export default function Breadcrumbs({ product, className }: Props) {
+export default function ProductBreadcrumbs({ product, className }: Props) {
   const categoryTitle = product.categories[0]?.title ?? "";
   return (
     <>
@@ -52,7 +52,7 @@ export default function Breadcrumbs({ product, className }: Props) {
                 />
               </svg>
               <Link
-                to="/categories/:slug"
+                to={`/search?query=${categoryTitle}`}
                 className="inline-flex items-center text-sm font-medium
                   text-body hover:text-fg-brand"
               >

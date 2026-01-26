@@ -1,6 +1,6 @@
 // spots.controller.ts
 import { Request, Response, NextFunction } from 'express';
-import { getSpots } from './spots.service';
+import { getSpots } from './service';
 
 export function listSpots(req: Request, res: Response, next: NextFunction) {
   try {

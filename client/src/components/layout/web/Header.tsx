@@ -1,5 +1,5 @@
-// components/layout/Header.jsx
-import { useEffect } from "react";
+// Header.jsx
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import {
   FaBars,
@@ -12,9 +12,9 @@ import IconButton from "@/components/ui/IconButton";
 import Logo from "@/components/ui/brand/Logo";
 import {
   SearchMobile,
-  SearchToggle,
   SearchDesktop,
-} from "@/components/ui/Search";
+  SearchToggle,
+} from "@/components/features/Search";
 
 type Props = {
   menuOpen: boolean;
@@ -24,13 +24,9 @@ type Props = {
   onClose: () => void;
 };
 
-export default function Header({
-  menuOpen,
-  searchOpen,
-  onToggleMenu,
-  onToggleSearch,
-  onClose,
-}: Props) {
+export default function Header({ menuOpen, onToggleMenu, onClose }: Props) {
+  const [searchOpen, setSearchOpen] = useState(false);
+
   useEffect(() => {
     const header = document.querySelector("header");
 
@@ -53,11 +49,10 @@ export default function Header({
     >
       <div
         id="header-container"
-        className="mx-auto grid max-w-350 grid-cols-[1fr_auto_1fr] items-center
-          justify-center px-4 lg:px-6"
+        className="grid w-full px-2 sm:px-4 grid-cols-[1fr_auto_1fr]
+          items-center justify-center"
       >
         <div className="flex items-center justify-start">
-          {/* MOBILE NAV/SEARCH TOGGLE */}
           <div className="flex gap-4 text-primary">
             {/* NAV TOGGLE */}
             <button
@@ -69,10 +64,7 @@ export default function Header({
             </button>
 
             {/* SEARCH TOGGLE */}
-            <SearchToggle
-              onToggleSearch={onToggleSearch}
-              searchOpen={searchOpen}
-            />
+            <SearchToggle onToggle={() => setSearchOpen((prev) => !prev)} />
           </div>
 
           {/* NAV - DESKTOP */}
@@ -118,7 +110,10 @@ export default function Header({
         </div>
       </div>
 
-      <SearchMobile searchOpen={searchOpen} />
+      <SearchMobile
+        searchOpen={searchOpen}
+        onClose={() => setSearchOpen(false)}
+      />
 
       {/* Mobile nav */}
       <div

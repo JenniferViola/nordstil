@@ -1,10 +1,32 @@
 // products.controller.ts
 import { Request, Response, NextFunction } from 'express';
-import * as service from './products.service';
+import * as service from './service';
 
-export function getPublished(req: Request, res: Response, next: NextFunction) {
+export async function getPublished(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
   try {
-    const products = service.getPublishedProducts();
+    const searchQuery = req.query.query as string | undefined;
+    let products;
+
+    if (searchQuery && searchQuery.length > 0) {
+      products = service.searchPublishedProducts(searchQuery);
+    } else {
+      products = service.getPublishedProducts();
+    }
+
+    res.json(products);
+  } catch (err) {
+    next(err);
+  }
+}
+
+export function getFeatured(req: Request, res: Response, next: NextFunction) {
+  try {
+    let products = service.getFeaturedProducts();
+
     res.json(products);
   } catch (err) {
     next(err);

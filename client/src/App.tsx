@@ -1,3 +1,4 @@
+// App.tsx
 import { BrowserRouter, Routes, Route } from "react-router";
 import "./App.css";
 import WebLayout from "./components/layout/web/Layout";
@@ -18,7 +19,6 @@ function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/favorites" element={<Favorites />} />
-
           <Route path="*" element={<NotFound />} />
         </Routes>
       </WebLayout>

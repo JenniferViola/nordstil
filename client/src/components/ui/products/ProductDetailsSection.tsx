@@ -1,7 +1,7 @@
 // ProductDetailsSection.tsx
 import { useState } from "react";
 import { Link } from "react-router";
-import Breadcrumbs from "@/components/ui/Breadcrumbs";
+import Breadcrumbs from "@/components/ui/ProductBreadcrumbs";
 import { RippleButton } from "@/components/ui/RippleButton";
 import { StarRating } from "@/components/ui/StarRating";
 import type { ProductWithCategories } from "@/types/product";
@@ -33,6 +33,7 @@ export default function ProductDetailsSection({
           className="h-full w-full object-cover"
         />
       </div>
+
       <div className="flex flex-col gap-6 sm:gap-4 w-full max-w-lg">
         <Breadcrumbs product={product} className="hidden sm:flex" />
 

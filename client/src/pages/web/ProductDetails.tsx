@@ -1,12 +1,12 @@
 // ProductDetails.tsx
+import PageTitle from "@/components/layout/shared/PageTitle";
 import ProductDetailsSection from "@/components/ui/products/ProductDetailsSection";
-import Breadcrumbs from "@/components/ui/Breadcrumbs";
+import Breadcrumbs from "@/components/ui/ProductBreadcrumbs";
 import { ProductCarousel } from "@/components/ui/products/ProductCarousel";
 import { Divider } from "@/components/ui/Divider";
-
 import { useParams } from "react-router";
 import useProductBySlug from "@/hooks/useProductBySlug";
-import useProducts from "@/hooks/useProducts";
+import useProducts from "@/hooks/usePublishedProducts";
 
 export default function ProductDetails() {
   const { slug } = useParams<{ slug: string }>();
@@ -16,9 +16,10 @@ export default function ProductDetails() {
   if (!product) return <div>Loading...</div>;
   return (
     <>
+      <PageTitle title={`${product.title} – Nordstil`} />
       <Breadcrumbs product={product} className="sm:hidden flex" />
       <ProductDetailsSection product={product} />
-      <Divider variant="dark" className="sm:hidden" />
+      <Divider variant="dark" className="sm:hidden mb-4 mt-4" />
       {
         // TODO:
         // 1. Similar products logic: same category, tags, etc.

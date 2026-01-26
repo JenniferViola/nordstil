@@ -1,6 +1,6 @@
 // categories.controller.ts
 import { Request, Response, NextFunction } from 'express';
-import * as service from './categories.service';
+import * as service from './service';
 
 export function getAll(req: Request, res: Response, next: NextFunction) {
   try {

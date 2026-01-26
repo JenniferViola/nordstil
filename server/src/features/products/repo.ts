@@ -1,7 +1,7 @@
 // db/products.repo.ts
 import db from '../../data/db';
-import type { Product } from './product.types';
-import type { Category } from '../categories/category.types';
+import type { Product } from './types';
+import type { Category } from '../categories/types';
 
 // fetch all published products
 export function findPublished(): Product[] {
@@ -13,6 +13,41 @@ export function findPublished(): Product[] {
     )
     .all();
   return rows as Product[];
+}
+
+export function findFeatured(): Product[] {
+  const rows = db
+    .prepare(
+      `SELECT * FROM products 
+      WHERE published_date IS NOT NULL 
+      AND featured = 1 
+      ORDER BY published_date DESC
+      LIMIT 8`,
+    )
+    .all();
+  return rows as Product[];
+}
+
+//Search for products
+export function searchPublished(query: string): Product[] {
+  const stmt = db.prepare(`
+    SELECT DISTINCT p.*
+    FROM products p
+    LEFT JOIN category_products cp ON p.id = cp.product_id
+    LEFT JOIN categories c ON c.id = cp.category_id
+    WHERE p.published_date IS NOT NULL
+      AND (
+        p.title LIKE ?
+        OR p.brand LIKE ?
+        OR p.description LIKE ?
+        OR c.title LIKE ?
+      )
+    ORDER BY p.published_date DESC
+  `);
+
+  const like = `%${query.trim()}%`;
+
+  return stmt.all(like, like, like, like) as Product[];
 }
 
 // fetch a published product by its slug

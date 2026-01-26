@@ -1,6 +1,6 @@
 // spots.routes.ts
 import { Router } from 'express';
-import { listSpots } from './spots.controller';
+import { listSpots } from './controller';
 
 const router = Router();
 
