@@ -3,7 +3,25 @@ import type { CartItem } from "@/types/cart";
 import { Link } from "react-router";
 import { SlPlus, SlMinus, SlTrash, SlHeart } from "react-icons/sl";
 
-export default function CartCard({ item }: { item: CartItem }) {
+interface CartCardProps {
+  item: CartItem;
+  handleAdd: () => void;
+  handleSubtract: () => void;
+  handleRemove: () => void;
+}
+
+export default function CartCard({
+  item,
+  handleAdd,
+  handleSubtract,
+  handleRemove,
+}: CartCardProps) {
+  const handleAction = (e: React.MouseEvent, action: () => void) => {
+    e.preventDefault();
+    e.stopPropagation();
+    action();
+  };
+
   return (
     <Link
       id="cart-item"
@@ -38,12 +56,15 @@ export default function CartCard({ item }: { item: CartItem }) {
             className="flex gap-3 items-center text-primary-600"
           >
             <button>
-              <SlMinus size={20} />
+              <SlMinus
+                size={20}
+                onClick={(e) => handleAction(e, handleSubtract)}
+              />
             </button>
 
-            <p className="text-lg">1</p>
+            <p className="text-lg">{item.quantity}</p>
             <button>
-              <SlPlus size={20} />
+              <SlPlus size={20} onClick={(e) => handleAction(e, handleAdd)} />
             </button>
           </div>
         </div>
@@ -56,7 +77,7 @@ export default function CartCard({ item }: { item: CartItem }) {
           <SlHeart size={20} />
         </button>
         <button>
-          <SlTrash size={20} />
+          <SlTrash onClick={(e) => handleAction(e, handleRemove)} size={20} />
         </button>
       </div>
     </Link>

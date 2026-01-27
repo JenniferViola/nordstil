@@ -12,14 +12,16 @@ export default function Checkout() {
   };
   return (
     <>
-      <h1>Checkout</h1>
-      <RippleButton
-        onClick={handlePlaceOrder}
-        className="w-full lg:w-1/2 font-bold bg-primary-600 text-secondary-200
-          mb-6"
-      >
-        Place order
-      </RippleButton>
+      <section id="checkout-container">
+        <h1>Checkout</h1>
+        <RippleButton
+          onClick={handlePlaceOrder}
+          className="w-full lg:w-1/2 font-bold bg-primary-600 text-secondary-200
+            mb-6"
+        >
+          Place order
+        </RippleButton>
+      </section>
     </>
   );
 }
