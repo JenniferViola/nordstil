@@ -78,7 +78,7 @@ export default function Search() {
         id="results-header"
         className={`flex flex-col ${noResults ? "" : ""}`}
       >
-        <h1 className="text-2xl sm:text-xl font-semibold leading-tight">
+        <h1>
           {query === null
             ? `All products`
             : `Found ${products.length} results: ${query}`}

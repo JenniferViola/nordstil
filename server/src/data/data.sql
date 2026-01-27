@@ -33,7 +33,7 @@ CREATE TABLE categories (
   slug TEXT NOT NULL UNIQUE
 );
 
--- CATEGORY_PRODUCTS JOIN TABLE (M:N)
+-- CATEGORY_PRODUCTS
 CREATE TABLE category_products (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   category_id INTEGER NOT NULL,
@@ -61,6 +61,26 @@ CREATE TABLE spots (
   subtitle TEXT NOT NULL,
   img_url TEXT NOT NULL,
   link_url TEXT NOT NULL
+);
+
+-- ORDERS
+CREATE TABLE orders (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  customer_name TEXT NOT NULL,
+  customer_email TEXT NOT NULL,
+  order_date TEXT NOT NULL,
+  total_amount INTEGER NOT NULL
+);
+
+-- ORDER_ITEMS
+CREATE TABLE order_items (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  order_id INTEGER NOT NULL,
+  product_id INTEGER NOT NULL,
+  quantity INTEGER NOT NULL,
+  price INTEGER NOT NULL,
+  FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
+  FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 );
 
 -- INSERT DATA
