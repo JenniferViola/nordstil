@@ -8,6 +8,8 @@ interface CartCardProps {
   handleAdd: () => void;
   handleSubtract: () => void;
   handleRemove: () => void;
+  classNameImg: string;
+  classNameCard: string;
 }
 
 export default function CartCard({
@@ -15,6 +17,8 @@ export default function CartCard({
   handleAdd,
   handleSubtract,
   handleRemove,
+  classNameImg,
+  classNameCard,
 }: CartCardProps) {
   const handleAction = (e: React.MouseEvent, action: () => void) => {
     e.preventDefault();
@@ -27,7 +31,7 @@ export default function CartCard({
       id="cart-item"
       key={item.id}
       to={`/products/${item.slug}`}
-      className="flex justify-between gap-4 w-full"
+      className={`flex justify-between gap-4 w-full ${classNameCard}`}
     >
       <div id="left" className="flex gap-2">
         <div id="img-container">
@@ -36,8 +40,8 @@ export default function CartCard({
             alt="item.title"
             width="700"
             height="1050"
-            className="relative block aspect-2/3 w-[8rem] rounded-xs
-              object-cover"
+            className={`relative block aspect-2/3 rounded-xs object-cover
+              ${classNameImg}`}
           />
         </div>
         <div
@@ -62,7 +66,7 @@ export default function CartCard({
               />
             </button>
 
-            <p className="text-lg">{item.quantity}</p>
+            <p className="">{item.quantity}</p>
             <button>
               <SlPlus size={20} onClick={(e) => handleAction(e, handleAdd)} />
             </button>

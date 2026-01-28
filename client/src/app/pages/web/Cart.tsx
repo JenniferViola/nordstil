@@ -26,14 +26,17 @@ export default function Cart() {
   };
 
   return (
-    <div className="flex flex-col gap-8">
+    <div
+      className="flex flex-col gap-8 w-full max-w-[50rem] mx-auto
+        justify-center"
+    >
       <PageTitle title={`Shopping Cart – Nordstil`} />
 
       <section
         id="cart-content"
         className={`flex flex-col ${items.length > 0 ? "gap-8" : "gap-4"}`}
       >
-        <h1 className="text-2xl font-medium">{`Shopping Cart ${items.length < 0 ? `(${totalItems})` : ``}`}</h1>
+        <h1 className="text-2xl font-medium">{`Shopping Cart ${items.length > 0 ? `(${totalItems})` : ``}`}</h1>
         {items.length > 0 ? (
           <div id="items-container" className="flex flex-col gap-8">
             {items.map((item) => (
@@ -48,6 +51,8 @@ export default function Cart() {
                     removeItem(item.id);
                   }
                 }}
+                classNameImg="w-[8rem]"
+                classNameCard="text-base"
               />
             ))}
           </div>
@@ -79,8 +84,8 @@ export default function Cart() {
         {items.length > 0 ? (
           <div
             id="order-total"
-            className={`flex flex-col gap-4
-              ${items.length > 0 ? "flex flex-col gap-4" : "hidden"}`}
+            className={`
+              ${items.length > 0 ? "flex flex-col gap-4 max-w-[50rem]" : "hidden"}`}
           >
             <div id="order-sum" className="flex flex-col gap-2">
               <div id="shipping" className="flex justify-between">
@@ -98,7 +103,7 @@ export default function Cart() {
 
             <RippleButton
               onClick={handleToCheckout}
-              className="w-full lg:w-1/2 font-bold bg-primary-600
+              className="w-full lg:w-1/2 text-md font-bold bg-primary-600
                 text-secondary-200 mb-6"
             >
               To checkout
