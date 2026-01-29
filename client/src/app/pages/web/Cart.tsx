@@ -41,6 +41,7 @@ export default function Cart() {
           <div id="items-container" className="flex flex-col gap-8">
             {items.map((item) => (
               <CartCard
+                key={item.id}
                 item={item}
                 handleRemove={() => removeItem(item.id)}
                 handleAdd={() => updateQuantity(item.id, item.quantity + 1)}
