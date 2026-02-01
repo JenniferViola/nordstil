@@ -4,15 +4,14 @@ import CartCard from "@/components/ui/cart/CartCard";
 import { Divider } from "@/components/ui/Divider";
 import { RippleButton } from "@/components/ui/RippleButton";
 import { useCart } from "@/hooks/useCart";
+import { usePlaceOrder } from "@/hooks/usePlaceOrder";
 import { useState } from "react";
-import { useNavigate } from "react-router";
 
 export default function Checkout() {
   const { items, totalItems, totalPrice, updateQuantity, removeItem } =
     useCart();
 
-  const BASE_URL = import.meta.env.VITE_API_URL;
-  let navigate = useNavigate();
+  const { placeOrder, isSubmitting, error } = usePlaceOrder();
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -22,7 +21,7 @@ export default function Checkout() {
     street: "",
     postalCode: "",
     city: "",
-    newsLetter: 0,
+    newsletter: 0,
   });
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,18 +35,15 @@ export default function Checkout() {
 
   const handlePlaceOrder = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    const customer = { ...formData };
 
-    // TO DO: Add backend route + customer table in db.
-    fetch(`${BASE_URL}/customers`, {
-      method: "POST",
-      headers: {
-        "Content Type": "application/json",
-      },
-      body: JSON.stringify(customer),
-    }).then((resp) => {
-      console.log("Customer saved");
-    });
+    // Prepare the payload to match your OrderPayload interface
+    const order = {
+      customer: formData,
+      items: items,
+      total_amount: totalPrice,
+    };
+
+    placeOrder(order);
   };
 
   const inputStyling =
@@ -92,6 +88,7 @@ export default function Checkout() {
           <Divider variant="dark"></Divider>
 
           <form className="flex flex-col gap-8 text-sm">
+            {error && <p style={{ color: "red" }}>{error}</p>}
             <fieldset className="flex flex-col gap-6 md:flex-row md:w-full">
               <div className="flex flex-col gap-6 w-full">
                 <div className="flex flex-col gap-1 max-w-[22rem]">
@@ -129,7 +126,7 @@ export default function Checkout() {
               <div className="flex flex-col gap-6 w-full">
                 <div className="flex flex-col gap-1 max-w-[20rem]">
                   <label htmlFor="email" className="font-bold">
-                    E-mail
+                    *E-mail
                   </label>
                   <input
                     type="text"
@@ -138,12 +135,13 @@ export default function Checkout() {
                     onChange={handleInputChange}
                     id="email"
                     placeholder="E-mail"
+                    required
                     className={`${inputStyling}`}
                   />
                 </div>
                 <div className="flex flex-col gap-1 max-w-[20rem]">
                   <label htmlFor="phone" className="font-bold">
-                    Phone number
+                    *Phone number
                   </label>
                   <input
                     type="tel"
@@ -152,6 +150,7 @@ export default function Checkout() {
                     onChange={handleInputChange}
                     id="phone"
                     placeholder="Phone number"
+                    required
                     className={`${inputStyling}`}
                   />
                 </div>
@@ -217,7 +216,7 @@ export default function Checkout() {
                 type="checkbox"
                 id="newsletter"
                 name="newsLetter"
-                value={formData.newsLetter}
+                value={formData.newsletter}
                 onChange={handleInputChange}
               />
               <label htmlFor="newsletter" className="font-bold">
@@ -243,14 +242,17 @@ export default function Checkout() {
                 </div>
               </div>
 
-              <RippleButton
-                type="submit"
-                onClick={handlePlaceOrder}
-                className="w-full lg:w-1/2 text-md font-bold bg-primary-600
-                  text-secondary-200 mb-6"
-              >
-                Place order
-              </RippleButton>
+              <div className="flex justify-center">
+                <RippleButton
+                  type="submit"
+                  onClick={handlePlaceOrder}
+                  disabled={isSubmitting}
+                  className="w-full lg:max-w-1/2 text-md font-bold
+                    bg-primary-600 text-secondary-200 mb-6"
+                >
+                  {isSubmitting ? "Processing..." : "Place Order"}
+                </RippleButton>
+              </div>
             </div>
           </form>
         </section>

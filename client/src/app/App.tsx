@@ -22,7 +22,7 @@ function App() {
             <Route path="/products/:slug" element={<ProductDetails />} />
             <Route path="/search" element={<Search />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/confirmation" element={<Confirmation />} />
+            <Route path="/confirmation/:id" element={<Confirmation />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/favorites" element={<Favorites />} />
             <Route path="*" element={<NotFound />} />

@@ -5,6 +5,9 @@ DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS hero;
 DROP TABLE IF EXISTS spots;
+DROP TABLE IF EXISTS cusromers;
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS order_items;
 
 -- CREATE TABLES
 
@@ -63,13 +66,26 @@ CREATE TABLE spots (
   link_url TEXT NOT NULL
 );
 
+-- CUSTOMERS
+CREATE TABLE customers (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  first_name TEXT NOT NULL,
+  last_name TEXT NOT NULL,
+  email TEXT NOT NULL UNIQUE,
+  phone TEXT,
+  street TEXT NOT NULL,
+  postal_code TEXT NOT NULL,
+  city TEXT NOT NULL,
+  newsletter BOOLEAN NOT NULL DEFAULT 0
+);
+
 -- ORDERS
 CREATE TABLE orders (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  customer_name TEXT NOT NULL,
-  customer_email TEXT NOT NULL,
-  order_date TEXT NOT NULL,
-  total_amount INTEGER NOT NULL
+  customer_id INTEGER NOT NULL,
+  order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+  total_amount INTEGER NOT NULL,
+  FOREIGN KEY (customer_id) REFERENCES customers(id)
 );
 
 -- ORDER_ITEMS

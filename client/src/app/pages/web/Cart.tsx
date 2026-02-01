@@ -101,14 +101,15 @@ export default function Cart() {
                 <p>{`${totalPrice} SEK`}</p>
               </div>
             </div>
-
-            <RippleButton
-              onClick={handleToCheckout}
-              className="w-full lg:w-1/2 text-md font-bold bg-primary-600
-                text-secondary-200 mb-6"
-            >
-              To checkout
-            </RippleButton>
+            <div className="flex justify-center">
+              <RippleButton
+                onClick={handleToCheckout}
+                className="w-full lg:w-1/2 text-md font-bold bg-primary-600
+                  text-secondary-200 mb-6"
+              >
+                To checkout
+              </RippleButton>
+            </div>
           </div>
         ) : (
           ""

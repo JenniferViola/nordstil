@@ -7,25 +7,38 @@ const dbFile = path.join(__dirname, 'data.db');
 
 const sql = fs.readFileSync(sqlFile, 'utf8');
 
-// Optionally delete old db
 if (fs.existsSync(dbFile)) fs.unlinkSync(dbFile);
-
 const db = new Database(dbFile);
 
 console.log('Loading SQL from:', sqlFile);
 
-try {
-  db.exec(sql);
-  console.log('SQL executed!');
-} catch (err) {
-  if (err instanceof Error) {
-    console.error('SQL FAILED:', err.message);
-  } else {
-    console.error('SQL FAILED:', err);
-  }
-  process.exit(1);
-}
+// 1. Split the file into individual commands by the semicolon
+// We filter out empty strings to avoid errors on trailing semicolons
+const statements = sql
+  .split(';')
+  .map((s) => s.trim())
+  .filter((s) => s.length > 0);
 
-console.log('Database rebuilt and seeded successfully.');
+console.log(`Found ${statements.length} SQL statements. Executing...`);
+
+statements.forEach((statement, index) => {
+  try {
+    db.exec(statement);
+    // Log the first line of the statement so you know where you are
+    const firstLine = statement.split('\n')[0];
+    console.log(`[OK] Statement ${index + 1}: ${firstLine}...`);
+  } catch (err) {
+    console.error(`\n❌ FAILED at Statement #${index + 1}:`);
+    console.error(`--- SQL CODE ---`);
+    console.error(statement); // This prints exactly what failed
+    console.error(`--- ERROR ---`);
+    if (err instanceof Error) {
+      console.error(err.message);
+    }
+    process.exit(1);
+  }
+});
+
+console.log('\n✅ Database rebuilt and seeded successfully.');
 
 export default db;
