@@ -11,12 +11,11 @@ import type { Product } from "@/types/product";
 
 type ProductCarouselProps = {
   products: Product[];
-  className?: string;
 };
 
-export function ProductCarousel({ products, className }: ProductCarouselProps) {
+export function ProductCarousel({ products }: ProductCarouselProps) {
   return (
-    <Carousel className="w-full max-w-7xl overflow-auto">
+    <Carousel className="w-full overflow-auto">
       <CarouselContent className="-ml-1 relative">
         {products.slice(0, 8).map((product) => (
           <CarouselItem

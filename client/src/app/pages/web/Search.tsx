@@ -78,8 +78,10 @@ export default function Search() {
         id="results-header"
         className={`flex flex-col ${noResults ? "" : ""}`}
       >
-        <h1 className="text-2xl sm:text-xl font-semibold leading-tight">
-          {`Found ${products.length} results: ${query}`}
+        <h1>
+          {query === null
+            ? `All products`
+            : `Found ${products.length} results: ${query}`}
         </h1>
         <div id="filter" className="flex gap-2 mt-2 items-center">
           <div className="flex gap-1 items-center">

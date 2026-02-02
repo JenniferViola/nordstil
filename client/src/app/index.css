@@ -26,12 +26,6 @@
   --color-secondary-700: #828278;
   --color-secondary-800: #575750;
   --color-secondary-900: #2b2b28;
-
-  --text-h1: var(--text-4xl);
-  --text-h2: var(--text-3xl);
-  --text-h3: var(--text-xl);
-
-  --font-weight-heading: 700;
 }
 
 @layer base {
@@ -40,23 +34,12 @@
     background-color: var(--color-secondary-100);
     color: var(--color-primary-900);
   }
-
   h1 {
-    font-size: var(--text-h1);
-    font-weight: var(--font-weight-heading);
-    color: var(--color-primary-600);
+    @apply text-2xl leading-tight font-medium text-primary-700 sm:text-xl;
   }
 
   h2 {
-    font-size: var(--text-h2);
-    font-weight: var(--font-weight-heading);
-    color: var(--color-primary-600);
-  }
-
-  h3 {
-    font-size: var(--text-h3);
-    font-weight: var(--font-weight-heading);
-    color: var(--color-primary-600);
+    @apply text-xl leading-tight font-medium text-primary-700 sm:text-xl;
   }
 }
 

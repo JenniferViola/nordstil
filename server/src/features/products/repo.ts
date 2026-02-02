@@ -1,4 +1,4 @@
-// db/products.repo.ts
+// products/repo.ts
 import db from '../../data/db';
 import type { Product } from './types';
 import type { Category } from '../categories/types';

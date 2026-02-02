@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router";
-import { FaMagnifyingGlass } from "react-icons/fa6";
+import { SlMagnifier } from "react-icons/sl";
 
 // Reusable input
 interface SearchInputProps {
@@ -50,7 +50,7 @@ function SearchInput({
           focus:outline-none ${inputClassName ? `${inputClassName}` : ""}`}
       />
       <button type="submit" className="hidden lg:block ml-2">
-        <FaMagnifyingGlass />
+        <SlMagnifier />
       </button>
     </form>
   );
@@ -114,7 +114,7 @@ function SearchToggle({ onToggle }: SearchToggleProps) {
       onClick={onToggle}
       aria-label="Toggle Search"
     >
-      <FaMagnifyingGlass size={18} />
+      <SlMagnifier size={18} />
     </div>
   );
 }

@@ -1,11 +1,12 @@
 // ProductDetailsSection.tsx
 import { useState } from "react";
 import { Link } from "react-router";
+import { useCart } from "@/hooks/useCart";
 import Breadcrumbs from "@/components/ui/ProductBreadcrumbs";
 import { RippleButton } from "@/components/ui/RippleButton";
 import { StarRating } from "@/components/ui/StarRating";
 import type { ProductWithCategories } from "@/types/product";
-
+import { FaHeart } from "react-icons/fa6";
 interface ProductSectionProps {
   product: ProductWithCategories;
 }
@@ -16,6 +17,21 @@ export default function ProductDetailsSection({
   const [rating, setRating] = useState(0);
   const [selectedProductColor, setSelectedProductColor] = useState<string>("");
   const productSizes = ["S", "M", "L", "XL"] as const;
+  const isNew = false;
+  const [isFaved, setIsFaved] = useState(false);
+  const { addItem } = useCart();
+
+  const handleAddToCart = () => {
+    addItem({
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      img_url: product.img_url,
+      color_name: product.color_name,
+      slug: product.slug,
+      quantity: 1,
+    });
+  };
 
   if (!product) return <div>Loading...</div>;
   return (
@@ -23,18 +39,57 @@ export default function ProductDetailsSection({
       id="product-details-section"
       className="grid gap-4 sm:gap-8 sm:grid-cols-2"
     >
-      <div
+      <figure
         id="image-container"
-        className="w-full aspect-3/4 overflow-hidden rounded-xs shadow-sm"
+        className="w-full aspect-3/4 overflow-hidden rounded-xs shadow-sm
+          relative"
       >
         <img
           src={product.img_url}
           alt={product.title}
           className="h-full w-full object-cover"
         />
-      </div>
+        <div
+          id="overlay"
+          className="absolute inset-0 rounded-sm bg-linear-to-t from-transparent
+            via-black/20 to-black/40"
+        >
+          <FaHeart
+            fill={isFaved ? "#efefe6" : "none"}
+            stroke={isFaved ? "#efefe6" : "#efefe6"}
+            strokeWidth={34}
+            size={34}
+            width={40}
+            height={40}
+            viewBox="0 0 512 600"
+            style={{
+              filter: "drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4))",
+            }}
+            className="top-4 right-4 absolute cursor-pointer
+              transition-transform duration-150 hover:scale-110"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setIsFaved(!isFaved);
+            }}
+          />
 
-      <div className="flex flex-col gap-6 sm:gap-4 w-full max-w-lg">
+          {isNew && (
+            <p
+              id="badge"
+              className="absolute top-4 left-4 rounded-md bg-secondary-100 px-3
+                py-1 text-sm font-bold text-primary-900 shadow-md tracking-wide"
+            >
+              New
+            </p>
+          )}
+        </div>
+      </figure>
+
+      <div
+        id="info-container"
+        className="flex flex-col gap-6 sm:gap-4 w-full md:max-w-lg"
+      >
         <Breadcrumbs product={product} className="hidden sm:flex" />
 
         <div id="details-header" className="flex flex-col gap-2">
@@ -104,7 +159,7 @@ export default function ProductDetailsSection({
 
         <div id="button-container">
           <RippleButton
-            onClick={() => console.log("Clicked")}
+            onClick={handleAddToCart}
             className="w-full lg:w-1/2 font-bold bg-primary-600
               text-secondary-200"
           >

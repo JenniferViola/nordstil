@@ -1,4 +1,4 @@
-// products.routes.ts
+// products/routes.ts
 import { Router } from 'express';
 import * as controller from './controller';
 

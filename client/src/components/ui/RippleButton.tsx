@@ -52,7 +52,7 @@ export function RippleButton({
       onClick={handleClick}
       whileTap={{ scale: 0.95 }}
       className={cn(
-        "relative overflow-hidden rounded-lg px-4 py-2 text-sm font-medium",
+        "relative overflow-hidden rounded-sm px-4 py-2 text-sm font-medium",
         "bg-black text-white cursor-pointer",
         className,
       )}
