@@ -7,6 +7,7 @@ import { useCart } from "@/hooks/useCart";
 import { usePlaceOrder } from "@/hooks/usePlaceOrder";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
+import { useNavigate } from "react-router";
 
 type CheckoutFormData = {
   firstName: string;
@@ -52,16 +53,58 @@ export default function Checkout() {
     placeOrder(order);
   };
 
+  let navigate = useNavigate();
+
+  const handleContinueShopping = () => {
+    setTimeout(() => {
+      navigate("/search");
+    }, 200);
+  };
+
   const inputStyling =
     "border border-primary-800/30 bg-white/50 shadow-sm/5 p-1.5 rounded-sm focus:p-2 transition-all";
-  return (
-    <>
-      <div
-        className="flex flex-col gap-8 w-full max-w-[50rem] mx-auto
-          justify-center"
-      >
-        <PageTitle title={`Checkout – Nordstil`} />
 
+  if (items.length === 0) {
+    return (
+      <>
+        <PageTitle title={`Checkout – Nordstil`} />
+        <div
+          id="cart-empty"
+          className="flex flex-col text-center h-[25rem] w-full mx-auto
+            justify-center gap-8"
+        >
+          <div className="flex flex-col gap-2 text-sm">
+            <h2>
+              <span className="font-bold">Error:</span> No cart items to
+              checkout.
+            </h2>
+          </div>
+          <div
+            className="flex flex-col gap-8 absolute bottom-5 left-0 w-full
+              items-center"
+          >
+            <Divider variant="dark"></Divider>
+            <RippleButton
+              onClick={handleContinueShopping}
+              className="w-full md:w-lg font-bold bg-primary-600
+                text-secondary-200 mb-6"
+            >
+              Continue shopping
+            </RippleButton>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  return (
+    <div
+      className="flex flex-col gap-8 w-full max-w-[50rem] mx-auto
+        justify-center"
+    >
+      <PageTitle title={`Checkout – Nordstil`} />
+
+      <>
         <section id="checkout-content" className={"flex flex-col gap-8 w-full"}>
           <h1 className="text-2xl font-medium">{`Checkout ${items.length > 0 ? `(${totalItems})` : ``}`}</h1>
           <div id="items-container" className="flex flex-col gap-6">
@@ -262,7 +305,7 @@ export default function Checkout() {
             </div>
           </form>
         </section>
-      </div>
-    </>
+      </>
+    </div>
   );
 }
