@@ -11,6 +11,9 @@ export default function Cart() {
   const { items, totalItems, totalPrice, updateQuantity, removeItem } =
     useCart();
 
+  const shipping = 49;
+  const orderTotal = totalPrice + shipping;
+
   let navigate = useNavigate();
 
   const handleToCheckout = () => {
@@ -96,7 +99,7 @@ export default function Cart() {
 
             <div id="price-total" className="flex justify-between font-bold">
               <p>Total:</p>
-              <p>{`${totalPrice} SEK`}</p>
+              <p>{`${orderTotal} SEK`}</p>
             </div>
           </div>
           <div className="flex justify-center">

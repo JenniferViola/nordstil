@@ -24,6 +24,7 @@ export default function Confirmation() {
 
           <h2>Thank you for your order, {order?.first_name}!</h2>
         </div>
+
         <div
           className="text-sm flex flex-col lg:flex-row lg:justify-between gap-1"
         >

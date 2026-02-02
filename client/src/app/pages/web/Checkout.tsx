@@ -26,6 +26,9 @@ export default function Checkout() {
 
   const { placeOrder, isSubmitting } = usePlaceOrder();
 
+  const shipping = 49;
+  const orderTotal = totalPrice + shipping;
+
   const {
     register,
     handleSubmit,
@@ -55,46 +58,11 @@ export default function Checkout() {
 
   let navigate = useNavigate();
 
-  const handleContinueShopping = () => {
-    setTimeout(() => {
-      navigate("/search");
-    }, 200);
-  };
-
   const inputStyling =
     "border border-primary-800/30 bg-white/50 shadow-sm/5 p-1.5 rounded-sm focus:p-2 transition-all";
 
   if (items.length === 0) {
-    return (
-      <>
-        <PageTitle title={`Checkout – Nordstil`} />
-        <div
-          id="cart-empty"
-          className="flex flex-col text-center h-[25rem] w-full mx-auto
-            justify-center gap-8"
-        >
-          <div className="flex flex-col gap-2 text-sm">
-            <h2>
-              <span className="font-bold">Error:</span> No cart items to
-              checkout.
-            </h2>
-          </div>
-          <div
-            className="flex flex-col gap-8 absolute bottom-5 left-0 w-full
-              items-center"
-          >
-            <Divider variant="dark"></Divider>
-            <RippleButton
-              onClick={handleContinueShopping}
-              className="w-full md:w-lg font-bold bg-primary-600
-                text-secondary-200 mb-6"
-            >
-              Continue shopping
-            </RippleButton>
-          </div>
-        </div>
-      </>
-    );
+    navigate("/cart");
   }
 
   return (
@@ -288,7 +256,7 @@ export default function Checkout() {
                   className="flex justify-between font-bold"
                 >
                   <p>Total:</p>
-                  <p>{`${totalPrice} SEK`}</p>
+                  <p>{`${orderTotal} SEK`}</p>
                 </div>
               </div>
 
