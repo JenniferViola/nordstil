@@ -3,33 +3,35 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import { CartProvider } from "../components/features/cart/Provider";
 import "./App.css";
 import WebLayout from "../components/layout/web/Layout";
-import Index from "./pages/web/Index";
-import NotFound from "./pages/web/NotFound";
-import ProductDetails from "./pages/web/ProductDetails";
-import Search from "./pages/web/Search";
-import Cart from "./pages/web/Cart";
-import Checkout from "./pages/web/Checkout";
-import Favorites from "./pages/web/Favorites";
-import Confirmation from "./pages/web/Confirmation";
+import AdminLayout from "../components/layout/admin/Layout";
+import WebRoutes from "./routes/WebRoutes";
+import AdminRoutes from "./routes/AdminRoutes";
 
 function App() {
   return (
-    <CartProvider>
-      <BrowserRouter>
-        <WebLayout>
-          <Routes>
-            <Route index element={<Index />} />
-            <Route path="/products/:slug" element={<ProductDetails />} />
-            <Route path="/search" element={<Search />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/confirmation/:id" element={<Confirmation />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/favorites" element={<Favorites />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </WebLayout>
-      </BrowserRouter>
-    </CartProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/*"
+          element={
+            <CartProvider>
+              <WebLayout>
+                <WebRoutes />
+              </WebLayout>
+            </CartProvider>
+          }
+        />
+
+        <Route
+          path="/admin/*"
+          element={
+            <AdminLayout>
+              <AdminRoutes />
+            </AdminLayout>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
