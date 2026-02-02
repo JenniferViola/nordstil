@@ -37,7 +37,7 @@ export interface OrderPayload {
     street: string;
     postalCode: string;
     city: string;
-    newsletter: number;
+    newsletter: boolean;
   };
   items: OrderPayloadItem[]; // Use the simpler item type here
   total_amount: number;

@@ -5,41 +5,47 @@ import { Divider } from "@/components/ui/Divider";
 import { RippleButton } from "@/components/ui/RippleButton";
 import { useCart } from "@/hooks/useCart";
 import { usePlaceOrder } from "@/hooks/usePlaceOrder";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import type { SubmitHandler } from "react-hook-form";
+
+type CheckoutFormData = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  street: string;
+  postalCode: string;
+  city: string;
+  newsletter: boolean;
+};
 
 export default function Checkout() {
   const { items, totalItems, totalPrice, updateQuantity, removeItem } =
     useCart();
 
-  const { placeOrder, isSubmitting, error } = usePlaceOrder();
+  const { placeOrder, isSubmitting } = usePlaceOrder();
 
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    street: "",
-    postalCode: "",
-    city: "",
-    newsletter: 0,
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CheckoutFormData>({
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      street: "",
+      postalCode: "",
+      city: "",
+      newsletter: false,
+    },
   });
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handlePlaceOrder = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-
-    // Prepare the payload to match your OrderPayload interface
+  const onSubmit: SubmitHandler<CheckoutFormData> = (data) => {
     const order = {
-      customer: formData,
-      items: items,
+      customer: data,
+      items,
       total_amount: totalPrice,
     };
 
@@ -87,8 +93,10 @@ export default function Checkout() {
 
           <Divider variant="dark"></Divider>
 
-          <form className="flex flex-col gap-8 text-sm">
-            {error && <p style={{ color: "red" }}>{error}</p>}
+          <form
+            className="flex flex-col gap-8 text-sm"
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <fieldset className="flex flex-col gap-6 md:flex-row md:w-full">
               <div className="flex flex-col gap-6 w-full">
                 <div className="flex flex-col gap-1 max-w-[22rem]">
@@ -97,14 +105,14 @@ export default function Checkout() {
                   </label>
                   <input
                     type="text"
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleInputChange}
                     id="first-name"
                     placeholder="First name"
-                    className={`${inputStyling}`}
-                    required
+                    className={inputStyling}
+                    {...register("firstName", { required: true })}
                   />
+                  {errors.firstName && (
+                    <span className="text-red-600">Required</span>
+                  )}
                 </div>
 
                 <div className="flex flex-col gap-1 max-w-[22rem]">
@@ -113,14 +121,14 @@ export default function Checkout() {
                   </label>
                   <input
                     type="text"
-                    name="lastName"
-                    value={formData.lastName}
-                    onChange={handleInputChange}
                     id="last-name"
-                    placeholder="Last Name"
-                    className={`${inputStyling}`}
-                    required
+                    placeholder="Last name"
+                    className={inputStyling}
+                    {...register("lastName", { required: true })}
                   />
+                  {errors.lastName && (
+                    <span className="text-red-600">Required</span>
+                  )}
                 </div>
               </div>
               <div className="flex flex-col gap-6 w-full">
@@ -129,29 +137,29 @@ export default function Checkout() {
                     *E-mail
                   </label>
                   <input
-                    type="text"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
+                    type="email"
                     id="email"
                     placeholder="E-mail"
-                    required
-                    className={`${inputStyling}`}
+                    className={inputStyling}
+                    {...register("email", {
+                      required: true,
+                      pattern: /^\S+@\S+$/i,
+                    })}
                   />
+                  {errors.email && (
+                    <span className="text-red-600">Required</span>
+                  )}
                 </div>
                 <div className="flex flex-col gap-1 max-w-[20rem]">
                   <label htmlFor="phone" className="font-bold">
-                    *Phone number
+                    Phone number
                   </label>
                   <input
                     type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
                     id="phone"
                     placeholder="Phone number"
-                    required
-                    className={`${inputStyling}`}
+                    className={inputStyling}
+                    {...register("phone")}
                   />
                 </div>
               </div>
@@ -169,29 +177,30 @@ export default function Checkout() {
                   </label>
                   <input
                     type="text"
-                    name="street"
-                    value={formData.street}
-                    onChange={handleInputChange}
                     id="street"
                     placeholder="Street"
-                    required
-                    className={`${inputStyling}`}
+                    className={inputStyling}
+                    {...register("street", { required: true })}
                   />
+                  {errors.street && (
+                    <span className="text-red-600">Required</span>
+                  )}
                 </div>
 
                 <div className="flex flex-col gap-1 max-w-[12rem]">
                   <label htmlFor="postal-code" className="font-bold">
                     *Postal code
                   </label>
+
                   <input
-                    type="postal"
-                    name="postalCode"
-                    value={formData.postalCode}
-                    onChange={handleInputChange}
+                    type="text"
                     id="postal-code"
-                    required
-                    className={`${inputStyling}`}
+                    className={inputStyling}
+                    {...register("postalCode", { required: true })}
                   />
+                  {errors.postalCode && (
+                    <span className="text-red-600">Required</span>
+                  )}
                 </div>
 
                 <div className="flex flex-col gap-1 max-w-[20rem]">
@@ -200,13 +209,13 @@ export default function Checkout() {
                   </label>
                   <input
                     type="text"
-                    name="city"
-                    value={formData.city}
-                    onChange={handleInputChange}
                     id="city"
-                    required
-                    className={`${inputStyling}`}
+                    className={inputStyling}
+                    {...register("city", { required: true })}
                   />
+                  {errors.city && (
+                    <span className="text-red-600">Required</span>
+                  )}
                 </div>
               </div>
             </fieldset>
@@ -215,9 +224,7 @@ export default function Checkout() {
               <input
                 type="checkbox"
                 id="newsletter"
-                name="newsLetter"
-                value={formData.newsletter}
-                onChange={handleInputChange}
+                {...register("newsletter")}
               />
               <label htmlFor="newsletter" className="font-bold">
                 Subscribe to newsletter
@@ -245,7 +252,6 @@ export default function Checkout() {
               <div className="flex justify-center">
                 <RippleButton
                   type="submit"
-                  onClick={handlePlaceOrder}
                   disabled={isSubmitting}
                   className="w-full lg:max-w-1/2 text-md font-bold
                     bg-primary-600 text-secondary-200 mb-6"
