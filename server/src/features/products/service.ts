@@ -46,3 +46,7 @@ export function getCategoriesByProduct(id: number): ProductWithCategories {
     categories,
   };
 }
+
+export function deleteProductById(id: number) {
+  return repo.deleteProductById(id);
+}

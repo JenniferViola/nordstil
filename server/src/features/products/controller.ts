@@ -73,11 +73,25 @@ export function getCategory(req: Request, res: Response, next: NextFunction) {
   try {
     const productId = Number(req.params.id);
     if (Number.isNaN(productId)) {
-      return res.status(400).json({ message: 'Invalid product id' });
+      return res.status(400).json({ message: 'Invalid product ID' });
     }
     const productWithCategories = service.getCategoriesByProduct(productId);
 
     return res.json(productWithCategories);
+  } catch (err) {
+    next(err);
+  }
+}
+
+export function deleteProduct(req: Request, res: Response, next: NextFunction) {
+  try {
+    const productId = Number(req.params.id);
+    console.log('API recieved:', productId);
+    if (Number.isNaN(productId)) {
+      return res.status(400).json({ message: 'Invalid product ID' });
+    }
+    const removeProduct = service.deleteProductById(productId);
+    return res.json(removeProduct);
   } catch (err) {
     next(err);
   }

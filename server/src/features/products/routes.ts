@@ -8,5 +8,6 @@ router.get('/', controller.getPublished);
 router.get('/featured', controller.getFeatured);
 router.get('/:slug', controller.getProductWithCategories);
 router.get('/:id/categories', controller.getCategory);
+router.delete('/:id/delete', controller.deleteProduct);
 
 export default router;

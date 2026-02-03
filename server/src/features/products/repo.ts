@@ -86,3 +86,10 @@ export function findCategoriesByProductId(productId: number): Category[] {
   `);
   return stmt.all(productId) as Category[];
 }
+
+export function deleteProductById(productId: number) {
+  const stmt = db.prepare(`
+    DELETE FROM products WHERE id = ?
+    `);
+  return stmt.run(productId);
+}

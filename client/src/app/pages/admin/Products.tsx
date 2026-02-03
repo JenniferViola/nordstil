@@ -2,18 +2,24 @@
 import PageTitle from "@/components/layout/shared/PageTitle";
 import Button from "@/components/ui/admin/Button";
 import usePublishedProducts from "@/hooks/usePublishedProducts";
+import { useRemoveProduct } from "@/hooks/useRemoveProduct";
+import { useState } from "react";
 import { SlTrash } from "react-icons/sl";
 
 export default function Products() {
-  const products = usePublishedProducts();
+  const [products, setProducts] = useState([]);
+  // TO DO: How to fix this state lol
+  setProducts(usePublishedProducts());
+  const { removeProduct } = useRemoveProduct();
 
-  // TO DO: Create useRemoveProduct hook, connect to api
-
-  const handleRemove = (title: string, id: number) => {
-    // useRemoveProduct(id);
+  const handleDelete = async (title: string, id: number) => {
     const confirmed = confirm(`Are you sure you want to remove ${title}?`);
     if (!confirmed) return;
-    console.log("Removed product:", title, "ID: ", id);
+
+    const success = await removeProduct(id);
+    if (success) {
+      console.log("Successfully removed:", title);
+    }
   };
 
   return (
@@ -98,7 +104,7 @@ export default function Products() {
                   >
                     <button
                       className="cursor-pointer hover:text-md"
-                      onClick={() => handleRemove(product.title, product.id)}
+                      onClick={() => handleDelete(product.title, product.id)}
                     >
                       <SlTrash />
                     </button>
