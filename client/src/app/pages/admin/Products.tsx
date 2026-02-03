@@ -3,14 +3,21 @@ import PageTitle from "@/components/layout/shared/PageTitle";
 import Button from "@/components/ui/admin/Button";
 import usePublishedProducts from "@/hooks/usePublishedProducts";
 import { useRemoveProduct } from "@/hooks/useRemoveProduct";
-import { useState } from "react";
+import type { Product } from "@/types/product";
+import { useState, useEffect } from "react";
 import { SlTrash } from "react-icons/sl";
 
 export default function Products() {
-  const [products, setProducts] = useState([]);
-  // TO DO: How to fix this state lol
-  setProducts(usePublishedProducts());
+  const fetchedProducts = usePublishedProducts();
+  const [products, setProducts] = useState<Product[]>([]);
   const { removeProduct } = useRemoveProduct();
+
+  useEffect(() => {
+    console.log("useEffect triggered");
+    if (fetchedProducts) {
+      setProducts(fetchedProducts);
+    }
+  }, [fetchedProducts]);
 
   const handleDelete = async (title: string, id: number) => {
     const confirmed = confirm(`Are you sure you want to remove ${title}?`);
@@ -18,6 +25,9 @@ export default function Products() {
 
     const success = await removeProduct(id);
     if (success) {
+      setProducts((prevProducts) =>
+        prevProducts.filter((product) => product.id !== id),
+      );
       console.log("Successfully removed:", title);
     }
   };
