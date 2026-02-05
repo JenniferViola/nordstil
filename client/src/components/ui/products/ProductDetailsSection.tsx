@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import { useCart } from "@/hooks/useCart";
-import Breadcrumbs from "@/components/ui/ProductBreadcrumbs";
+import Breadcrumbs from "@/components/ui/products/ProductBreadcrumbs";
 import { RippleButton } from "@/components/ui/RippleButton";
 import { StarRating } from "@/components/ui/StarRating";
 import type { ProductWithCategories } from "@/types/product";
@@ -51,7 +51,7 @@ export default function ProductDetailsSection({
         />
         <div
           id="overlay"
-          className="absolute inset-0 rounded-sm bg-linear-to-t from-transparent
+          className="absolute inset-0 bg-linear-to-t from-transparent
             via-black/20 to-black/40"
         >
           <FaHeart
@@ -88,29 +88,38 @@ export default function ProductDetailsSection({
 
       <div
         id="info-container"
-        className="flex flex-col gap-6 sm:gap-4 w-full md:max-w-lg"
+        className="flex flex-col gap-4 sm:gap-4 w-full md:max-w-lg"
       >
         <Breadcrumbs product={product} className="hidden sm:flex" />
 
-        <div id="details-header" className="flex flex-col gap-2">
-          <h1 className="text-3xl">{product.title}</h1>
-          <div className="flex justify-between items-center">
-            <p
-              id="product-price"
-              className="text-lg text-primary-700 font-bold"
-            >
-              {product.price} SEK
-            </p>
-
-            <StarRating
-              value={rating}
-              onChange={setRating}
-              className="text-primary"
-            />
+        <div id="details-header" className="flex flex-col gap-3 lg:gap-4">
+          <div className="flex justify-between items-baseline">
+            <div className="flex flex-col gap-1">
+              <h1 className="text-3xl">{product.title}</h1>
+              <p id="product-brand" className="text-sm text-primary/80">
+                {product.brand}
+              </p>
+              <div className="flex justify-between items-center">
+                <p
+                  id="product-price"
+                  className="text-lg text-primary-700 font-bold"
+                >
+                  {product.price} SEK
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col items-center gap-0.5">
+              <StarRating
+                value={rating}
+                onChange={setRating}
+                className="text-primary"
+              />
+              <p className="text-xs text-primary/80">+1k reviews</p>
+            </div>
           </div>
         </div>
 
-        <div id="product-options" className="flex flex-col gap-8 lg:gap-4">
+        <div id="product-options" className="flex flex-col gap-4 lg:gap-4">
           <p className="lg:text-lg">{product.description}</p>
           <div className="flex flex-col gap-4">
             <div id="product-color" className="flex flex-col gap-2">
@@ -119,7 +128,7 @@ export default function ProductDetailsSection({
                 {product.color_name}
               </p>
 
-              <ul className="flex gap-4 lg:gap-6 flex-wrap decoration-0">
+              <ul className="flex gap-2 flex-wrap decoration-0">
                 <li
                   onClick={() =>
                     setSelectedProductColor(product.color_hex ?? "")
