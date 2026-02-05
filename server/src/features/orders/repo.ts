@@ -5,7 +5,6 @@ import { OrderPayload } from './types'; // Import your type
 export function saveOrder(data: OrderPayload): number | bigint {
   const { customer, items, total_amount } = data;
 
-  // Wrap everything in a transaction
   const transaction = db.transaction(() => {
     const customerStmt = db.prepare(`
         INSERT INTO customers (first_name, last_name, email, phone, street, postal_code, city, newsletter) 
@@ -37,7 +36,7 @@ export function saveOrder(data: OrderPayload): number | bigint {
 
     const orderId = orderResult.lastInsertRowid;
 
-    // 3. Insert each Item
+    // Insert each Item
     const itemStmt = db.prepare(`
       INSERT INTO order_items (order_id, product_id, quantity, price)
       VALUES (?, ?, ?, ?)
@@ -50,7 +49,7 @@ export function saveOrder(data: OrderPayload): number | bigint {
     return orderId;
   });
 
-  // Execute the transaction
+  // Execute transaction
   return transaction();
 }
 

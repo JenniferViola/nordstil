@@ -1,6 +1,6 @@
 // admin/Products.tsx
 import PageTitle from "@/components/layout/shared/PageTitle";
-import Button from "@/components/ui/admin/Button";
+import { Button } from "@/components/ui/admin/Button";
 import usePublishedProducts from "@/hooks/usePublishedProducts";
 import { useRemoveProduct } from "@/hooks/useRemoveProduct";
 import type { Product } from "@/types/product";

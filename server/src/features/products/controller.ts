@@ -1,6 +1,7 @@
 // products.controller.ts
 import { Request, Response, NextFunction } from 'express';
 import * as service from './service';
+import { Product } from './types';
 
 export async function getPublished(
   req: Request,
@@ -92,6 +93,20 @@ export function deleteProduct(req: Request, res: Response, next: NextFunction) {
     }
     const removeProduct = service.deleteProductById(productId);
     return res.json(removeProduct);
+  } catch (err) {
+    next(err);
+  }
+}
+
+export function postProduct(req: Request, res: Response, next: NextFunction) {
+  try {
+    const productData: Product = req.body;
+    console.log('Controller recieved:', productData);
+    const newProduct = service.postNewProduct(productData);
+
+    res.status(201).json({
+      message: 'Product added successfully!',
+    });
   } catch (err) {
     next(err);
   }
