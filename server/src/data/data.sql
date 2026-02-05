@@ -114,12 +114,12 @@ INSERT INTO products (
   featured,
   slug
 ) VALUES
-('SKU001', '2025-11-06', 'T-Shirt', 'CottonWear', 199,
+('SKU001', '2026-02-05', 'T-Shirt', 'CottonWear', 199,
  'Soft cotton t-shirt with relaxed fit.',
  '../images/products/tshirt.webp',
  'Soft White', '#F5F5F3', 1, 'tshirt'),
 
-('SKU002', '2025-11-06', 'Floral Coat', 'PreppyStyle', 949,
+('SKU002', '2026-02-05', 'Floral Coat', 'PreppyStyle', 949,
  'Long, lightweight coat with black floral print.',
  '../images/products/floral-coat.webp',
  'Charcoal Black', '#2B2B2B', 1, 'floral-coat'),
