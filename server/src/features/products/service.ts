@@ -34,15 +34,33 @@ export function getProductCategoriesBySlug(
 }
 
 export function getCategoriesByProduct(id: number): ProductWithCategories {
-  // fetch the product itself
   const product = repo.findProductById(id);
 
-  // fetch categories for this product
   const categories = repo.findCategoriesByProductId(id);
 
-  // return enriched object
   return {
     ...product,
     categories,
   };
+}
+
+export function deleteProductById(id: number) {
+  return repo.deleteProductById(id);
+}
+
+export function slugify(title: string): string {
+  return title
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+export function postNewProduct(product: Product) {
+  console.log('Service recieved:', product);
+  const slug = slugify(product.title);
+  const newProduct = repo.addNewProduct({
+    ...product,
+    slug,
+  });
 }

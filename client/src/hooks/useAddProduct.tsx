@@ -1,38 +1,33 @@
+// useAddProduct.tsx
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import type { OrderPayload } from "../types/order"; // Adjust path as needed
+import type { CreateProduct } from "@/types/product";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
-export const usePlaceOrder = () => {
+export const useAddProduct = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const placeOrder = async (orderData: OrderPayload) => {
+  const addProduct = async (product: CreateProduct) => {
     setIsSubmitting(true);
     setError(null);
 
     try {
-      const response = await fetch(`${BASE_URL}/orders`, {
+      const response = await fetch(`${BASE_URL}/products/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(orderData),
+        body: JSON.stringify(product),
       });
 
       if (!response.ok) {
-        throw new Error("Failed to place order. Please try again.");
+        throw new Error("Failed to add product. Please try again.");
       }
 
-      const result = await response.json();
-
-      const newId = result.orderId;
-
-      // TO DO: Clear localStorage cart
-
-      navigate(`/confirmation/${newId}`);
+      navigate(`/admin/products/`);
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -40,5 +35,5 @@ export const usePlaceOrder = () => {
     }
   };
 
-  return { placeOrder, isSubmitting, error };
+  return { addProduct, isSubmitting, error };
 };

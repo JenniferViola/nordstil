@@ -5,9 +5,9 @@ export default function Index() {
   return (
     <>
       <PageTitle title="Nordstil" />
-      <div>
-        <h1>Admin - Index</h1>
-      </div>
+      <section id="index-container">
+        <h1>Main content: Index</h1>
+      </section>
     </>
   );
 }

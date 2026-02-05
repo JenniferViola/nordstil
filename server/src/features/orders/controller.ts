@@ -5,10 +5,8 @@ import { OrderPayload } from './types'; // Import your type
 export function postOrder(req: Request, res: Response, next: NextFunction) {
   try {
     console.log('Controller got:', req.body);
-    // Cast body to payload type
-    const orderData: OrderPayload = req.body;
 
-    //pass to service
+    const orderData: OrderPayload = req.body;
     const newOrderId = service.createOrder(orderData);
 
     res.status(201).json({

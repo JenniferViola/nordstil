@@ -58,9 +58,6 @@ export default function Checkout() {
 
   let navigate = useNavigate();
 
-  const inputStyling =
-    "border border-primary-800/30 bg-white/50 shadow-sm/5 p-1.5 rounded-sm focus:p-2 transition-all";
-
   if (items.length === 0) {
     navigate("/cart");
   }
@@ -118,7 +115,7 @@ export default function Checkout() {
                     type="text"
                     id="first-name"
                     placeholder="First name"
-                    className={inputStyling}
+                    className="text-input"
                     {...register("firstName", { required: true })}
                   />
                   {errors.firstName && (
@@ -134,7 +131,7 @@ export default function Checkout() {
                     type="text"
                     id="last-name"
                     placeholder="Last name"
-                    className={inputStyling}
+                    className="text-input"
                     {...register("lastName", { required: true })}
                   />
                   {errors.lastName && (
@@ -151,7 +148,7 @@ export default function Checkout() {
                     type="email"
                     id="email"
                     placeholder="E-mail"
-                    className={inputStyling}
+                    className="text-input"
                     {...register("email", {
                       required: true,
                       pattern: /^\S+@\S+$/i,
@@ -169,7 +166,7 @@ export default function Checkout() {
                     type="tel"
                     id="phone"
                     placeholder="Phone number"
-                    className={inputStyling}
+                    className="text-input"
                     {...register("phone")}
                   />
                 </div>
@@ -190,7 +187,7 @@ export default function Checkout() {
                     type="text"
                     id="street"
                     placeholder="Street"
-                    className={inputStyling}
+                    className="text-input"
                     {...register("street", { required: true })}
                   />
                   {errors.street && (
@@ -206,7 +203,7 @@ export default function Checkout() {
                   <input
                     type="text"
                     id="postal-code"
-                    className={inputStyling}
+                    className="text-input"
                     {...register("postalCode", { required: true })}
                   />
                   {errors.postalCode && (
@@ -221,7 +218,7 @@ export default function Checkout() {
                   <input
                     type="text"
                     id="city"
-                    className={inputStyling}
+                    className="text-input"
                     {...register("city", { required: true })}
                   />
                   {errors.city && (

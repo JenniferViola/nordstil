@@ -86,3 +86,49 @@ export function findCategoriesByProductId(productId: number): Category[] {
   `);
   return stmt.all(productId) as Category[];
 }
+
+export function deleteProductById(productId: number) {
+  const stmt = db.prepare(`
+    DELETE FROM products WHERE id = ?
+    `);
+  return stmt.run(productId);
+}
+
+export function addNewProduct(product: Product & { slug: string }) {
+  const fields = ['sku', 'title', 'img_url', 'slug'];
+  const values: any[] = [
+    product.sku,
+    product.title,
+    product.img_url,
+    product.slug,
+  ];
+
+  if (product.published_date) {
+    fields.push('published_date');
+    values.push(product.published_date);
+  }
+
+  if (product.brand) {
+    fields.push('brand');
+    values.push(product.brand);
+  }
+
+  if (product.price !== undefined) {
+    fields.push('price');
+    values.push(product.price);
+  }
+
+  if (product.description) {
+    fields.push('description');
+    values.push(product.description);
+  }
+
+  const placeholders = fields.map(() => '?').join(', ');
+
+  const stmt = db.prepare(`
+    INSERT INTO products (${fields.join(', ')})
+    VALUES (${placeholders})
+  `);
+
+  return stmt.run(values);
+}

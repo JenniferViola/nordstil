@@ -63,4 +63,8 @@
   .text-xl {
     font-size: 1.25rem;
   }
+
+  .text-input {
+    @apply rounded-sm border border-primary-800/30 bg-white/50 p-1.5 shadow-sm/5 transition-all focus:p-2;
+  }
 }

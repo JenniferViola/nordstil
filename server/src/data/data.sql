@@ -15,14 +15,14 @@ DROP TABLE IF EXISTS order_items;
 CREATE TABLE products (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   sku TEXT NOT NULL UNIQUE,
-  published_date TEXT,
+  published_date TEXT NOT NULL DEFAULT (date('now')),
   title TEXT NOT NULL,
-  brand TEXT NOT NULL,
-  price INTEGER NOT NULL,
-  description TEXT NOT NULL,
+  brand TEXT,
+  price INTEGER,
+  description TEXT,
   img_url TEXT NOT NULL,
-  color_name TEXT,
-  color_hex TEXT,
+  color_name TEXT DEFAULT "White",
+  color_hex TEXT DEFAULT "#FFFFFF",
   featured BOOLEAN NOT NULL DEFAULT 0,
   slug TEXT NOT NULL UNIQUE
 );

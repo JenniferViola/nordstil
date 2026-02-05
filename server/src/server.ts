@@ -5,7 +5,6 @@ import cors from 'cors';
 import config from './config/config';
 import apiRouter from './api';
 
-// Import for side effects (connect/init DB)
 import './data/db';
 
 const app = express();
