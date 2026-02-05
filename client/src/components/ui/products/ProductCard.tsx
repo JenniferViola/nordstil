@@ -3,6 +3,7 @@ import { FaHeart } from "react-icons/fa6";
 import type { Product } from "@/types/product";
 import { Link } from "react-router";
 import { useState, memo } from "react";
+import { isNew } from "@/lib/date";
 
 type Props = {
   product: Product;
@@ -10,7 +11,6 @@ type Props = {
 };
 
 function ProductCard({ product, className }: Props) {
-  const isNew = false;
   const [isFaved, setIsFaved] = useState(false);
 
   return (
@@ -53,7 +53,7 @@ function ProductCard({ product, className }: Props) {
             }}
           />
 
-          {isNew && (
+          {isNew(product.published_date ?? "") && (
             <p
               id="badge"
               className="absolute top-4 left-4 rounded-md bg-secondary-100 px-3

@@ -7,6 +7,7 @@ import { RippleButton } from "@/components/ui/RippleButton";
 import { StarRating } from "@/components/ui/StarRating";
 import type { ProductWithCategories } from "@/types/product";
 import { FaHeart } from "react-icons/fa6";
+import { isNew } from "@/lib/date";
 interface ProductSectionProps {
   product: ProductWithCategories;
 }
@@ -17,7 +18,6 @@ export default function ProductDetailsSection({
   const [rating, setRating] = useState(0);
   const [selectedProductColor, setSelectedProductColor] = useState<string>("");
   const productSizes = ["S", "M", "L", "XL"] as const;
-  const isNew = false;
   const [isFaved, setIsFaved] = useState(false);
   const { addItem } = useCart();
 
@@ -74,7 +74,7 @@ export default function ProductDetailsSection({
             }}
           />
 
-          {isNew && (
+          {isNew(product.published_date ?? "") && (
             <p
               id="badge"
               className="absolute top-4 left-4 rounded-md bg-secondary-100 px-3
@@ -121,7 +121,9 @@ export default function ProductDetailsSection({
 
               <ul className="flex gap-4 lg:gap-6 flex-wrap decoration-0">
                 <li
-                  onClick={() => setSelectedProductColor(product.color_hex)}
+                  onClick={() =>
+                    setSelectedProductColor(product.color_hex ?? "")
+                  }
                   className={`${
                     selectedProductColor
                       ? "border-[1.5px] border-primary-700/60 cursor-pointer"
