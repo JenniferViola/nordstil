@@ -15,20 +15,19 @@ export default function ProductDetails() {
 
   if (!product) return <div>Loading...</div>;
   return (
-    <div className="max-w-[128rem]">
+    <div className="max-w-[128rem] flex flex-col gap-2 lg:gap-6">
       <PageTitle title={`${product.title} – Nordstil`} />
       <Breadcrumbs product={product} className="sm:hidden flex" />
       <ProductDetailsSection product={product} />
       <Divider variant="dark" className="sm:hidden mb-4 mt-4" />
-      {
-        // TODO:
-        // 1. Similar products logic: same category, tags, etc.
-      }
       <section
         id="similar-products-container"
-        className="hidden sm:grid gap-4 mt-4 justify-center items-center"
+        className="hidden sm:grid gap-8 mt-10 justify-center items-center"
       >
-        <h1 className="text-center text-3xl">Similar Products</h1>
+        <div className="flex flex-col gap-2">
+          <h1 className="text-center text-2xl lg:text-3xl">Similar Products</h1>
+          <Divider variant="dark" />
+        </div>
         <ProductCarousel products={similarProducts} />
       </section>
     </div>

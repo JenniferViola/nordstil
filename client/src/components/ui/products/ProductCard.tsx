@@ -16,6 +16,7 @@ function ProductCard({ product, className }: Props) {
   return (
     <Link
       to={`/products/${product.slug}`}
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       className={`block w-full min-w-0 max-h-[1050px] rounded bg-secondary-100
         text-inherit no-underline transition-transform duration-200 ease-in-out
         ${className || ""}`}
@@ -69,7 +70,7 @@ function ProductCard({ product, className }: Props) {
         id="card-body"
         className="grid grid-cols-[1fr_auto] gap-2 p-4 min-w-0"
       >
-        <p className="text-sm font-semibold">{product.title}</p>
+        <p className="truncate text-sm font-semibold">{product.title}</p>
         <p className="text-sm font-semibold text-right">{product.price} SEK</p>
         <p className="text-xs font-medium text-gray-600">{product.brand}</p>
       </section>

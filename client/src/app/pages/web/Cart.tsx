@@ -11,8 +11,10 @@ export default function Cart() {
   const { items, totalItems, totalPrice, updateQuantity, removeItem } =
     useCart();
 
-  const shipping = 49;
-  const orderTotal = totalPrice + shipping;
+  const totalCost = () => {
+    const shipping = 49;
+    return totalPrice + shipping;
+  };
 
   let navigate = useNavigate();
 
@@ -99,7 +101,7 @@ export default function Cart() {
 
             <div id="price-total" className="flex justify-between font-bold">
               <p>Total:</p>
-              <p>{`${orderTotal} SEK`}</p>
+              <p>{`${totalCost()} SEK`}</p>
             </div>
           </div>
           <div className="flex justify-center">

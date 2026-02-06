@@ -1,19 +1,18 @@
 // admin/Products.tsx
 import PageTitle from "@/components/layout/shared/PageTitle";
 import { Button } from "@/components/ui/admin/Button";
-import usePublishedProducts from "@/hooks/usePublishedProducts";
+import useAllProducts from "@/hooks/useAllProducts";
 import { useRemoveProduct } from "@/hooks/useRemoveProduct";
 import type { Product } from "@/types/product";
 import { useState, useEffect } from "react";
 import { SlTrash } from "react-icons/sl";
 
 export default function Products() {
-  const fetchedProducts = usePublishedProducts();
+  const fetchedProducts = useAllProducts();
   const [products, setProducts] = useState<Product[]>([]);
   const { removeProduct } = useRemoveProduct();
 
   useEffect(() => {
-    console.log("useEffect triggered");
     if (fetchedProducts) {
       setProducts(fetchedProducts);
     }
@@ -116,7 +115,7 @@ export default function Products() {
                       className="cursor-pointer hover:text-md"
                       onClick={() => handleDelete(product.title, product.id)}
                     >
-                      <SlTrash />
+                      <SlTrash size={16} />
                     </button>
                   </td>
                 </tr>

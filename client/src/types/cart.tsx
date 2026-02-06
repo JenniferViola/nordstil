@@ -8,6 +8,8 @@ export interface CartItem {
   img_url: Product["img_url"];
   color_name: Product["color_name"];
   slug: Product["slug"];
+  selectedColor: Product["color_name"];
+  selectedSize: string;
   quantity: number;
 }
 

@@ -1,4 +1,4 @@
-// products.controller.ts
+// products/controller.ts
 import { Request, Response, NextFunction } from 'express';
 import * as service from './service';
 import { Product } from './types';
@@ -17,6 +17,18 @@ export async function getPublished(
     } else {
       products = service.getPublishedProducts();
     }
+
+    res.json(products);
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function getAll(req: Request, res: Response, next: NextFunction) {
+  try {
+    let products;
+
+    products = service.getAllProducts();
 
     res.json(products);
   } catch (err) {

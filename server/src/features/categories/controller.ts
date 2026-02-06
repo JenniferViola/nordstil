@@ -23,6 +23,24 @@ export function getById(req: Request, res: Response, next: NextFunction) {
   }
 }
 
+export function deleteCategory(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const categoryId = Number(req.params.id);
+
+    if (Number.isNaN(categoryId)) {
+      return res.status(400).json({ message: 'Invalid product ID' });
+    }
+    const removeProduct = service.deleteCategoryById(categoryId);
+    return res.json(removeProduct);
+  } catch (err) {
+    next(err);
+  }
+}
+
 export function getProducts(req: Request, res: Response, next: NextFunction) {
   try {
     const id: number = Number(req.params.id);

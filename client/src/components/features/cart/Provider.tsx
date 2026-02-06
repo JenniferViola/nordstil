@@ -7,7 +7,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = items.reduce(
-    (sum, item) => sum + item.price * item.quantity,
+    (sum, item) => sum + (item.price ?? 0) * item.quantity,
     0,
   );
 
@@ -20,7 +20,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       if (existingItem) {
         return currentCart.map((cartItem) =>
           cartItem.id == item.id
-            ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
+            ? {
+                ...cartItem,
+                quantity: cartItem.quantity + item.quantity,
+              }
             : cartItem,
         );
       }

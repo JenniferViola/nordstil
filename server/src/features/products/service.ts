@@ -1,10 +1,14 @@
-// products.service.ts
+// products/service.ts
 import * as repo from './repo';
 import type { Product } from './types';
 import type { ProductWithCategories } from './types';
 
 export function getPublishedProducts(): Product[] {
   return repo.findPublished();
+}
+
+export function getAllProducts(): Product[] {
+  return repo.findAll();
 }
 
 export function getFeaturedProducts(): Product[] {

@@ -15,6 +15,16 @@ export function findPublished(): Product[] {
   return rows as Product[];
 }
 
+export function findAll(): Product[] {
+  const rows = db
+    .prepare(
+      `SELECT * FROM products 
+      ORDER BY published_date DESC`,
+    )
+    .all();
+  return rows as Product[];
+}
+
 export function findFeatured(): Product[] {
   const rows = db
     .prepare(

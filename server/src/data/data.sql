@@ -197,13 +197,13 @@ INSERT INTO products (
 
 -- CATEGORIES DATA
 INSERT INTO categories (title, img_url, slug) VALUES
-('Tops', '/../images/categories-tops.png', 'tops'),
-('Sweaters', '/../images/categories-sweaters.png', 'sweaters'),
-('Bottoms', '/../images/categories-bottoms.png', 'bottoms'),
-('Dresses', '/../images/categories-dresses.png', 'dresses'),
-('Outerwear', '/../images/categories-outerwear.png', 'outerwear'),
-('Shoes', '/../images/categories-shoes.png', 'shoes'),
-('Accessories', '/../images/categories-accessories.png', 'accessories');
+('Tops', '../images/categories/categories-tops.png', 'tops'),
+('Sweaters', '../images/categories/categories-sweaters.png', 'sweaters'),
+('Bottoms', '../images/categories/categories-bottoms.png', 'bottoms'),
+('Dresses', '../images/categories/categories-dresses.png', 'dresses'),
+('Outerwear', '../images/categories/categories-outerwear.png', 'outerwear'),
+('Shoes', '../images/categories/categories-shoes.png', 'shoes'),
+('Accessories', '../images/categories/categories-accessories.png', 'accessories');
 
 -- CATEGORY_PRODUCTS DATA
 INSERT INTO category_products (category_id, product_id) VALUES

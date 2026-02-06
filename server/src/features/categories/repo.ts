@@ -21,7 +21,13 @@ export function findCategoryById(id: number): Category | null {
   return row as Category;
 }
 
-// Find products for category
+export function deleteCategoryById(categoryId: number) {
+  const stmt = db.prepare(`
+    DELETE FROM categories WHERE id = ?
+    `);
+  return stmt.run(categoryId);
+}
+
 export function findProductsForCategory(categoryId: number): Product[] {
   const stmt = db.prepare(
     `SELECT p.*
