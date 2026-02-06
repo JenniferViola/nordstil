@@ -15,7 +15,7 @@ export default function useSearchProducts(
       params.append("query", query);
     }
 
-    const url = `${BASE_URL}/products?${params.toString()}`;
+    const url = `${BASE_URL}/products/published?${params.toString()}`;
 
     fetch(url)
       .then((resp) => {

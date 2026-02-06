@@ -44,8 +44,8 @@ export default function NewProduct() {
   return (
     <>
       <PageTitle title="Admin - New Product" />
-      <section id="new-product-container">
-        <h1>New Product</h1>
+      <section id="new-product-container" className="flex flex-col gap-4">
+        <h1 className="text-2xl font-semibold text-slate-900">New Product</h1>
         <form
           className="flex flex-col gap-8 text-sm"
           onSubmit={handleSubmit(onSubmit)}

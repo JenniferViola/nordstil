@@ -1,4 +1,4 @@
-// useProductBySlug.tsx
+// hooks/useProductBySlug.tsx
 import type { ProductWithCategories } from "@/types/product";
 import { useEffect, useState } from "react";
 

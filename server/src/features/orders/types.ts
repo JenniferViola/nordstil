@@ -5,7 +5,6 @@ export interface OrderItem {
   price: number;
 }
 
-// The Request Body from Frontend (DTO)
 export interface OrderPayload {
   customer: {
     firstName: string;
@@ -18,5 +17,12 @@ export interface OrderPayload {
     newsletter: number;
   };
   items: OrderItem[];
+  total_amount: number;
+}
+
+export interface Order {
+  id: number;
+  customer_id: number;
+  order_date: string;
   total_amount: number;
 }

@@ -31,3 +31,15 @@ export function getOrder(req: Request, res: Response, next: NextFunction) {
     next(err);
   }
 }
+
+export async function getAll(req: Request, res: Response, next: NextFunction) {
+  console.log('controller reached');
+  try {
+    let orders;
+    orders = service.getAllOrders();
+
+    res.json(orders);
+  } catch (err) {
+    next(err);
+  }
+}

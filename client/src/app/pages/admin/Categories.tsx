@@ -36,7 +36,14 @@ export default function Categories() {
       <section id="categories-container">
         <div className="max-w-7xl flex flex-col gap-4">
           <div className="flex justify-between items-center">
-            <h1>Categories Overview</h1>
+            <div>
+              <h1 className="text-2xl font-semibold text-slate-900">
+                Categories Overview
+              </h1>
+              <p className="text-sm text-slate-500 mt-1">
+                All categories in the databse.
+              </p>
+            </div>
           </div>
           <table
             className="w-full max-w-7xl border-separate border-spacing-y-2

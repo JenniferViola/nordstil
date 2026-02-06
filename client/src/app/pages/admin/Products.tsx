@@ -36,11 +36,20 @@ export default function Products() {
       <PageTitle title="Admin - Products" />
       <section id="products-container">
         <div className="max-w-7xl flex flex-col gap-4">
-          <div className="flex justify-between items-center">
-            <h1>Products Overview</h1>
-            <Button to="/admin/products/new">
-              <span className="mr-2 text-sm">+</span> New product
-            </Button>
+          <div className="flex justify-between items-top">
+            <div>
+              <h1 className="text-2xl font-semibold text-slate-900">
+                Products Overview
+              </h1>
+              <p className="text-sm text-slate-500 mt-1">
+                All products in the databse.
+              </p>
+            </div>
+            <div>
+              <Button to="/admin/products/new">
+                <span className="mr-2 text-sm">+</span> New product
+              </Button>
+            </div>
           </div>
           <table
             className="w-full max-w-7xl border-separate border-spacing-y-2
@@ -70,7 +79,7 @@ export default function Products() {
                   className="text-left py-[0.5rem] px-[0.5rem] border-b
                     border-[#4d5d53]/15 font-medium"
                 >
-                  Published
+                  Publication
                 </th>
                 <th className="border-b border-[#4d5d53]/15"></th>
               </tr>

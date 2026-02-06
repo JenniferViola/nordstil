@@ -240,7 +240,7 @@ INSERT INTO hero (
   '/shop',
   1
 );
--- ../images/
+
 -- SPOTS DATA
 INSERT INTO spots (title, subtitle, img_url, link_url) VALUES
 ('Best Sellers', 'Shop our most popular items.', '../images/spots/spot1.webp', '/'),
@@ -248,3 +248,27 @@ INSERT INTO spots (title, subtitle, img_url, link_url) VALUES
 ('New Arrivals', 'Check out the latest arrivals.', '../images/spots/spot3.webp', '/');
 
 
+INSERT INTO customers (id, first_name, last_name, email, phone, street, postal_code, city, newsletter) VALUES
+(1, 'Anna', 'Karlsson', 'anna.karlsson@example.com', '0701234567', 'Storgatan 1', '11122', 'Stockholm', 1),
+(2, 'Erik', 'Johansson', 'erik.johansson@example.com', '0702345678', 'Parkvägen 12', '22233', 'Uppsala', 0),
+(3, 'Sara', 'Lind', 'sara.lind@example.com', '0703456789', 'Ängsvägen 7', '33344', 'Västerås', 1),
+(4, 'Johan', 'Nilsson', 'johan.nilsson@example.com', '0704567890', 'Kungsgatan 9', '44455', 'Örebro', 0);
+
+INSERT INTO orders (id, customer_id, order_date, total_amount) VALUES
+(1, 1, '2025-01-10 10:15:00', 899),
+(2, 2, '2025-01-11 14:42:00', 1299),
+(3, 1, '2025-01-15 09:30:00', 499),
+(4, 3, '2025-01-20 18:05:00', 1799);
+
+
+INSERT INTO order_items (id, order_id, product_id, quantity, price) VALUES
+(1, 1, 3, 1, 499),
+(2, 1, 7, 2, 200),
+
+(3, 2, 5, 1, 999),
+(4, 2, 12, 1, 300),
+
+(5, 3, 1, 1, 499),
+
+(6, 4, 8, 1, 1299),
+(7, 4, 15, 1, 500);

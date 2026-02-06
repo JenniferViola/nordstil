@@ -9,6 +9,8 @@ export function findPublished(): Product[] {
     .prepare(
       `SELECT * FROM products 
       WHERE published_date IS NOT NULL 
+      AND published_date != '' 
+      AND published_date <= datetime('now')
       ORDER BY published_date DESC`,
     )
     .all();

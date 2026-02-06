@@ -8,7 +8,7 @@ export default function usePublishedProducts(): Product[] {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    fetch(`${BASE_URL}/products`)
+    fetch(`${BASE_URL}/products/published`)
       .then((resp) => resp.json())
       .then(setProducts)
       .catch((err) => console.error("Failed to fetch products:", err));

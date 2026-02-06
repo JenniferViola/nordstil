@@ -1,6 +1,6 @@
 // useOrderById.tsx
 import { useState, useEffect } from "react";
-import type { FetchedOrder } from "@/types/order"; // Import your new type
+import type { FetchedOrder } from "@/types/order";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
