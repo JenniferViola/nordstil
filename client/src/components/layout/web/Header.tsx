@@ -25,13 +25,17 @@ type Props = {
 export default function Header({ menuOpen, onToggleMenu, onClose }: Props) {
   const [searchOpen, setSearchOpen] = useState(false);
   const { items } = useCart();
-  const navLinks = [
+  const mainLinks = [
     { id: 1, title: "Home", url: "/" },
     { id: 2, title: "Shop", url: "/search" },
     { id: 3, title: "Magazine", url: "/magazine" },
   ];
+  const promoLinks = [
+    { id: 1, title: "New Arrivals", href: "/new" },
+    { id: 2, title: "Bestsellers", href: "/search" },
+    { id: 3, title: "Tops", href: "/search" },
+  ];
 
-  // derive total quantity
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
 
   useEffect(() => {
@@ -57,12 +61,10 @@ export default function Header({ menuOpen, onToggleMenu, onClose }: Props) {
       <div
         id="header-container"
         className="grid w-full px-2 sm:px-4 grid-cols-[1fr_auto_1fr]
-          items-center justify-center"
+          items-center justify-center max-w-[120rem] mx-auto"
       >
         <div className="flex items-center justify-start">
           <div className="flex gap-4 text-primary-600">
-            {/* TO DO: Make navs into component */}
-
             {/* TOGGLES */}
             <button
               onClick={onToggleMenu}
@@ -77,7 +79,7 @@ export default function Header({ menuOpen, onToggleMenu, onClose }: Props) {
 
           {/* NAV - DESKTOP */}
           <nav className="hidden lg:flex items-center gap-10">
-            {navLinks.map((link) => (
+            {mainLinks.map((link) => (
               <NavLink
                 key={link.id}
                 to={link.url}
@@ -132,17 +134,17 @@ export default function Header({ menuOpen, onToggleMenu, onClose }: Props) {
       {/* Mobile nav */}
       <div
         className={`lg:hidden fixed inset-0 z-40 bg-secondary-100 text-body
-          transition-opacity duration-300
+          transition-opacity duration-200
           ${menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
           `}
       >
         <nav className="flex h-full flex-col px-6 pt-16">
           <div className="flex flex-col gap-6">
-            {navLinks.map((link) => (
+            {mainLinks.map((link) => (
               <Link
                 key={link.id}
                 to={link.url}
-                className="text-2xl font-medium tracking-tight hover:opacity-60
+                className="text-xl font-medium tracking-tight hover:opacity-60
                   transition"
                 onClick={onClose}
               >
@@ -154,14 +156,14 @@ export default function Header({ menuOpen, onToggleMenu, onClose }: Props) {
           <div
             className="mt-10 border-t border-body/20 pt-6 flex flex-col gap-4"
           >
-            {["New Arrivals", "Best Sellers", "Clothing"].map((item) => (
+            {promoLinks.map((item) => (
               <Link
-                key={item}
+                key={item.id}
                 to="/"
                 className="text-base font-normal hover:opacity-60 transition"
                 onClick={onClose}
               >
-                {item}
+                {item.title}
               </Link>
             ))}
           </div>

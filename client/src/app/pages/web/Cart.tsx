@@ -38,21 +38,17 @@ export default function Cart() {
         <div
           id="cart-empty"
           className="flex flex-col text-center h-[25rem] w-full mx-auto
-            justify-center gap-8"
+            justify-center gap-12"
         >
           <div className="flex flex-col gap-2 text-sm">
             <h2>Your shopping cart is empty!</h2>
             <p>Fill it with products to continue.</p>
           </div>
-          <div
-            className="flex flex-col gap-8 absolute bottom-5 left-0 w-full
-              items-center"
-          >
-            <Divider variant="dark"></Divider>
+          <div>
             <RippleButton
               onClick={handleContinueShopping}
               className="w-full md:w-lg font-bold bg-primary-600
-                text-secondary-200 mb-6"
+                text-secondary-200"
             >
               Continue shopping
             </RippleButton>

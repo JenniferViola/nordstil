@@ -86,7 +86,7 @@ function SearchMobile({ searchOpen, onClose }: SearchMobileProps) {
   return (
     <div
       className={`lg:hidden absolute left-0 top-full w-full bg-secondary-100
-        text-body overflow-hidden transition-all duration-300 ease-out
+        text-body overflow-hidden transition-all duration-200 ease-out
         shadow-xl/10 pb-2
         ${searchOpen ? "max-h-28 opacity-100" : "max-h-0 opacity-0"}`}
     >
