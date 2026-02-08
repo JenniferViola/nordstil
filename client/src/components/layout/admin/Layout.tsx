@@ -40,6 +40,7 @@ export default function AdminLayout({
             </AdminNavLink>
             <AdminNavLink to="/admin/products">Products</AdminNavLink>
             <AdminNavLink to="/admin/categories">Categories</AdminNavLink>
+            <AdminNavLink to="/admin/orders">Orders</AdminNavLink>
           </nav>
         </aside>
 
