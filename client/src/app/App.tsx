@@ -6,10 +6,12 @@ import WebLayout from "../components/layout/web/Layout";
 import AdminLayout from "../components/layout/admin/Layout";
 import WebRoutes from "./routes/WebRoutes";
 import AdminRoutes from "./routes/AdminRoutes";
+import { ScrollToTop } from "@/components/features/ScrollToTop";
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route
           path="/*"

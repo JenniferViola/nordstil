@@ -1,17 +1,17 @@
 // CartContext.tsx
 import { createContext } from "react";
-import type { CartItem } from "@/types/cart";
+import type { OrderItem } from "@/types/order";
 
-export interface CartContextValue {
-  items: CartItem[];
+export interface CartContextType {
+  items: OrderItem[];
   totalItems: number;
   totalPrice: number;
-  addItem: (item: CartItem) => void;
-  removeItem: (id: CartItem["id"]) => void;
-  updateQuantity: (id: CartItem["id"], quantity: number) => void;
-  clearCart: () => void; //question: what does 'void' do here?
+  addItem: (item: OrderItem) => void;
+  updateQuantity: (id: number, quantity: number) => void;
+  removeItem: (id: number) => void;
+  clearCart: () => void;
 }
 
-export const CartContext = createContext<CartContextValue | undefined>(
+export const CartContext = createContext<CartContextType | undefined>(
   undefined,
 );

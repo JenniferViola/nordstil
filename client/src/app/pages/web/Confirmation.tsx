@@ -3,10 +3,17 @@ import { Divider } from "@/components/ui/Divider";
 import OrderItemCard from "@/components/ui/orders/OrderItemCard";
 import { useOrderById } from "@/hooks/useOrderById";
 import { NavLink, useParams } from "react-router";
+import { useEffect } from "react";
+import { useCart } from "@/hooks/useCart";
 
 export default function Confirmation() {
   const { id } = useParams<{ id: string }>();
   const { order, loading, error } = useOrderById(id);
+  const { clearCart } = useCart();
+
+  useEffect(() => {
+    clearCart();
+  }, []);
 
   if (loading) return <p>Loading your receipt...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -40,7 +47,7 @@ export default function Confirmation() {
         <div id="items-container" className="flex flex-col gap-8">
           {order?.items.map((item) => (
             <OrderItemCard
-              key={item.product_id}
+              key={item.id}
               item={item}
               classNameImg="w-[6rem] min-w-[6rem]"
               classNameCard="text-base w-full"

@@ -30,8 +30,6 @@ export const usePlaceOrder = () => {
 
       const newId = result.orderId;
 
-      // TO DO: Clear localStorage cart
-
       navigate(`/confirmation/${newId}`);
     } catch (err: any) {
       setError(err.message);

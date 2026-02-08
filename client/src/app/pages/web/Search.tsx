@@ -21,6 +21,7 @@ export default function Search() {
         ${noResults ? "absolute top-0 left-0" : ""}`}
     >
       <PageTitle title={`Search results – Nordstil`} />
+
       <div id="breadcrumbs">
         <nav className={"flex"} aria-label="Breadcrumb">
           <ol
@@ -66,7 +67,7 @@ export default function Search() {
                   className="inline-flex items-center text-sm font-medium
                     text-body-subtle"
                 >
-                  {pageTitle}
+                  {query === null ? `All products` : `${pageTitle}`}
                 </span>
               </div>
             </li>

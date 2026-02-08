@@ -8,23 +8,15 @@ import { usePlaceOrder } from "@/hooks/usePlaceOrder";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router";
-
-type CheckoutFormData = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  street: string;
-  postalCode: string;
-  city: string;
-  newsletter: boolean;
-};
+import type { CustomerInfo, OrderPayload } from "@/types/order";
 
 export default function Checkout() {
   const { items, totalItems, totalPrice, updateQuantity, removeItem } =
     useCart();
 
   const { placeOrder, isSubmitting } = usePlaceOrder();
+
+  let navigate = useNavigate();
 
   const shipping = 49;
   const orderTotal = totalPrice + shipping;
@@ -33,7 +25,7 @@ export default function Checkout() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<CheckoutFormData>({
+  } = useForm<CustomerInfo>({
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -46,8 +38,8 @@ export default function Checkout() {
     },
   });
 
-  const onSubmit: SubmitHandler<CheckoutFormData> = (data) => {
-    const order = {
+  const onSubmit: SubmitHandler<CustomerInfo> = (data) => {
+    const order: OrderPayload = {
       customer: data,
       items,
       total_amount: totalPrice,
@@ -55,8 +47,6 @@ export default function Checkout() {
 
     placeOrder(order);
   };
-
-  let navigate = useNavigate();
 
   if (items.length === 0) {
     navigate("/cart");

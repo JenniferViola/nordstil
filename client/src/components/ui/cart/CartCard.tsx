@@ -1,10 +1,10 @@
 // CartCard.tsx
-import type { CartItem } from "@/types/cart";
+import type { OrderItem } from "@/types/order";
 import { Link } from "react-router";
 import { SlPlus, SlMinus, SlTrash, SlHeart } from "react-icons/sl";
 
 interface CartCardProps {
-  item: CartItem;
+  item: OrderItem;
   handleAdd: () => void;
   handleSubtract: () => void;
   handleRemove: () => void;

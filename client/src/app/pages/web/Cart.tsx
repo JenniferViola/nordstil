@@ -11,11 +11,6 @@ export default function Cart() {
   const { items, totalItems, totalPrice, updateQuantity, removeItem } =
     useCart();
 
-  const totalCost = () => {
-    const shipping = 49;
-    return totalPrice + shipping;
-  };
-
   let navigate = useNavigate();
 
   const handleToCheckout = () => {
@@ -88,16 +83,11 @@ export default function Cart() {
         </div>
         <div id="order-total" className="flex flex-col gap-4 max-w-[50rem]">
           <div id="order-sum" className="flex flex-col gap-2">
-            <div id="shipping" className="flex justify-between">
-              <p>Shipping:</p>
-              <p>49 SEK</p>
-            </div>
-
             <Divider variant="dark"></Divider>
 
             <div id="price-total" className="flex justify-between font-bold">
               <p>Total:</p>
-              <p>{`${totalCost()} SEK`}</p>
+              <p>{`${totalPrice} SEK`}</p>
             </div>
           </div>
           <div className="flex justify-center">

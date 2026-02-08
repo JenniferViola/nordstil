@@ -1,19 +1,37 @@
-// types/order.tsx
+// types/order.ts
 
 export interface OrderItem {
-  product_id: number;
+  id: number;
   title: string;
   price: number;
   quantity: number;
   img_url: string;
+  slug?: string;
+  brand?: string;
+  color_name?: string;
+  selectedColor?: string;
+  selectedSize?: string;
 }
 
-export interface OrderPayloadItem {
-  id: number;
-  quantity: number;
-  price: number;
+export interface CustomerInfo {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone?: string;
+  street: string;
+  postalCode: string;
+  city: string;
+  newsletter: boolean;
 }
 
+// Sent to the backend
+export interface OrderPayload {
+  customer: CustomerInfo;
+  items: OrderItem[];
+  total_amount: number;
+}
+
+// Fetched from the backend
 export interface FetchedOrder {
   id: number;
   order_date: string;
@@ -26,19 +44,4 @@ export interface FetchedOrder {
   postal_code: string;
   city: string;
   items: OrderItem[];
-}
-
-export interface OrderPayload {
-  customer: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    phone?: string;
-    street: string;
-    postalCode: string;
-    city: string;
-    newsletter: boolean;
-  };
-  items: OrderPayloadItem[]; // Use the simpler item type here
-  total_amount: number;
 }
