@@ -34,10 +34,10 @@ export default function Spots({ spots }: SpotsProps) {
           ></div>
           <div
             id="spot-content"
-            className="absolute flex flex-col gap-1 inset-x-0 bottom-10
-              justify-center items-center"
+            className="absolute flex flex-col gap-1 inset-0 justify-center
+              items-center"
           >
-            <p className="text-3xl font-bold text-secondary-500">
+            <p className="text-3xl font-medium text-secondary-500">
               {spot.title}
             </p>
             <Divider variant="light" className="w-[80%] opacity-70" />

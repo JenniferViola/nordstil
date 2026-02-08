@@ -42,7 +42,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="w-full bg-primary-700 py-10 text-[0.75rem]">
+    <footer className="w-full bg-primary-750 py-10 text-[0.75rem]">
       <div
         className="max-w-[120rem] mx-auto px-6 md:px-8 xxl:px-0 flex flex-col
           gap-8 relative"
@@ -59,7 +59,7 @@ export default function Footer() {
             >
               <Logo
                 variant="light"
-                className="text-[1.6rem] md:text-[1.4rem]"
+                className="text-[1.5rem] md:text-[1.4rem]"
               />
               <p className="text-secondary-200/70">Scandinavian simplicity.</p>
             </div>

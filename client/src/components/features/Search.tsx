@@ -62,7 +62,7 @@ function SearchDesktop() {
     <SearchInput
       className="hidden lg:flex items-center"
       placeholder="Search..."
-      inputClassName="md:w-30 lg:w-60 xl:w-70 flex-1 pr-8
+      inputClassName="lg:w-50 xl:w-60 xl:w-70 flex-1 pr-8
         py-1 bg-transparent border-b border-primary-500/50 text-sm
         placeholder:text-primary-500/50 focus:outline-none
         focus:border-primary-500 transition-all duration-300 ease-out"
