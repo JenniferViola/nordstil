@@ -222,7 +222,8 @@ INSERT INTO category_products (category_id, product_id) VALUES
 (6, 15),
 (7, 4),
 (7, 6),
-(7, 10);
+(7, 10),
+(7, 8);
 
 -- HERO DATA
 INSERT INTO hero (

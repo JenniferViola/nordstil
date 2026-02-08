@@ -33,7 +33,9 @@ export default function ProductBreadcrumbs({ product, className }: Props) {
             </Link>
           </li>
           <li>
-            <div className="flex items-center space-x-1.5">
+            <div
+              className={`${categoryTitle === "" ? "hidden" : "flex items-center space-x-1.5"}`}
+            >
               <svg
                 className="w-3.5 h-3.5 rtl:rotate-180 text-body"
                 aria-hidden="true"
