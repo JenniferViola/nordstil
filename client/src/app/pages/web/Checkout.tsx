@@ -3,12 +3,13 @@ import PageTitle from "@/components/layout/shared/PageTitle";
 import CartCard from "@/components/ui/cart/CartCard";
 import { Divider } from "@/components/ui/Divider";
 import { RippleButton } from "@/components/ui/RippleButton";
-import { useCart } from "@/hooks/useCart";
+import { useCart } from "@/components/context/CartContext";
 import { usePlaceOrder } from "@/hooks/usePlaceOrder";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router";
 import type { CustomerInfo, OrderPayload } from "@/types/order";
+import { SlExclamation } from "react-icons/sl";
 
 export default function Checkout() {
   const { items, totalItems, totalPrice, updateQuantity, removeItem } =
@@ -109,7 +110,11 @@ export default function Checkout() {
                     {...register("firstName", { required: true })}
                   />
                   {errors.firstName && (
-                    <span className="text-red-600">Required</span>
+                    <span
+                      className="text-red-600 text-xs flex items-center gap-1"
+                    >
+                      <SlExclamation /> Required
+                    </span>
                   )}
                 </div>
 
@@ -125,7 +130,11 @@ export default function Checkout() {
                     {...register("lastName", { required: true })}
                   />
                   {errors.lastName && (
-                    <span className="text-red-600">Required</span>
+                    <span
+                      className="text-red-600 text-xs flex items-center gap-1"
+                    >
+                      <SlExclamation /> Required
+                    </span>
                   )}
                 </div>
               </div>
@@ -145,7 +154,11 @@ export default function Checkout() {
                     })}
                   />
                   {errors.email && (
-                    <span className="text-red-600">Required</span>
+                    <span
+                      className="text-red-600 text-xs flex items-center gap-1"
+                    >
+                      <SlExclamation /> Required
+                    </span>
                   )}
                 </div>
                 <div className="flex flex-col gap-1 max-w-[20rem]">
@@ -181,7 +194,11 @@ export default function Checkout() {
                     {...register("street", { required: true })}
                   />
                   {errors.street && (
-                    <span className="text-red-600">Required</span>
+                    <span
+                      className="text-red-600 text-xs flex items-center gap-1"
+                    >
+                      <SlExclamation /> Required
+                    </span>
                   )}
                 </div>
 
@@ -197,7 +214,11 @@ export default function Checkout() {
                     {...register("postalCode", { required: true })}
                   />
                   {errors.postalCode && (
-                    <span className="text-red-600">Required</span>
+                    <span
+                      className="text-red-600 text-xs flex items-center gap-1"
+                    >
+                      <SlExclamation /> Required
+                    </span>
                   )}
                 </div>
 
@@ -212,7 +233,11 @@ export default function Checkout() {
                     {...register("city", { required: true })}
                   />
                   {errors.city && (
-                    <span className="text-red-600">Required</span>
+                    <span
+                      className="text-red-600 text-xs flex items-center gap-1"
+                    >
+                      <SlExclamation /> Required
+                    </span>
                   )}
                 </div>
               </div>

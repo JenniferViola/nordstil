@@ -18,7 +18,7 @@ export default function Orders() {
     <>
       <PageTitle title="Admin - Categories" />
       <section id="categories-container">
-        <div className="max-w-7xl flex flex-col gap-4">
+        <div className="max-w-7xl flex flex-col gap-4 overflow-x-auto">
           <div className="flex justify-between items-center">
             <div>
               <h1 className="text-2xl font-semibold text-slate-900">
@@ -30,34 +30,39 @@ export default function Orders() {
             </div>
           </div>
           <table
-            className="w-full max-w-7xl border-separate border-spacing-y-2
-              rounded-lg"
+            className="w-full text-[0.8rem] max-w-7xl border-separate
+              border-spacing-y-2 rounded-lg"
           >
             <thead>
               <tr className="bg-[#f4f6f5]">
                 <th
                   className="text-left py-[0.5rem] px-[0.5rem] border-b
-                    border-[#4d5d53]/15 font-medium"
+                    border-[#4d5d53]/15 font-medium whitespace-nowrap"
                 >
-                  Order ID
+                  ID
                 </th>
 
                 <th
                   className="text-left py-[0.5rem] px-[0.5rem] border-b
-                    border-[#4d5d53]/15 font-medium"
+                    border-[#4d5d53]/15 font-medium whitespace-nowrap"
                 >
-                  Customer ID
+                  E-mail
                 </th>
                 <th
                   className="text-left py-[0.5rem] px-[0.5rem] border-b
-                    border-[#4d5d53]/15 font-medium"
+                    border-[#4d5d53]/15 font-medium whitespace-nowrap"
                 >
                   Order Date
                 </th>
-
                 <th
                   className="text-left py-[0.5rem] px-[0.5rem] border-b
-                    border-[#4d5d53]/15 font-medium"
+                    border-[#4d5d53]/15 font-medium whitespace-nowrap"
+                >
+                  Order Items
+                </th>
+                <th
+                  className="text-left py-[0.5rem] px-[0.5rem] border-b
+                    border-[#4d5d53]/15 font-medium whitespace-nowrap"
                 >
                   Order Total
                 </th>
@@ -70,33 +75,39 @@ export default function Orders() {
               {orders.map((order) => (
                 <tr
                   key={order.id}
-                  className="text-[0.8rem] hover:translate-0.5 transition-all
+                  className="hover:translate-0.5 transition-all
                     hover:bg-[#f4f6f5]"
                 >
                   <td
                     className="p-1 border-b border-[#4d5d53]/15 px-[0.5rem]
-                      font-medium transition-all cursor-pointer"
+                      font-medium transition-all whitespace-nowrap
+                      cursor-pointer"
                   >
                     {order.id}
                   </td>
-
                   <td
                     className="p-1 border-b border-[#4d5d53]/15 px-[0.5rem]
-                      transition-all"
+                      transition-all whitespace-nowrap"
                   >
-                    {order.customer_id}
+                    {order.email}
                   </td>
                   <td
                     className="p-1 border-b border-[#4d5d53]/15 px-[0.5rem]
-                      transition-all"
+                      transition-all whitespace-nowrap"
                   >
                     {order.order_date}
                   </td>
                   <td
                     className="p-1 border-b border-[#4d5d53]/15 px-[0.5rem]
-                      transition-all"
+                      transition-all whitespace-nowrap"
                   >
-                    {order.total_amount}
+                    {order.item_count}
+                  </td>
+                  <td
+                    className="p-1 border-b border-[#4d5d53]/15 px-[0.5rem]
+                      transition-all whitespace-nowrap"
+                  >
+                    {order.total_amount} SEK
                   </td>
                 </tr>
               ))}

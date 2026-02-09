@@ -18,8 +18,7 @@
     "lib": "@/lib",
     "hooks": "@/hooks",
     "types": "@/types",
-    "features": "@/features",
-    "images": "@/assets/images"
+    "features": "@/features"
   },
   "registries": {
     "@magicui": "https://magicui.design/r/{name}.json"

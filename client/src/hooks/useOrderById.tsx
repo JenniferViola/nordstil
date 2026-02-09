@@ -22,6 +22,8 @@ export const useOrderById = (id: string | number | undefined) => {
         }
 
         const data: FetchedOrder = await response.json();
+        console.log("Received from backend:", data); // ✅ Log the data directly
+
         setOrder(data);
       } catch (err: any) {
         setError(err.message);

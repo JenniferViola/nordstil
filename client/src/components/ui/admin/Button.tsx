@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 // 1. Extract shared styles to a constant
 const buttonBaseStyles = `
-  inline-flex items-center justify-center px-3.5 py-2.5 
+  inline-flex items-center justify-center px-3.5 py-2.5 h-[2.5rem] truncate 
   bg-[#546159] rounded-sm text-white text-[11px] 
   font-semibold uppercase tracking-[0.15em] border 
   border-transparent hover:bg-[#3f4a45] hover:shadow-lg 
@@ -13,29 +13,27 @@ const buttonBaseStyles = `
 
 interface AdminButtonProps {
   children: ReactNode;
-  icon?: ReactNode; // Optional icon prop
+
   disabled?: boolean;
 }
 
 interface LinkButtonProps extends AdminButtonProps {
-  to: string; // Required for the Link version
+  to: string;
 }
 
-// Navigational Button (Link)
-export function Button({ children, to, icon }: LinkButtonProps) {
+// Nav Button
+export function Button({ children, to }: LinkButtonProps) {
   return (
     <Link to={to} className={buttonBaseStyles}>
-      {icon && <span className="mr-2">{icon}</span>}
       {children}
     </Link>
   );
 }
 
-// Form Submission Button
-export function SubmitButton({ children, icon, disabled }: AdminButtonProps) {
+// Submit Button
+export function SubmitButton({ children, disabled }: AdminButtonProps) {
   return (
     <button type="submit" disabled={disabled} className={buttonBaseStyles}>
-      {icon && <span className="mr-2">{icon}</span>}
       {children}
     </button>
   );

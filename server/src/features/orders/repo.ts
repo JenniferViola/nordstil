@@ -59,9 +59,9 @@ export function findOrderById(id: number) {
     .prepare(
       `
     SELECT orders.*, 
-    customers.first_name, customers.last_name, 
-    customers.email, customers.phone, 
-    customers.street, customers.postal_code, customers.city 
+      customers.first_name, customers.last_name, 
+      customers.email, customers.phone, 
+      customers.street, customers.postal_code, customers.city 
     FROM orders 
     JOIN customers ON orders.customer_id = customers.id 
     WHERE orders.id = ?
@@ -90,8 +90,21 @@ export function findOrderById(id: number) {
 export function findAll(): Order[] {
   const rows = db
     .prepare(
-      `SELECT * FROM orders 
-    ORDER BY order_date DESC`,
+      `SELECT 
+        orders.*,
+        customers.first_name, 
+        customers.last_name, 
+        customers.email, 
+        customers.phone, 
+        customers.street, 
+        customers.postal_code, 
+        customers.city, 
+        COUNT(order_items.id) as item_count 
+      FROM orders 
+      JOIN customers ON orders.customer_id = customers.id 
+      LEFT JOIN order_items ON orders.id = order_items.order_id 
+      GROUP BY orders.id 
+      ORDER BY orders.order_date DESC`,
     )
     .all();
   return rows as Order[];

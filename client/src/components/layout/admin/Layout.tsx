@@ -1,6 +1,7 @@
 // admin/Layout.jsx
 import { NavLink } from "react-router";
 import AdminNavLink from "@/components/ui/admin/AdminNavLink";
+import { SlHome, SlBag, SlGrid, SlNote } from "react-icons/sl";
 
 export default function AdminLayout({
   children,
@@ -36,16 +37,26 @@ export default function AdminLayout({
           </div>
           <nav className="flex flex-col gap-1 ml-4">
             <AdminNavLink to="/admin" end>
+              <SlHome className="inline mr-2" />
               Dashboard
             </AdminNavLink>
-            <AdminNavLink to="/admin/products">Products</AdminNavLink>
-            <AdminNavLink to="/admin/categories">Categories</AdminNavLink>
-            <AdminNavLink to="/admin/orders">Orders</AdminNavLink>
+            <AdminNavLink to="/admin/products">
+              <SlBag className="inline mr-2" />
+              Products
+            </AdminNavLink>
+            <AdminNavLink to="/admin/categories">
+              <SlGrid className="inline mr-2" />
+              Categories
+            </AdminNavLink>
+            <AdminNavLink to="/admin/orders">
+              <SlNote className="inline mr-2" />
+              Orders
+            </AdminNavLink>
           </nav>
         </aside>
 
         <main className="overflow-y-auto px-6 py-4">
-          <div id="page-container" className="mx-auto max-w-5xl">
+          <div id="page-container" className="max-w-5xl">
             {children}
           </div>
         </main>

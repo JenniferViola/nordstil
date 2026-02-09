@@ -1,11 +1,11 @@
--- DROP TABLES (in correct dependency order)
+-- DROP TABLES 
 
 DROP TABLE IF EXISTS category_products;
 DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS hero;
 DROP TABLE IF EXISTS spots;
-DROP TABLE IF EXISTS cusromers;
+DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS order_items;
 
@@ -15,7 +15,7 @@ DROP TABLE IF EXISTS order_items;
 CREATE TABLE products (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   sku TEXT NOT NULL UNIQUE,
-  published_date TEXT NOT NULL DEFAULT (date('now')),
+  published_date TEXT,
   title TEXT NOT NULL,
   brand TEXT,
   price INTEGER,
@@ -24,6 +24,7 @@ CREATE TABLE products (
   color_name TEXT DEFAULT "White",
   color_hex TEXT DEFAULT "#FFFFFF",
   featured BOOLEAN NOT NULL DEFAULT 0,
+  is_published BOOLEAN NOT NULL DEFAULT 0,
   slug TEXT NOT NULL UNIQUE
 );
 
@@ -99,8 +100,6 @@ CREATE TABLE order_items (
   FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 );
 
--- INSERT DATA
-
 INSERT INTO products (
   sku,
   published_date,
@@ -112,87 +111,88 @@ INSERT INTO products (
   color_name,
   color_hex,
   featured,
+  is_published,
   slug
 ) VALUES
 ('SKU001', '2026-02-05', 'T-Shirt', 'CottonWear', 199,
  'Soft cotton t-shirt with relaxed fit.',
  '../images/products/tshirt.webp',
- 'Soft White', '#F5F5F3', 1, 'tshirt'),
+ 'Soft White', '#F5F5F3', 1, 1, 'tshirt'),
 
 ('SKU002', '2026-02-05', 'Floral Coat', 'PreppyStyle', 949,
  'Long, lightweight coat with black floral print.',
  '../images/products/floral-coat.webp',
- 'Charcoal Black', '#2B2B2B', 1, 'floral-coat'),
+ 'Charcoal Black', '#2B2B2B', 1, 1, 'floral-coat'),
 
 ('SKU003', '2025-11-06', 'Leather Boots', 'RuggedWear', 1499,
  'Durable boots with lace-up design.',
  '../images/products/leather-boots.webp',
- 'Warm Brown', '#6F4E37', 1, 'leather-boots'),
+ 'Warm Brown', '#6F4E37', 1, 1, 'leather-boots'),
 
 ('SKU004', '2025-11-06', 'Plaid Scarf', 'CozyWraps', 249,
  'Warm scarf made from soft acrylic yarn.',
  '../images/products/plaid-scarf.webp',
- 'Muted Yellow', '#b4a863', 1, 'plaid-scarf'),
+ 'Muted Yellow', '#b4a863', 1, 1, 'plaid-scarf'),
 
 ('SKU005', '2025-11-06', 'Floral Dress', 'SunBloom', 749,
  'Light and flowy dress with floral pattern.',
  '../images/products/floral-dress.webp',
- 'Cream White', '#eee8d7', 1, 'floral-dress'),
+ 'Cream White', '#eee8d7', 1, 1, 'floral-dress'),
 
 ('SKU006', '2025-11-06', 'Leather Belt', 'Form&Fit', 299,
  'Genuine leather belt with silver buckle.',
  '../images/products/leather-belt.webp',
- 'Dark Cognac', '#5A3A28', 1, 'leather-belt'),
+ 'Dark Cognac', '#5A3A28', 1, 1, 'leather-belt'),
 
 ('SKU007', '2025-11-06', 'Sneakers', 'WalkEase', 999,
  'Minimalist sneakers with rubber sole.',
  '../images/products/sneakers.webp',
- 'Off White', '#EFEFEA', 0, 'sneakers'),
+ 'Off White', '#EFEFEA', 0, 1, 'sneakers'),
 
 ('SKU008', '2025-11-06', 'Beanie', 'ColdProof', 199,
  'Knitted beanie made from warm acrylic.',
  '../images/products/beanie.webp',
- 'Soft Black', '#1E1E1E', 0, 'Beanie'),
+ 'Soft Black', '#1E1E1E', 0, 1, 'Beanie'),
 
 ('SKU009', '2025-11-06', 'Plaid Shirt', 'CasualVibe', 399,
  'Button-up shirt with classic plaid pattern.',
  '../images/products/plaid-shirt.webp',
- 'Dusty Blue', '#6E8CA0', 0, 'plaid-shirt'),
+ 'Dusty Blue', '#6E8CA0', 0, 1, 'plaid-shirt'),
 
 ('SKU010', '2025-11-06', 'Wristwatch', 'TimeKeeper', 2499,
  'Classic wristwatch with stainless steel band.',
  '../images/products/wristwatch.webp',
- 'Silver', '#C9CCD1', 0, 'wristwatch'),
+ 'Silver', '#C9CCD1', 0, 1, 'wristwatch'),
 
 ('SKU011', '2025-11-06', 'Plaid Jacket', 'FormalEdge', 1299,
  'Tailored plaid jacket with notched lapels.',
  '../images/products/plaid-jacket.webp',
- 'Dark Blue', '#284b64', 0, 'plaid-jacket'),
+ 'Dark Blue', '#284b64', 0, 1, 'plaid-jacket'),
 
 ('SKU012', '2025-11-06', 'Denim Jacket', 'UrbanEdge', 899,
  'Light-wash denim jacket with metal buttons.',
  '../images/products/denim-jacket.webp',
- 'Washed Blue', '#7A9BBE', 0, 'denim-jacket'),
+ 'Washed Blue', '#7A9BBE', 0, 1, 'denim-jacket'),
 
 ('SKU013', '2025-11-06', 'Knit Sweater', 'WarmThreads', 699,
  'Crewneck sweater made from soft wool blend.',
  '../images/products/knit-sweater.webp',
- 'Soft Grey', '#B0B0B0', 1, 'knit-sweater'),
+ 'Soft Grey', '#B0B0B0', 1, 1, 'knit-sweater'),
 
 ('SKU014', '2025-11-06', 'Leather Jacket', 'MotoStyle', 1599,
  'Fitted leather jacket with zippered pockets.',
  '../images/products/leather-jacket.webp',
- 'Deep Black', '#141414', 0, 'leather-jacket'),
+ 'Deep Black', '#141414', 0, 1, 'leather-jacket'),
 
 ('SKU015', '2025-11-06', 'Ankle Boots', 'ChicStep', 1299,
  'Stylish ankle boots with block heel.',
  '../images/products/ankle-boots.webp',
- 'Glossy Black', '#242424', 0, 'ankle-boots'),
+ 'Glossy Black', '#242424', 0, 1, 'ankle-boots'),
 
 ('SKU016', '2025-11-06', 'Ribbed V-Neck Sweater', 'CozyLayer', 499,
  'Comfortable ribbed pullover with V-neckline.',
  '../images/products/ribbed-v-neck-sweater.webp',
- 'Off-White', '#e9e1cb', 1, 'ribbed-v-neck-sweater');
+ 'Off-White', '#e9e1cb', 1, 1, 'ribbed-v-neck-sweater');
 
 
 -- CATEGORIES DATA

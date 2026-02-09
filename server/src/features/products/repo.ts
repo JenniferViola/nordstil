@@ -106,7 +106,7 @@ export function deleteProductById(productId: number) {
   return stmt.run(productId);
 }
 
-export function addNewProduct(product: Product & { slug: string }) {
+export function addNewProduct(product: Omit<Product, 'id'> & { slug: string }) {
   const fields = ['sku', 'title', 'img_url', 'slug'];
   const values: any[] = [
     product.sku,
@@ -135,6 +135,26 @@ export function addNewProduct(product: Product & { slug: string }) {
     values.push(product.description);
   }
 
+  if (product.color_name) {
+    fields.push('color_name');
+    values.push(product.color_name);
+  }
+
+  if (product.color_hex) {
+    fields.push('color_hex');
+    values.push(product.color_hex);
+  }
+
+  if (product.is_published !== undefined) {
+    fields.push('is_published');
+    values.push(product.is_published ? 1 : 0); // Convert boolean to number
+  }
+
+  if (product.featured !== undefined) {
+    fields.push('featured');
+    values.push(product.featured ? 1 : 0); // Convert boolean to number
+  }
+
   const placeholders = fields.map(() => '?').join(', ');
 
   const stmt = db.prepare(`
@@ -143,4 +163,15 @@ export function addNewProduct(product: Product & { slug: string }) {
   `);
 
   return stmt.run(values);
+}
+
+export function addProductCategories(productId: number, categoryIds: number[]) {
+  const stmt = db.prepare(`
+    INSERT INTO category_products (product_id, category_id)
+    VALUES (?, ?)
+  `);
+
+  for (const categoryId of categoryIds) {
+    stmt.run(productId, categoryId);
+  }
 }

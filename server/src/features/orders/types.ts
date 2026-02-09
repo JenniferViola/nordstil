@@ -22,7 +22,16 @@ export interface OrderPayload {
 
 export interface Order {
   id: number;
-  customer_id: number;
   order_date: string;
+  total_price: number;
+  customer_id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone?: string;
+  street: string;
+  postalCode: string;
+  city: string;
+  item_count: number;
   total_amount: number;
 }

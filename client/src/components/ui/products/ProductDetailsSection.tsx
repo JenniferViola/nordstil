@@ -1,6 +1,6 @@
 // ProductDetailsSection.tsx
 import { useState, useEffect } from "react";
-import { useCart } from "@/hooks/useCart";
+import { useCart } from "@/components/context/CartContext";
 import Breadcrumbs from "@/components/ui/products/ProductBreadcrumbs";
 import { RippleButton } from "@/components/ui/RippleButton";
 import { StarRating } from "@/components/ui/StarRating";
@@ -38,6 +38,11 @@ export default function ProductDetailsSection({
   }, [product.id, product.color_name]);
 
   const handleAddToCart = () => {
+    if (!product.price) {
+      console.error("Product has no price");
+      return;
+    }
+
     addItem({
       id: product.id,
       title: product.title,

@@ -1,6 +1,6 @@
 // App.tsx
 import { BrowserRouter, Routes, Route } from "react-router";
-import { CartProvider } from "../components/features/cart/Provider";
+import { CartProvider } from "@/components/context/CartContext";
 import "./App.css";
 import WebLayout from "../components/layout/web/Layout";
 import AdminLayout from "../components/layout/admin/Layout";

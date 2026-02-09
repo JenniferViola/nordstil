@@ -4,7 +4,7 @@ import OrderItemCard from "@/components/ui/orders/OrderItemCard";
 import { useOrderById } from "@/hooks/useOrderById";
 import { NavLink, useParams } from "react-router";
 import { useEffect } from "react";
-import { useCart } from "@/hooks/useCart";
+import { useCart } from "@/components/context/CartContext";
 
 export default function Confirmation() {
   const { id } = useParams<{ id: string }>();

@@ -9,7 +9,6 @@ export function createOrder(orderData: OrderPayload): number | bigint {
 
 export function getOrderById(id: number) {
   const order = repo.findOrderById(id);
-  console.log('ORDER OBJECT:', order);
   return order;
 }
 

@@ -6,11 +6,11 @@ export interface OrderItem {
   price: number;
   quantity: number;
   img_url: string;
-  slug?: string;
+  slug: string;
   brand?: string;
   color_name?: string;
-  selectedColor?: string;
-  selectedSize?: string;
+  selectedColor: string;
+  selectedSize: string;
 }
 
 export interface CustomerInfo {
@@ -35,7 +35,16 @@ export interface OrderPayload {
 
 export interface FetchedOrder {
   id: number;
-  customer_id: number;
   order_date: string;
+  total_price: number;
+  customer_id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone?: string;
+  street: string;
+  postalCode: string;
+  city: string;
+  item_count: number;
   total_amount: number;
 }

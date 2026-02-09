@@ -33,7 +33,6 @@ export function getOrder(req: Request, res: Response, next: NextFunction) {
 }
 
 export async function getAll(req: Request, res: Response, next: NextFunction) {
-  console.log('controller reached');
   try {
     let orders;
     orders = service.getAllOrders();

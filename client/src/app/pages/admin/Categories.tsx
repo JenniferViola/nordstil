@@ -34,7 +34,7 @@ export default function Categories() {
     <>
       <PageTitle title="Admin - Categories" />
       <section id="categories-container">
-        <div className="max-w-7xl flex flex-col gap-4">
+        <div className="max-w-7xl flex flex-col gap-4 overflow-x-auto">
           <div className="flex justify-between items-center">
             <div>
               <h1 className="text-2xl font-semibold text-slate-900">
@@ -46,26 +46,26 @@ export default function Categories() {
             </div>
           </div>
           <table
-            className="w-full max-w-7xl border-separate border-spacing-y-2
-              rounded-lg"
+            className="w-full text-[0.8rem] max-w-7xl border-separate
+              border-spacing-y-2 rounded-lg"
           >
             <thead>
               <tr className="bg-[#f4f6f5]">
                 <th
                   className="text-left py-[0.5rem] px-[0.5rem] border-b
-                    border-[#4d5d53]/15 font-medium"
+                    border-[#4d5d53]/15 font-medium whitespace-nowrap"
                 >
                   Title
                 </th>
                 <th
                   className="text-left py-[0.5rem] px-[0.5rem] border-b
-                    border-[#4d5d53]/15 font-medium"
+                    border-[#4d5d53]/15 font-medium whitespace-nowrap"
                 >
                   Slug
                 </th>
                 <th
                   className="text-left py-[0.5rem] px-[0.5rem] border-b
-                    border-[#4d5d53]/15 font-medium"
+                    border-[#4d5d53]/15 font-medium whitespace-nowrap"
                 >
                   Icon
                 </th>
@@ -78,30 +78,31 @@ export default function Categories() {
               {categories.map((category) => (
                 <tr
                   key={category.id}
-                  className="text-[0.8rem] hover:translate-0.5 transition-all
+                  className="hover:translate-0.5 transition-all
                     hover:bg-[#f4f6f5]"
                 >
                   <td
                     className="p-1 border-b border-[#4d5d53]/15 px-[0.5rem]
-                      font-medium transition-all cursor-pointer"
+                      font-medium whitespace-nowrap transition-all
+                      cursor-pointer"
                   >
                     {category.title}
                   </td>
                   <td
                     className="p-1 border-b border-[#4d5d53]/15 px-[0.5rem]
-                      transition-all"
+                      transition-all whitespace-nowrap"
                   >
                     {category.slug}
                   </td>
                   <td
                     className="p-1 border-b border-[#4d5d53]/15 px-[0.5rem]
-                      transition-all"
+                      transition-all whitespace-nowrap"
                   >
                     <img src={`${category.img_url}`} height={30} width={30} />
                   </td>
                   <td
                     className="p-1 border-b border-[#4d5d53]/15 px-[0.5rem]
-                      transition-all"
+                      transition-all whitespace-nowrap"
                   >
                     <button
                       className="cursor-pointer hover:text-md"

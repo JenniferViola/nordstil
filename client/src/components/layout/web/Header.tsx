@@ -1,7 +1,7 @@
 // Header.jsx
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
-import { useCart } from "@/hooks/useCart";
+import { useCart } from "@/components/context/CartContext";
 import {
   SearchMobile,
   SearchDesktop,
@@ -31,9 +31,9 @@ export default function Header({ menuOpen, onToggleMenu, onClose }: Props) {
     { id: 3, title: "Magazine", url: "/magazine" },
   ];
   const promoLinks = [
-    { id: 1, title: "New Arrivals", href: "/new" },
-    { id: 2, title: "Bestsellers", href: "/search" },
-    { id: 3, title: "Tops", href: "/search" },
+    { id: 1, title: "New Arrivals", url: "/search" },
+    { id: 2, title: "Bestsellers", url: "/search" },
+    { id: 3, title: "Tops", url: "/search?query=tops" },
   ];
 
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
@@ -159,7 +159,7 @@ export default function Header({ menuOpen, onToggleMenu, onClose }: Props) {
             {promoLinks.map((item) => (
               <Link
                 key={item.id}
-                to="/"
+                to={item.url}
                 className="text-base font-normal hover:opacity-60 transition"
                 onClick={onClose}
               >

@@ -1,5 +1,5 @@
 // Cart.tsx
-import { useCart } from "@/hooks/useCart";
+import { useCart } from "@/components/context/CartContext";
 import type { Cart } from "@/types/cart";
 import PageTitle from "@/components/layout/shared/PageTitle";
 import { Divider } from "@/components/ui/Divider";
@@ -67,13 +67,27 @@ export default function Cart() {
             <CartCard
               key={item.id}
               item={item}
-              handleRemove={() => removeItem(item.id)}
-              handleAdd={() => updateQuantity(item.id, item.quantity + 1)}
+              handleRemove={() =>
+                removeItem(item.id, item.selectedSize, item.selectedColor)
+              }
+              handleAdd={() =>
+                updateQuantity(
+                  item.id,
+                  item.selectedSize,
+                  item.selectedColor,
+                  item.quantity + 1,
+                )
+              }
               handleSubtract={() => {
                 if (item.quantity > 1) {
-                  updateQuantity(item.id, item.quantity - 1);
+                  updateQuantity(
+                    item.id,
+                    item.selectedSize,
+                    item.selectedColor,
+                    item.quantity - 1,
+                  );
                 } else {
-                  removeItem(item.id);
+                  removeItem(item.id, item.selectedSize, item.selectedColor);
                 }
               }}
               classNameImg="w-[8rem]"

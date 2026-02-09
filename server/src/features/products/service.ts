@@ -1,6 +1,6 @@
 // products/service.ts
 import * as repo from './repo';
-import type { Product } from './types';
+import type { CreateProduct, Product } from './types';
 import type { ProductWithCategories } from './types';
 
 export function getPublishedProducts(): Product[] {
@@ -60,11 +60,24 @@ export function slugify(title: string): string {
     .replace(/^-+|-+$/g, '');
 }
 
-export function postNewProduct(product: Product) {
-  console.log('Service recieved:', product);
+export function postNewProduct(product: CreateProduct) {
+  console.log('Service received:', product);
   const slug = slugify(product.title);
-  const newProduct = repo.addNewProduct({
-    ...product,
+
+  // Remove category_ids before passing to repo (it's not a product field)
+  const { category_ids, ...productData } = product;
+
+  // Add the product
+  const result = repo.addNewProduct({
+    ...productData,
     slug,
   });
+
+  // If categories were selected, add them to the junction table
+  if (category_ids && category_ids.length > 0) {
+    const productId = result.lastInsertRowid as number;
+    repo.addProductCategories(productId, category_ids);
+  }
+
+  return result;
 }
