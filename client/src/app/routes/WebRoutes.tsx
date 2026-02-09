@@ -5,9 +5,9 @@ import ProductDetails from "../pages/web/ProductDetails";
 import Search from "../pages/web/Search";
 import Cart from "../pages/web/Cart";
 import Checkout from "../pages/web/Checkout";
-import Favorites from "../pages/web/Favorites";
 import Confirmation from "../pages/web/Confirmation";
 import NotFound from "../pages/web/NotFound";
+import Magazine from "../pages/web/Magazine";
 
 export default function WebRoutes() {
   return (
@@ -18,7 +18,7 @@ export default function WebRoutes() {
       <Route path="cart" element={<Cart />} />
       <Route path="confirmation/:id" element={<Confirmation />} />
       <Route path="checkout" element={<Checkout />} />
-      <Route path="favorites" element={<Favorites />} />
+      <Route path="magazine" element={<Magazine />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

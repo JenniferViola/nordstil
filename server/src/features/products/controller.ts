@@ -1,7 +1,7 @@
-// products.controller.ts
+// products/controller.ts
 import { Request, Response, NextFunction } from 'express';
 import * as service from './service';
-import { Product } from './types';
+import { CreateProduct, Product } from './types';
 
 export async function getPublished(
   req: Request,
@@ -17,6 +17,18 @@ export async function getPublished(
     } else {
       products = service.getPublishedProducts();
     }
+
+    res.json(products);
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function getAll(req: Request, res: Response, next: NextFunction) {
+  try {
+    let products;
+
+    products = service.getAllProducts();
 
     res.json(products);
   } catch (err) {
@@ -87,7 +99,7 @@ export function getCategory(req: Request, res: Response, next: NextFunction) {
 export function deleteProduct(req: Request, res: Response, next: NextFunction) {
   try {
     const productId = Number(req.params.id);
-    console.log('API recieved:', productId);
+
     if (Number.isNaN(productId)) {
       return res.status(400).json({ message: 'Invalid product ID' });
     }
@@ -100,12 +112,12 @@ export function deleteProduct(req: Request, res: Response, next: NextFunction) {
 
 export function postProduct(req: Request, res: Response, next: NextFunction) {
   try {
-    const productData: Product = req.body;
-    console.log('Controller recieved:', productData);
+    const productData: CreateProduct = req.body;
     const newProduct = service.postNewProduct(productData);
 
     res.status(201).json({
       message: 'Product added successfully!',
+      productId: newProduct.lastInsertRowid,
     });
   } catch (err) {
     next(err);

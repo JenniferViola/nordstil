@@ -14,7 +14,7 @@ export default function OrderItemCard({
   return (
     <div
       id="order-item"
-      key={item.product_id}
+      key={item.id}
       className={`flex gap-4 w-full justify-between ${classNameCard}`}
     >
       <div id="left" className="flex gap-2 min-w-0">

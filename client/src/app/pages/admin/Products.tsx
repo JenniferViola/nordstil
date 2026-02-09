@@ -1,19 +1,18 @@
 // admin/Products.tsx
 import PageTitle from "@/components/layout/shared/PageTitle";
 import { Button } from "@/components/ui/admin/Button";
-import usePublishedProducts from "@/hooks/usePublishedProducts";
+import useAllProducts from "@/hooks/useAllProducts";
 import { useRemoveProduct } from "@/hooks/useRemoveProduct";
 import type { Product } from "@/types/product";
 import { useState, useEffect } from "react";
 import { SlTrash } from "react-icons/sl";
 
 export default function Products() {
-  const fetchedProducts = usePublishedProducts();
+  const fetchedProducts = useAllProducts();
   const [products, setProducts] = useState<Product[]>([]);
   const { removeProduct } = useRemoveProduct();
 
   useEffect(() => {
-    console.log("useEffect triggered");
     if (fetchedProducts) {
       setProducts(fetchedProducts);
     }
@@ -28,7 +27,6 @@ export default function Products() {
       setProducts((prevProducts) =>
         prevProducts.filter((product) => product.id !== id),
       );
-      console.log("Successfully removed:", title);
     }
   };
 
@@ -36,42 +34,51 @@ export default function Products() {
     <>
       <PageTitle title="Admin - Products" />
       <section id="products-container">
-        <div className="max-w-7xl flex flex-col gap-4">
-          <div className="flex justify-between items-center">
-            <h1>Products Overview</h1>
-            <Button to="/admin/products/new">
-              <span className="mr-2 text-sm">+</span> New product
-            </Button>
+        <div className="max-w-7xl flex flex-col gap-4 overflow-x-auto">
+          <div className="flex justify-between items-top">
+            <div>
+              <h1 className="text-2xl font-semibold text-slate-900">
+                Products Overview
+              </h1>
+              <p className="text-sm text-slate-500 mt-1">
+                All products in the databse.
+              </p>
+            </div>
+            <div>
+              <Button to="/admin/products/new">
+                <span className="mr-2 text-sm">+</span> New product
+              </Button>
+            </div>
           </div>
           <table
-            className="w-full max-w-7xl border-separate border-spacing-y-2
-              rounded-lg"
+            className="w-full text-[0.8rem] max-w-7xl border-separate
+              border-spacing-y-2 rounded-lg"
           >
             <thead>
               <tr className="bg-[#f4f6f5]">
                 <th
                   className="text-left py-[0.5rem] px-[0.5rem] border-b
-                    border-[#4d5d53]/15 font-medium"
+                    border-[#4d5d53]/15 font-medium whitespace-nowrap"
                 >
                   Name
                 </th>
                 <th
                   className="text-left py-[0.5rem] px-[0.5rem] border-b
-                    border-[#4d5d53]/15 font-medium"
+                    border-[#4d5d53]/15 font-medium whitespace-nowrap"
                 >
                   SKU
                 </th>
                 <th
                   className="text-left py-[0.5rem] px-[0.5rem] border-b
-                    border-[#4d5d53]/15 font-medium"
+                    border-[#4d5d53]/15 font-medium whitespace-nowrap"
                 >
                   Price
                 </th>
                 <th
                   className="text-left py-[0.5rem] px-[0.5rem] border-b
-                    border-[#4d5d53]/15 font-medium"
+                    border-[#4d5d53]/15 font-medium whitespace-nowrap"
                 >
-                  Published
+                  Publication
                 </th>
                 <th className="border-b border-[#4d5d53]/15"></th>
               </tr>
@@ -81,42 +88,43 @@ export default function Products() {
               {products.map((product) => (
                 <tr
                   key={product.id}
-                  className="text-[0.8rem] hover:translate-0.5 transition-all
+                  className="hover:translate-0.5 transition-all
                     hover:bg-[#f4f6f5]"
                 >
                   <td
                     className="p-1 border-b border-[#4d5d53]/15 px-[0.5rem]
-                      font-medium transition-all cursor-pointer"
+                      font-medium whitespace-nowrap transition-all
+                      cursor-pointer"
                   >
                     {product.title}
                   </td>
                   <td
                     className="p-1 border-b border-[#4d5d53]/15 px-[0.5rem]
-                      transition-all"
+                      transition-all whitespace-nowrap"
                   >
                     {product.sku}
                   </td>
                   <td
                     className="p-1 border-b border-[#4d5d53]/15 px-[0.5rem]
-                      transition-all"
+                      transition-all whitespace-nowrap"
                   >
                     {product.price}
                   </td>
                   <td
                     className="p-1 border-b border-[#4d5d53]/15 px-[0.5rem]
-                      transition-all"
+                      transition-all whitespace-nowrap"
                   >
                     {product.published_date}
                   </td>
                   <td
                     className="p-1 border-b border-[#4d5d53]/15 px-[0.5rem]
-                      transition-all"
+                      transition-all whitespace-nowrap"
                   >
                     <button
                       className="cursor-pointer hover:text-md"
                       onClick={() => handleDelete(product.title, product.id)}
                     >
-                      <SlTrash />
+                      <SlTrash size={16} />
                     </button>
                   </td>
                 </tr>

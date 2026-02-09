@@ -4,8 +4,6 @@ import { OrderPayload } from './types'; // Import your type
 
 export function postOrder(req: Request, res: Response, next: NextFunction) {
   try {
-    console.log('Controller got:', req.body);
-
     const orderData: OrderPayload = req.body;
     const newOrderId = service.createOrder(orderData);
 
@@ -27,6 +25,17 @@ export function getOrder(req: Request, res: Response, next: NextFunction) {
       return res.status(404).json({ message: 'Order not found' });
     }
     res.json(order);
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function getAll(req: Request, res: Response, next: NextFunction) {
+  try {
+    let orders;
+    orders = service.getAllOrders();
+
+    res.json(orders);
   } catch (err) {
     next(err);
   }

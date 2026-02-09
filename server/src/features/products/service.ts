@@ -1,10 +1,14 @@
-// products.service.ts
+// products/service.ts
 import * as repo from './repo';
-import type { Product } from './types';
+import type { CreateProduct, Product } from './types';
 import type { ProductWithCategories } from './types';
 
 export function getPublishedProducts(): Product[] {
   return repo.findPublished();
+}
+
+export function getAllProducts(): Product[] {
+  return repo.findAll();
 }
 
 export function getFeaturedProducts(): Product[] {
@@ -56,11 +60,20 @@ export function slugify(title: string): string {
     .replace(/^-+|-+$/g, '');
 }
 
-export function postNewProduct(product: Product) {
-  console.log('Service recieved:', product);
+export function postNewProduct(product: CreateProduct) {
   const slug = slugify(product.title);
-  const newProduct = repo.addNewProduct({
-    ...product,
+
+  const { category_ids, ...productData } = product;
+
+  const result = repo.addNewProduct({
+    ...productData,
     slug,
   });
+
+  if (category_ids && category_ids.length > 0) {
+    const productId = result.lastInsertRowid as number;
+    repo.addProductCategories(productId, category_ids);
+  }
+
+  return result;
 }

@@ -11,6 +11,10 @@ export function getCategoryById(id: number): Category | null {
   return repo.findCategoryById(id);
 }
 
+export function deleteCategoryById(id: number) {
+  return repo.deleteCategoryById(id);
+}
+
 export function getProductsForCategory(id: number): Product[] {
   return repo.findProductsForCategory(id);
 }

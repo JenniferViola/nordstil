@@ -1,10 +1,10 @@
 // CartCard.tsx
-import type { CartItem } from "@/types/cart";
+import type { OrderItem } from "@/types/order";
 import { Link } from "react-router";
 import { SlPlus, SlMinus, SlTrash, SlHeart } from "react-icons/sl";
 
 interface CartCardProps {
-  item: CartItem;
+  item: OrderItem;
   handleAdd: () => void;
   handleSubtract: () => void;
   handleRemove: () => void;
@@ -50,16 +50,16 @@ export default function CartCard({
         >
           <div>
             <p className="font-bold truncate min-w-0">{item.title}</p>
-            <p>{`${item.price} SEK`}</p>
+            <p>{`${(item.price ?? 0) * item.quantity} SEK`}</p>
           </div>
 
-          <p className="text-primary-900/60">{`Size M, ${item.color_name}`}</p>
+          <p className="text-primary-900/60">{`${item.selectedSize}, ${item.selectedColor}`}</p>
 
           <div
             id="quantity"
             className="flex gap-3 items-center text-primary-600"
           >
-            <button>
+            <button className="cursor-pointer">
               <SlMinus
                 size={20}
                 onClick={(e) => handleAction(e, handleSubtract)}
@@ -67,7 +67,7 @@ export default function CartCard({
             </button>
 
             <p className="">{item.quantity}</p>
-            <button>
+            <button className="cursor-pointer">
               <SlPlus size={20} onClick={(e) => handleAction(e, handleAdd)} />
             </button>
           </div>

@@ -8,7 +8,7 @@ export interface Product {
   img_url: string;
   slug: string;
   brand?: string | null;
-  price?: number | null;
+  price: number | null;
   description?: string | null;
   featured?: number;
   color_name?: string;
@@ -24,9 +24,13 @@ export type CreateProduct = {
   sku: string;
   title: string;
   img_url: string;
-
-  published_date?: string;
   brand?: string;
-  price?: number;
+  price: number;
   description?: string;
+  color_name?: string;
+  color_hex?: string;
+  published_date?: string;
+  is_published?: boolean;
+  featured?: boolean;
+  category_ids?: number[];
 };

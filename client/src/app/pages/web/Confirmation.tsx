@@ -3,10 +3,17 @@ import { Divider } from "@/components/ui/Divider";
 import OrderItemCard from "@/components/ui/orders/OrderItemCard";
 import { useOrderById } from "@/hooks/useOrderById";
 import { NavLink, useParams } from "react-router";
+import { useEffect } from "react";
+import { useCart } from "@/components/context/CartContext";
 
 export default function Confirmation() {
   const { id } = useParams<{ id: string }>();
   const { order, loading, error } = useOrderById(id);
+  const { clearCart } = useCart();
+
+  useEffect(() => {
+    clearCart();
+  }, []);
 
   if (loading) return <p>Loading your receipt...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -19,7 +26,6 @@ export default function Confirmation() {
           mx-auto justify-center"
       >
         <div className="text-center flex flex-col gap-4 lg:gap-2 mx-4 mb-2">
-          {/* Optional: Add confetti effect? */}
           <h1 className="font-bold">Success! 🎉</h1>
 
           <h2>Thank you for your order, {order?.first_name}!</h2>
@@ -40,7 +46,7 @@ export default function Confirmation() {
         <div id="items-container" className="flex flex-col gap-8">
           {order?.items.map((item) => (
             <OrderItemCard
-              key={item.product_id}
+              key={item.id}
               item={item}
               classNameImg="w-[6rem] min-w-[6rem]"
               classNameCard="text-base w-full"

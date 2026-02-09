@@ -1,5 +1,5 @@
 // Cart.tsx
-import { useCart } from "@/hooks/useCart";
+import { useCart } from "@/components/context/CartContext";
 import type { Cart } from "@/types/cart";
 import PageTitle from "@/components/layout/shared/PageTitle";
 import { Divider } from "@/components/ui/Divider";
@@ -10,9 +10,6 @@ import { useNavigate } from "react-router";
 export default function Cart() {
   const { items, totalItems, totalPrice, updateQuantity, removeItem } =
     useCart();
-
-  const shipping = 49;
-  const orderTotal = totalPrice + shipping;
 
   let navigate = useNavigate();
 
@@ -36,21 +33,17 @@ export default function Cart() {
         <div
           id="cart-empty"
           className="flex flex-col text-center h-[25rem] w-full mx-auto
-            justify-center gap-8"
+            justify-center gap-12"
         >
           <div className="flex flex-col gap-2 text-sm">
             <h2>Your shopping cart is empty!</h2>
             <p>Fill it with products to continue.</p>
           </div>
-          <div
-            className="flex flex-col gap-8 absolute bottom-5 left-0 w-full
-              items-center"
-          >
-            <Divider variant="dark"></Divider>
+          <div>
             <RippleButton
               onClick={handleContinueShopping}
               className="w-full md:w-lg font-bold bg-primary-600
-                text-secondary-200 mb-6"
+                text-secondary-200"
             >
               Continue shopping
             </RippleButton>
@@ -68,19 +61,33 @@ export default function Cart() {
       <PageTitle title={`Shopping Cart – Nordstil`} />
 
       <section id="cart-content" className="flex flex-col gap-8">
-        <h1 className="text-2xl font-medium">{`Shopping Cart ${items.length > 0 ? `(${totalItems})` : ``}`}</h1>
+        <h1 className="text-2xl">{`Shopping Cart ${items.length > 0 ? `(${totalItems})` : ``}`}</h1>
         <div id="items-container" className="flex flex-col gap-8">
           {items.map((item) => (
             <CartCard
               key={item.id}
               item={item}
-              handleRemove={() => removeItem(item.id)}
-              handleAdd={() => updateQuantity(item.id, item.quantity + 1)}
+              handleRemove={() =>
+                removeItem(item.id, item.selectedSize, item.selectedColor)
+              }
+              handleAdd={() =>
+                updateQuantity(
+                  item.id,
+                  item.selectedSize,
+                  item.selectedColor,
+                  item.quantity + 1,
+                )
+              }
               handleSubtract={() => {
                 if (item.quantity > 1) {
-                  updateQuantity(item.id, item.quantity - 1);
+                  updateQuantity(
+                    item.id,
+                    item.selectedSize,
+                    item.selectedColor,
+                    item.quantity - 1,
+                  );
                 } else {
-                  removeItem(item.id);
+                  removeItem(item.id, item.selectedSize, item.selectedColor);
                 }
               }}
               classNameImg="w-[8rem]"
@@ -90,16 +97,11 @@ export default function Cart() {
         </div>
         <div id="order-total" className="flex flex-col gap-4 max-w-[50rem]">
           <div id="order-sum" className="flex flex-col gap-2">
-            <div id="shipping" className="flex justify-between">
-              <p>Shipping:</p>
-              <p>49 SEK</p>
-            </div>
-
             <Divider variant="dark"></Divider>
 
             <div id="price-total" className="flex justify-between font-bold">
               <p>Total:</p>
-              <p>{`${orderTotal} SEK`}</p>
+              <p>{`${totalPrice} SEK`}</p>
             </div>
           </div>
           <div className="flex justify-center">

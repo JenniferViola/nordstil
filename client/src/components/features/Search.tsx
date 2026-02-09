@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { SlMagnifier } from "react-icons/sl";
 
-// Reusable input
 interface SearchInputProps {
   className?: string;
   placeholder?: string;
@@ -62,7 +61,7 @@ function SearchDesktop() {
     <SearchInput
       className="hidden lg:flex items-center"
       placeholder="Search..."
-      inputClassName="md:w-30 lg:w-60 xl:w-70 flex-1 pr-8
+      inputClassName="lg:w-50 xl:w-60 xl:w-70 flex-1 pr-8
         py-1 bg-transparent border-b border-primary-500/50 text-sm
         placeholder:text-primary-500/50 focus:outline-none
         focus:border-primary-500 transition-all duration-300 ease-out"
@@ -70,7 +69,7 @@ function SearchDesktop() {
   );
 }
 
-// Mobile search wrapper (stateful)
+// Mobile search wrapper
 interface SearchMobileProps {
   searchOpen: boolean;
   onClose: () => void;
@@ -78,7 +77,6 @@ interface SearchMobileProps {
 function SearchMobile({ searchOpen, onClose }: SearchMobileProps) {
   const location = useLocation();
 
-  // Close on navigation
   useEffect(() => {
     onClose();
   }, [location.pathname]);
@@ -86,7 +84,7 @@ function SearchMobile({ searchOpen, onClose }: SearchMobileProps) {
   return (
     <div
       className={`lg:hidden absolute left-0 top-full w-full bg-secondary-100
-        text-body overflow-hidden transition-all duration-300 ease-out
+        text-body overflow-hidden transition-all duration-200 ease-out
         shadow-xl/10 pb-2
         ${searchOpen ? "max-h-28 opacity-100" : "max-h-0 opacity-0"}`}
     >
@@ -95,13 +93,13 @@ function SearchMobile({ searchOpen, onClose }: SearchMobileProps) {
           placeholder:text-body/40 focus:outline-none"
         inputClassName="border-b pb-2"
         autoFocus={searchOpen}
-        onSubmit={onClose} // close when submitting
+        onSubmit={onClose}
       />
     </div>
   );
 }
 
-// Mobile toggle button (standalone)
+// Mobile toggle button
 interface SearchToggleProps {
   searchOpen?: boolean;
   onToggle: () => void;

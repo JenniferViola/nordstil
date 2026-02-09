@@ -19,7 +19,6 @@ export const useRemoveProduct = () => {
         throw new Error("Could not delete product.");
       }
 
-      console.log(`Product ${id} deleted.`);
       return true;
     } catch (err: any) {
       setError(err.message || "An unknown error occurred");

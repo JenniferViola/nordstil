@@ -1,6 +1,6 @@
 // useOrderById.tsx
 import { useState, useEffect } from "react";
-import type { FetchedOrder } from "@/types/order"; // Import your new type
+import type { FetchedOrder } from "@/types/order";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -18,10 +18,11 @@ export const useOrderById = (id: string | number | undefined) => {
         const response = await fetch(`${BASE_URL}/orders/${id}`);
 
         if (!response.ok) {
-          throw new Error("Order not found.");
+          throw new Error("Order not found");
         }
 
         const data: FetchedOrder = await response.json();
+
         setOrder(data);
       } catch (err: any) {
         setError(err.message);

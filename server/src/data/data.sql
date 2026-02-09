@@ -1,11 +1,11 @@
--- DROP TABLES (in correct dependency order)
+-- DROP TABLES 
 
 DROP TABLE IF EXISTS category_products;
 DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS hero;
 DROP TABLE IF EXISTS spots;
-DROP TABLE IF EXISTS cusromers;
+DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS order_items;
 
@@ -15,7 +15,7 @@ DROP TABLE IF EXISTS order_items;
 CREATE TABLE products (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   sku TEXT NOT NULL UNIQUE,
-  published_date TEXT NOT NULL DEFAULT (date('now')),
+  published_date TEXT,
   title TEXT NOT NULL,
   brand TEXT,
   price INTEGER,
@@ -24,6 +24,7 @@ CREATE TABLE products (
   color_name TEXT DEFAULT "White",
   color_hex TEXT DEFAULT "#FFFFFF",
   featured BOOLEAN NOT NULL DEFAULT 0,
+  is_published BOOLEAN NOT NULL DEFAULT 0,
   slug TEXT NOT NULL UNIQUE
 );
 
@@ -99,8 +100,6 @@ CREATE TABLE order_items (
   FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 );
 
--- INSERT DATA
-
 INSERT INTO products (
   sku,
   published_date,
@@ -112,98 +111,99 @@ INSERT INTO products (
   color_name,
   color_hex,
   featured,
+  is_published,
   slug
 ) VALUES
 ('SKU001', '2026-02-05', 'T-Shirt', 'CottonWear', 199,
  'Soft cotton t-shirt with relaxed fit.',
  '../images/products/tshirt.webp',
- 'Soft White', '#F5F5F3', 1, 'tshirt'),
+ 'Soft White', '#F5F5F3', 1, 1, 'tshirt'),
 
 ('SKU002', '2026-02-05', 'Floral Coat', 'PreppyStyle', 949,
  'Long, lightweight coat with black floral print.',
  '../images/products/floral-coat.webp',
- 'Charcoal Black', '#2B2B2B', 1, 'floral-coat'),
+ 'Charcoal Black', '#2B2B2B', 1, 1, 'floral-coat'),
 
 ('SKU003', '2025-11-06', 'Leather Boots', 'RuggedWear', 1499,
  'Durable boots with lace-up design.',
  '../images/products/leather-boots.webp',
- 'Warm Brown', '#6F4E37', 1, 'leather-boots'),
+ 'Warm Brown', '#6F4E37', 1, 1, 'leather-boots'),
 
 ('SKU004', '2025-11-06', 'Plaid Scarf', 'CozyWraps', 249,
  'Warm scarf made from soft acrylic yarn.',
  '../images/products/plaid-scarf.webp',
- 'Muted Yellow', '#b4a863', 1, 'plaid-scarf'),
+ 'Muted Yellow', '#b4a863', 1, 1, 'plaid-scarf'),
 
 ('SKU005', '2025-11-06', 'Floral Dress', 'SunBloom', 749,
  'Light and flowy dress with floral pattern.',
  '../images/products/floral-dress.webp',
- 'Cream White', '#eee8d7', 1, 'floral-dress'),
+ 'Cream White', '#eee8d7', 1, 1, 'floral-dress'),
 
 ('SKU006', '2025-11-06', 'Leather Belt', 'Form&Fit', 299,
  'Genuine leather belt with silver buckle.',
  '../images/products/leather-belt.webp',
- 'Dark Cognac', '#5A3A28', 1, 'leather-belt'),
+ 'Dark Cognac', '#5A3A28', 1, 1, 'leather-belt'),
 
 ('SKU007', '2025-11-06', 'Sneakers', 'WalkEase', 999,
  'Minimalist sneakers with rubber sole.',
  '../images/products/sneakers.webp',
- 'Off White', '#EFEFEA', 0, 'sneakers'),
+ 'Off White', '#EFEFEA', 0, 1, 'sneakers'),
 
 ('SKU008', '2025-11-06', 'Beanie', 'ColdProof', 199,
  'Knitted beanie made from warm acrylic.',
  '../images/products/beanie.webp',
- 'Soft Black', '#1E1E1E', 0, 'Beanie'),
+ 'Soft Black', '#1E1E1E', 0, 1, 'Beanie'),
 
 ('SKU009', '2025-11-06', 'Plaid Shirt', 'CasualVibe', 399,
  'Button-up shirt with classic plaid pattern.',
  '../images/products/plaid-shirt.webp',
- 'Dusty Blue', '#6E8CA0', 0, 'plaid-shirt'),
+ 'Dusty Blue', '#6E8CA0', 0, 1, 'plaid-shirt'),
 
 ('SKU010', '2025-11-06', 'Wristwatch', 'TimeKeeper', 2499,
  'Classic wristwatch with stainless steel band.',
  '../images/products/wristwatch.webp',
- 'Silver', '#C9CCD1', 0, 'wristwatch'),
+ 'Silver', '#C9CCD1', 0, 1, 'wristwatch'),
 
 ('SKU011', '2025-11-06', 'Plaid Jacket', 'FormalEdge', 1299,
  'Tailored plaid jacket with notched lapels.',
  '../images/products/plaid-jacket.webp',
- 'Dark Blue', '#284b64', 0, 'plaid-jacket'),
+ 'Dark Blue', '#284b64', 0, 1, 'plaid-jacket'),
 
 ('SKU012', '2025-11-06', 'Denim Jacket', 'UrbanEdge', 899,
  'Light-wash denim jacket with metal buttons.',
  '../images/products/denim-jacket.webp',
- 'Washed Blue', '#7A9BBE', 0, 'denim-jacket'),
+ 'Washed Blue', '#7A9BBE', 0, 1, 'denim-jacket'),
 
 ('SKU013', '2025-11-06', 'Knit Sweater', 'WarmThreads', 699,
  'Crewneck sweater made from soft wool blend.',
  '../images/products/knit-sweater.webp',
- 'Soft Grey', '#B0B0B0', 1, 'knit-sweater'),
+ 'Soft Grey', '#B0B0B0', 1, 1, 'knit-sweater'),
 
 ('SKU014', '2025-11-06', 'Leather Jacket', 'MotoStyle', 1599,
  'Fitted leather jacket with zippered pockets.',
  '../images/products/leather-jacket.webp',
- 'Deep Black', '#141414', 0, 'leather-jacket'),
+ 'Deep Black', '#141414', 0, 1, 'leather-jacket'),
 
 ('SKU015', '2025-11-06', 'Ankle Boots', 'ChicStep', 1299,
  'Stylish ankle boots with block heel.',
  '../images/products/ankle-boots.webp',
- 'Glossy Black', '#242424', 0, 'ankle-boots'),
+ 'Glossy Black', '#242424', 0, 1, 'ankle-boots'),
 
 ('SKU016', '2025-11-06', 'Ribbed V-Neck Sweater', 'CozyLayer', 499,
  'Comfortable ribbed pullover with V-neckline.',
  '../images/products/ribbed-v-neck-sweater.webp',
- 'Off-White', '#e9e1cb', 1, 'ribbed-v-neck-sweater');
+ 'Off-White', '#e9e1cb', 1, 1, 'ribbed-v-neck-sweater');
 
 
 -- CATEGORIES DATA
 INSERT INTO categories (title, img_url, slug) VALUES
-('Tops', '/../images/categories-tops.png', 'tops'),
-('Sweaters', '/../images/categories-sweaters.png', 'sweaters'),
-('Bottoms', '/../images/categories-bottoms.png', 'bottoms'),
-('Dresses', '/../images/categories-dresses.png', 'dresses'),
-('Outerwear', '/../images/categories-outerwear.png', 'outerwear'),
-('Shoes', '/../images/categories-shoes.png', 'shoes'),
-('Accessories', '/../images/categories-accessories.png', 'accessories');
+('Tops', '../images/categories/categories-tops.png', 'tops'),
+('Sweaters', '../images/categories/categories-sweaters.png', 'sweaters'),
+('Bottoms', '../images/categories/categories-bottoms.png', 'bottoms'),
+('Dresses', '../images/categories/categories-dresses.png', 'dresses'),
+('Outerwear', '../images/categories/categories-outerwear.png', 'outerwear'),
+('Shoes', '../images/categories/categories-shoes.png', 'shoes'),
+('Accessories', '../images/categories/categories-accessories.png', 'accessories');
 
 -- CATEGORY_PRODUCTS DATA
 INSERT INTO category_products (category_id, product_id) VALUES
@@ -222,7 +222,8 @@ INSERT INTO category_products (category_id, product_id) VALUES
 (6, 15),
 (7, 4),
 (7, 6),
-(7, 10);
+(7, 10),
+(7, 8);
 
 -- HERO DATA
 INSERT INTO hero (
@@ -240,7 +241,7 @@ INSERT INTO hero (
   '/shop',
   1
 );
--- ../images/
+
 -- SPOTS DATA
 INSERT INTO spots (title, subtitle, img_url, link_url) VALUES
 ('Best Sellers', 'Shop our most popular items.', '../images/spots/spot1.webp', '/'),
@@ -248,3 +249,27 @@ INSERT INTO spots (title, subtitle, img_url, link_url) VALUES
 ('New Arrivals', 'Check out the latest arrivals.', '../images/spots/spot3.webp', '/');
 
 
+INSERT INTO customers (id, first_name, last_name, email, phone, street, postal_code, city, newsletter) VALUES
+(1, 'Anna', 'Karlsson', 'anna.karlsson@example.com', '0701234567', 'Storgatan 1', '11122', 'Stockholm', 1),
+(2, 'Erik', 'Johansson', 'erik.johansson@example.com', '0702345678', 'Parkvägen 12', '22233', 'Uppsala', 0),
+(3, 'Sara', 'Lind', 'sara.lind@example.com', '0703456789', 'Ängsvägen 7', '33344', 'Västerås', 1),
+(4, 'Johan', 'Nilsson', 'johan.nilsson@example.com', '0704567890', 'Kungsgatan 9', '44455', 'Örebro', 0);
+
+INSERT INTO orders (id, customer_id, order_date, total_amount) VALUES
+(1, 1, '2025-01-10 10:15:00', 899),
+(2, 2, '2025-01-11 14:42:00', 1299),
+(3, 1, '2025-01-15 09:30:00', 499),
+(4, 3, '2025-01-20 18:05:00', 1799);
+
+
+INSERT INTO order_items (id, order_id, product_id, quantity, price) VALUES
+(1, 1, 3, 1, 499),
+(2, 1, 7, 2, 200),
+
+(3, 2, 5, 1, 999),
+(4, 2, 12, 1, 300),
+
+(5, 3, 1, 1, 499),
+
+(6, 4, 8, 1, 1299),
+(7, 4, 15, 1, 500);

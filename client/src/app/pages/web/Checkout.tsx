@@ -3,28 +3,21 @@ import PageTitle from "@/components/layout/shared/PageTitle";
 import CartCard from "@/components/ui/cart/CartCard";
 import { Divider } from "@/components/ui/Divider";
 import { RippleButton } from "@/components/ui/RippleButton";
-import { useCart } from "@/hooks/useCart";
+import { useCart } from "@/components/context/CartContext";
 import { usePlaceOrder } from "@/hooks/usePlaceOrder";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router";
-
-type CheckoutFormData = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  street: string;
-  postalCode: string;
-  city: string;
-  newsletter: boolean;
-};
+import type { CustomerInfo, OrderPayload } from "@/types/order";
+import { SlExclamation } from "react-icons/sl";
 
 export default function Checkout() {
   const { items, totalItems, totalPrice, updateQuantity, removeItem } =
     useCart();
 
   const { placeOrder, isSubmitting } = usePlaceOrder();
+
+  let navigate = useNavigate();
 
   const shipping = 49;
   const orderTotal = totalPrice + shipping;
@@ -33,7 +26,7 @@ export default function Checkout() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<CheckoutFormData>({
+  } = useForm<CustomerInfo>({
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -46,8 +39,8 @@ export default function Checkout() {
     },
   });
 
-  const onSubmit: SubmitHandler<CheckoutFormData> = (data) => {
-    const order = {
+  const onSubmit: SubmitHandler<CustomerInfo> = (data) => {
+    const order: OrderPayload = {
       customer: data,
       items,
       total_amount: totalPrice,
@@ -55,8 +48,6 @@ export default function Checkout() {
 
     placeOrder(order);
   };
-
-  let navigate = useNavigate();
 
   if (items.length === 0) {
     navigate("/cart");
@@ -77,13 +68,27 @@ export default function Checkout() {
               <CartCard
                 key={item.id}
                 item={item}
-                handleRemove={() => removeItem(item.id)}
-                handleAdd={() => updateQuantity(item.id, item.quantity + 1)}
+                handleRemove={() =>
+                  removeItem(item.id, item.selectedSize, item.selectedColor)
+                }
+                handleAdd={() =>
+                  updateQuantity(
+                    item.id,
+                    item.selectedSize,
+                    item.selectedColor,
+                    item.quantity + 1,
+                  )
+                }
                 handleSubtract={() => {
                   if (item.quantity > 1) {
-                    updateQuantity(item.id, item.quantity - 1);
+                    updateQuantity(
+                      item.id,
+                      item.selectedSize,
+                      item.selectedColor,
+                      item.quantity - 1,
+                    );
                   } else {
-                    removeItem(item.id);
+                    removeItem(item.id, item.selectedSize, item.selectedColor);
                   }
                 }}
                 classNameImg="w-[5rem]"
@@ -119,7 +124,11 @@ export default function Checkout() {
                     {...register("firstName", { required: true })}
                   />
                   {errors.firstName && (
-                    <span className="text-red-600">Required</span>
+                    <span
+                      className="text-red-600 text-xs flex items-center gap-1"
+                    >
+                      <SlExclamation /> Required
+                    </span>
                   )}
                 </div>
 
@@ -135,7 +144,11 @@ export default function Checkout() {
                     {...register("lastName", { required: true })}
                   />
                   {errors.lastName && (
-                    <span className="text-red-600">Required</span>
+                    <span
+                      className="text-red-600 text-xs flex items-center gap-1"
+                    >
+                      <SlExclamation /> Required
+                    </span>
                   )}
                 </div>
               </div>
@@ -155,7 +168,11 @@ export default function Checkout() {
                     })}
                   />
                   {errors.email && (
-                    <span className="text-red-600">Required</span>
+                    <span
+                      className="text-red-600 text-xs flex items-center gap-1"
+                    >
+                      <SlExclamation /> Required
+                    </span>
                   )}
                 </div>
                 <div className="flex flex-col gap-1 max-w-[20rem]">
@@ -191,7 +208,11 @@ export default function Checkout() {
                     {...register("street", { required: true })}
                   />
                   {errors.street && (
-                    <span className="text-red-600">Required</span>
+                    <span
+                      className="text-red-600 text-xs flex items-center gap-1"
+                    >
+                      <SlExclamation /> Required
+                    </span>
                   )}
                 </div>
 
@@ -203,11 +224,16 @@ export default function Checkout() {
                   <input
                     type="text"
                     id="postal-code"
+                    placeholder="Postal code"
                     className="text-input"
                     {...register("postalCode", { required: true })}
                   />
                   {errors.postalCode && (
-                    <span className="text-red-600">Required</span>
+                    <span
+                      className="text-red-600 text-xs flex items-center gap-1"
+                    >
+                      <SlExclamation /> Required
+                    </span>
                   )}
                 </div>
 
@@ -218,11 +244,16 @@ export default function Checkout() {
                   <input
                     type="text"
                     id="city"
+                    placeholder="City"
                     className="text-input"
                     {...register("city", { required: true })}
                   />
                   {errors.city && (
-                    <span className="text-red-600">Required</span>
+                    <span
+                      className="text-red-600 text-xs flex items-center gap-1"
+                    >
+                      <SlExclamation /> Required
+                    </span>
                   )}
                 </div>
               </div>

@@ -1,12 +1,120 @@
-// admin/Products.tsx
+// admin/Categories.tsx
 import PageTitle from "@/components/layout/shared/PageTitle";
+import useCategories from "@/hooks/useCategories";
+import { useRemoveCategory } from "@/hooks/useRemoveCategory";
+import type { Category } from "@/types/category";
+import { useState, useEffect } from "react";
+import { SlTrash } from "react-icons/sl";
 
 export default function Categories() {
+  const fetchedCategories = useCategories();
+  const [categories, setCategories] = useState<Category[]>([]);
+  const { removeCategory } = useRemoveCategory();
+
+  useEffect(() => {
+    if (fetchedCategories) {
+      setCategories(fetchedCategories);
+    }
+  }, [fetchedCategories]);
+
+  const handleDelete = async (title: string, id: number) => {
+    const confirmed = confirm(`Are you sure you want to remove ${title}?`);
+    if (!confirmed) return;
+
+    const success = await removeCategory(id);
+    if (success) {
+      setCategories((prevCategories) =>
+        prevCategories.filter((category) => category.id !== id),
+      );
+    }
+  };
+
   return (
     <>
       <PageTitle title="Admin - Categories" />
       <section id="categories-container">
-        <h1>Categories</h1>
+        <div className="max-w-7xl flex flex-col gap-4 overflow-x-auto">
+          <div className="flex justify-between items-center">
+            <div>
+              <h1 className="text-2xl font-semibold text-slate-900">
+                Categories Overview
+              </h1>
+              <p className="text-sm text-slate-500 mt-1">
+                All categories in the databse.
+              </p>
+            </div>
+          </div>
+          <table
+            className="w-full text-[0.8rem] max-w-7xl border-separate
+              border-spacing-y-2 rounded-lg"
+          >
+            <thead>
+              <tr className="bg-[#f4f6f5]">
+                <th
+                  className="text-left py-[0.5rem] px-[0.5rem] border-b
+                    border-[#4d5d53]/15 font-medium whitespace-nowrap"
+                >
+                  Title
+                </th>
+                <th
+                  className="text-left py-[0.5rem] px-[0.5rem] border-b
+                    border-[#4d5d53]/15 font-medium whitespace-nowrap"
+                >
+                  Slug
+                </th>
+                <th
+                  className="text-left py-[0.5rem] px-[0.5rem] border-b
+                    border-[#4d5d53]/15 font-medium whitespace-nowrap"
+                >
+                  Icon
+                </th>
+
+                <th className="border-b border-[#4d5d53]/15"></th>
+              </tr>
+            </thead>
+
+            <tbody className="transition-all">
+              {categories.map((category) => (
+                <tr
+                  key={category.id}
+                  className="hover:translate-0.5 transition-all
+                    hover:bg-[#f4f6f5]"
+                >
+                  <td
+                    className="p-1 border-b border-[#4d5d53]/15 px-[0.5rem]
+                      font-medium whitespace-nowrap transition-all
+                      cursor-pointer"
+                  >
+                    {category.title}
+                  </td>
+                  <td
+                    className="p-1 border-b border-[#4d5d53]/15 px-[0.5rem]
+                      transition-all whitespace-nowrap"
+                  >
+                    {category.slug}
+                  </td>
+                  <td
+                    className="p-1 border-b border-[#4d5d53]/15 px-[0.5rem]
+                      transition-all whitespace-nowrap"
+                  >
+                    <img src={`${category.img_url}`} height={30} width={30} />
+                  </td>
+                  <td
+                    className="p-1 border-b border-[#4d5d53]/15 px-[0.5rem]
+                      transition-all whitespace-nowrap"
+                  >
+                    <button
+                      className="cursor-pointer hover:text-md"
+                      onClick={() => handleDelete(category.title, category.id)}
+                    >
+                      <SlTrash size={16} />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </section>
     </>
   );
