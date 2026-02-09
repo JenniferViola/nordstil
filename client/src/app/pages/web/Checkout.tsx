@@ -68,13 +68,27 @@ export default function Checkout() {
               <CartCard
                 key={item.id}
                 item={item}
-                handleRemove={() => removeItem(item.id)}
-                handleAdd={() => updateQuantity(item.id, item.quantity + 1)}
+                handleRemove={() =>
+                  removeItem(item.id, item.selectedSize, item.selectedColor)
+                }
+                handleAdd={() =>
+                  updateQuantity(
+                    item.id,
+                    item.selectedSize,
+                    item.selectedColor,
+                    item.quantity + 1,
+                  )
+                }
                 handleSubtract={() => {
                   if (item.quantity > 1) {
-                    updateQuantity(item.id, item.quantity - 1);
+                    updateQuantity(
+                      item.id,
+                      item.selectedSize,
+                      item.selectedColor,
+                      item.quantity - 1,
+                    );
                   } else {
-                    removeItem(item.id);
+                    removeItem(item.id, item.selectedSize, item.selectedColor);
                   }
                 }}
                 classNameImg="w-[5rem]"
@@ -210,6 +224,7 @@ export default function Checkout() {
                   <input
                     type="text"
                     id="postal-code"
+                    placeholder="Postal code"
                     className="text-input"
                     {...register("postalCode", { required: true })}
                   />
@@ -229,6 +244,7 @@ export default function Checkout() {
                   <input
                     type="text"
                     id="city"
+                    placeholder="City"
                     className="text-input"
                     {...register("city", { required: true })}
                   />

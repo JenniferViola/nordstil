@@ -7,13 +7,18 @@ import { Divider } from "@/components/ui/Divider";
 import { useParams } from "react-router";
 import useProductBySlug from "@/hooks/useProductBySlug";
 import useProducts from "@/hooks/usePublishedProducts";
+import NotFound from "./NotFound";
 
 export default function ProductDetails() {
   const { slug } = useParams<{ slug: string }>();
-  const product = useProductBySlug(slug);
+  const { product, loading, error } = useProductBySlug(slug);
   const similarProducts = useProducts();
 
-  if (!product) return <div>Loading...</div>;
+  if (loading) return <div>Loading...</div>;
+  if (error === "Product not found") return <NotFound />;
+  if (error) return <div>{error}</div>;
+  if (!product) return null;
+
   return (
     <div className="max-w-[128rem] flex flex-col gap-2 lg:gap-6">
       <PageTitle title={`${product.title} – Nordstil`} />

@@ -1,7 +1,7 @@
 import PageTitle from "@/components/layout/shared/PageTitle";
 import { Link } from "react-router";
 
-export default function NotFound() {
+export default function NotFound(errorMessage: string) {
   return (
     <>
       <PageTitle title={`Page not found – Admin`} />

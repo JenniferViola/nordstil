@@ -61,7 +61,7 @@ export default function Cart() {
       <PageTitle title={`Shopping Cart – Nordstil`} />
 
       <section id="cart-content" className="flex flex-col gap-8">
-        <h1 className="text-2xl font-medium">{`Shopping Cart ${items.length > 0 ? `(${totalItems})` : ``}`}</h1>
+        <h1 className="text-2xl">{`Shopping Cart ${items.length > 0 ? `(${totalItems})` : ``}`}</h1>
         <div id="items-container" className="flex flex-col gap-8">
           {items.map((item) => (
             <CartCard

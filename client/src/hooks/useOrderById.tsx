@@ -18,11 +18,11 @@ export const useOrderById = (id: string | number | undefined) => {
         const response = await fetch(`${BASE_URL}/orders/${id}`);
 
         if (!response.ok) {
-          throw new Error("Order not found.");
+          throw new Error("Order not found");
         }
 
         const data: FetchedOrder = await response.json();
-        console.log("Received from backend:", data); // ✅ Log the data directly
+        console.log("Received from backend:", data);
 
         setOrder(data);
       } catch (err: any) {

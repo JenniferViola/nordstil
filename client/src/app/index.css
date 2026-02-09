@@ -39,11 +39,11 @@
     color: var(--color-primary-900);
   }
   h1 {
-    @apply text-2xl leading-tight font-medium text-primary-700 sm:text-xl;
+    @apply text-2xl leading-tight text-primary-700 sm:text-xl;
   }
 
   h2 {
-    @apply text-xl leading-tight font-medium text-primary-700 sm:text-xl;
+    @apply text-xl leading-tight text-primary-700 sm:text-xl;
   }
 }
 
