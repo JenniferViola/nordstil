@@ -11,7 +11,7 @@ export default function Magazine() {
       image: "images/magazine/article-coats.webp",
       category: "Outerwear",
       readTime: "5 min read",
-      href: "/magazine/winter-coats",
+      href: "/",
     },
     {
       id: 2,
@@ -20,7 +20,7 @@ export default function Magazine() {
       image: "images/magazine/article-winter.webp",
       category: "Seasonal",
       readTime: "4 min read",
-      href: "/magazine/winter-essentials",
+      href: "/",
     },
     {
       id: 3,
@@ -29,7 +29,7 @@ export default function Magazine() {
       image: "images/magazine/article-minimalism.webp",
       category: "Style Guide",
       readTime: "5 min read",
-      href: "/magazine/minimalism",
+      href: "/",
     },
 
     {
@@ -39,7 +39,7 @@ export default function Magazine() {
       image: "images/magazine/article-sustainable.webp",
       category: "Lifestyle",
       readTime: "6 min read",
-      href: "/magazine/sustainable-fashion",
+      href: "/",
     },
   ];
 
@@ -47,9 +47,9 @@ export default function Magazine() {
     <>
       <PageTitle title="Magazine" />
 
-      <div className="flex flex-col gap-8 mb-4">
+      <div className="flex flex-col gap-6 mb-4">
         {/* Latest Stories Grid */}
-        <section className="px-2 md:px-8 xxl:px-0">
+        <section>
           <div className="mb-12">
             <h2
               className="text-2xl md:text-3xl font-light tracking-tight
@@ -106,9 +106,9 @@ export default function Magazine() {
         </section>
 
         {/* Newsletter Section */}
-        <section className="px-6 md:px-8 xxl:px-0">
+        <section className="mt-10 mb-18">
           <div
-            className="bg-secondary-100 p-8 md:p-16 flex flex-col items-center
+            className="bg-secondary-100 md:p-16 flex flex-col items-center
               text-center"
           >
             <h2
@@ -132,8 +132,8 @@ export default function Magazine() {
               />
               <button
                 type="submit"
-                className="px-8 py-3 bg-primary-900 text-white text-sm
-                  tracking-wide hover:bg-primary-800 transition-colors
+                className="px-8 py-3 bg-primary-700 text-white text-sm
+                  tracking-wide hover:bg-primary-600 transition-colors
                   uppercase"
               >
                 Subscribe

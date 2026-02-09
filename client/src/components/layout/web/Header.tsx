@@ -106,7 +106,7 @@ export default function Header({ menuOpen, onToggleMenu, onClose }: Props) {
           <SearchDesktop />
 
           <div className="flex items-center gap-1 text-primary-600">
-            <Link to={"/favorites"} id="favorites">
+            <Link to={"/"} id="favorites">
               <IconButton icon={<SlHeart size={20} />} label="Favorites" />
             </Link>
             <Link to={"/cart"} id="cart" className="relative">
@@ -170,7 +170,7 @@ export default function Header({ menuOpen, onToggleMenu, onClose }: Props) {
 
           <div className="mt-auto pb-10">
             <Link
-              to="/account"
+              to="/"
               className="flex items-center gap-3 text-sm font-medium
                 hover:opacity-60 transition"
               onClick={onClose}

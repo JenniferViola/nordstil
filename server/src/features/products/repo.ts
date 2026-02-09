@@ -7,11 +7,13 @@ import type { Category } from '../categories/types';
 export function findPublished(): Product[] {
   const rows = db
     .prepare(
-      `SELECT * FROM products 
+      `SELECT * 
+      FROM products 
       WHERE published_date IS NOT NULL 
-      AND published_date != '' 
-      AND published_date <= datetime('now')
-      ORDER BY published_date DESC`,
+      AND published_date <> '' 
+      AND published_date <= date('now') 
+      ORDER BY published_date DESC;
+`,
     )
     .all();
   return rows as Product[];
@@ -32,8 +34,10 @@ export function findFeatured(): Product[] {
     .prepare(
       `SELECT * FROM products 
       WHERE published_date IS NOT NULL 
+      AND published_date <> '' 
+      AND published_date <= date('now') 
       AND featured = 1 
-      ORDER BY published_date DESC
+      ORDER BY published_date DESC 
       LIMIT 8`,
     )
     .all();
@@ -47,7 +51,9 @@ export function searchPublished(query: string): Product[] {
     FROM products p
     LEFT JOIN category_products cp ON p.id = cp.product_id
     LEFT JOIN categories c ON c.id = cp.category_id
-    WHERE p.published_date IS NOT NULL
+    WHERE published_date IS NOT NULL 
+    AND published_date <> '' 
+    AND published_date <= date('now') 
       AND (
         p.title LIKE ?
         OR p.brand LIKE ?
@@ -68,6 +74,8 @@ export function findPublishedBySlug(slug: string): Product | null {
     .prepare(
       `SELECT * FROM products WHERE slug = ? 
       AND published_date IS NOT NULL 
+      AND published_date <> '' 
+      AND published_date <= date('now') 
       LIMIT 1`,
     )
     .get(slug);

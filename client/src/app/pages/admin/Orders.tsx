@@ -16,7 +16,7 @@ export default function Orders() {
 
   return (
     <>
-      <PageTitle title="Admin - Categories" />
+      <PageTitle title="Admin - Orders" />
       <section id="categories-container">
         <div className="max-w-7xl flex flex-col gap-4 overflow-x-auto">
           <div className="flex justify-between items-center">
