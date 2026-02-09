@@ -13,7 +13,7 @@ export function getAll(req: Request, res: Response, next: NextFunction) {
 
 export function getById(req: Request, res: Response, next: NextFunction) {
   try {
-    const id: number = Number(req.params.id); // converting string to number
+    const id: number = Number(req.params.id);
     if (Number.isNaN(id)) throw new Error('Invalid id');
 
     const category = service.getCategoryById(id);

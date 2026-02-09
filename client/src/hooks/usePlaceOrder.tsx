@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import type { OrderPayload } from "../types/order"; // Adjust path as needed
+import type { OrderPayload } from "@/types/order";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 

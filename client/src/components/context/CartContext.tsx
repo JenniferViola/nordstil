@@ -30,7 +30,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const addItem = (item: OrderItem) => {
     setItems((currentCart) => {
-      // Find existing item by matching id, size, AND color
       const existingItem = currentCart.find(
         (cartItem) =>
           cartItem.id === item.id &&
@@ -39,7 +38,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       );
 
       if (existingItem) {
-        // Increment quantity if exact match found
         return currentCart.map((cartItem) =>
           cartItem.id === item.id &&
           cartItem.selectedSize === item.selectedSize &&
@@ -49,7 +47,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         );
       }
 
-      // Add as new item if no match
       return [...currentCart, item];
     });
   };

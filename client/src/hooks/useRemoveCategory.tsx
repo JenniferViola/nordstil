@@ -19,7 +19,6 @@ export const useRemoveCategory = () => {
         throw new Error("Could not delete category.");
       }
 
-      console.log(`Category ${id} deleted.`);
       return true;
     } catch (err: any) {
       setError(err.message || "An unknown error occurred");

@@ -48,7 +48,6 @@ export default function Magazine() {
       <PageTitle title="Magazine" />
 
       <div className="flex flex-col gap-6 mb-4">
-        {/* Latest Stories Grid */}
         <section>
           <div className="mb-12">
             <h2
@@ -105,7 +104,6 @@ export default function Magazine() {
           </div>
         </section>
 
-        {/* Newsletter Section */}
         <section className="mt-10 mb-18">
           <div
             className="bg-secondary-100 md:p-16 flex flex-col items-center

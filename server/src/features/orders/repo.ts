@@ -1,6 +1,6 @@
 // orders/repo.ts
 import db from '../../data/db';
-import { Order, OrderPayload } from './types'; // Import your type
+import { Order, OrderPayload } from './types';
 
 export function saveOrder(data: OrderPayload): number | bigint {
   const { customer, items, total_amount } = data;
@@ -83,7 +83,7 @@ export function findOrderById(id: number) {
     )
     .all(id);
 
-  // 3. Combine them
+  // 3. Combine
   return { ...order, items };
 }
 

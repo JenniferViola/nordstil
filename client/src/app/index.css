@@ -27,9 +27,6 @@
   --color-secondary-700: #828278;
   --color-secondary-800: #575750;
   --color-secondary-900: #2b2b28;
-
-  /* Border color - add this! */
-  --color-border: var(--color-primary-200); /* Light grey border */
 }
 
 @layer base {

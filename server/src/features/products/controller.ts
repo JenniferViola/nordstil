@@ -99,7 +99,7 @@ export function getCategory(req: Request, res: Response, next: NextFunction) {
 export function deleteProduct(req: Request, res: Response, next: NextFunction) {
   try {
     const productId = Number(req.params.id);
-    console.log('API recieved:', productId);
+
     if (Number.isNaN(productId)) {
       return res.status(400).json({ message: 'Invalid product ID' });
     }
@@ -113,7 +113,6 @@ export function deleteProduct(req: Request, res: Response, next: NextFunction) {
 export function postProduct(req: Request, res: Response, next: NextFunction) {
   try {
     const productData: CreateProduct = req.body;
-    console.log('Controller received:', productData);
     const newProduct = service.postNewProduct(productData);
 
     res.status(201).json({

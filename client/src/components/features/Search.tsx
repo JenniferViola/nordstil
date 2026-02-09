@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { SlMagnifier } from "react-icons/sl";
 
-// Reusable input
 interface SearchInputProps {
   className?: string;
   placeholder?: string;
@@ -70,7 +69,7 @@ function SearchDesktop() {
   );
 }
 
-// Mobile search wrapper (stateful)
+// Mobile search wrapper
 interface SearchMobileProps {
   searchOpen: boolean;
   onClose: () => void;
@@ -78,7 +77,6 @@ interface SearchMobileProps {
 function SearchMobile({ searchOpen, onClose }: SearchMobileProps) {
   const location = useLocation();
 
-  // Close on navigation
   useEffect(() => {
     onClose();
   }, [location.pathname]);
@@ -95,13 +93,13 @@ function SearchMobile({ searchOpen, onClose }: SearchMobileProps) {
           placeholder:text-body/40 focus:outline-none"
         inputClassName="border-b pb-2"
         autoFocus={searchOpen}
-        onSubmit={onClose} // close when submitting
+        onSubmit={onClose}
       />
     </div>
   );
 }
 
-// Mobile toggle button (standalone)
+// Mobile toggle button
 interface SearchToggleProps {
   searchOpen?: boolean;
   onToggle: () => void;

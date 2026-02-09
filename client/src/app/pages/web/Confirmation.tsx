@@ -26,7 +26,6 @@ export default function Confirmation() {
           mx-auto justify-center"
       >
         <div className="text-center flex flex-col gap-4 lg:gap-2 mx-4 mb-2">
-          {/* Optional: Add confetti effect? */}
           <h1 className="font-bold">Success! 🎉</h1>
 
           <h2>Thank you for your order, {order?.first_name}!</h2>

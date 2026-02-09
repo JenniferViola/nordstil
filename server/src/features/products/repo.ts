@@ -3,7 +3,6 @@ import db from '../../data/db';
 import type { Product } from './types';
 import type { Category } from '../categories/types';
 
-// fetch all published products
 export function findPublished(): Product[] {
   const rows = db
     .prepare(
@@ -44,7 +43,6 @@ export function findFeatured(): Product[] {
   return rows as Product[];
 }
 
-//Search for products
 export function searchPublished(query: string): Product[] {
   const stmt = db.prepare(`
     SELECT DISTINCT p.*
@@ -68,7 +66,6 @@ export function searchPublished(query: string): Product[] {
   return stmt.all(like, like, like, like) as Product[];
 }
 
-// fetch a published product by its slug
 export function findPublishedBySlug(slug: string): Product | null {
   const row = db
     .prepare(
@@ -85,7 +82,6 @@ export function findPublishedBySlug(slug: string): Product | null {
   return row as Product;
 }
 
-// fetch a product by its id
 export function findProductById(productId: number): Product {
   const row = db
     .prepare(`SELECT * FROM products WHERE id = ? LIMIT 1`)
@@ -96,7 +92,6 @@ export function findProductById(productId: number): Product {
   return row as Product;
 }
 
-// fetch categories linked to product
 export function findCategoriesByProductId(productId: number): Category[] {
   const stmt = db.prepare(`
     SELECT c.*
@@ -155,12 +150,12 @@ export function addNewProduct(product: Omit<Product, 'id'> & { slug: string }) {
 
   if (product.is_published !== undefined) {
     fields.push('is_published');
-    values.push(product.is_published ? 1 : 0); // Convert boolean to number
+    values.push(product.is_published ? 1 : 0);
   }
 
   if (product.featured !== undefined) {
     fields.push('featured');
-    values.push(product.featured ? 1 : 0); // Convert boolean to number
+    values.push(product.featured ? 1 : 0);
   }
 
   const placeholders = fields.map(() => '?').join(', ');

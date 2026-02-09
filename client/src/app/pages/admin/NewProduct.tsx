@@ -44,8 +44,6 @@ export default function NewProduct() {
   const navigate = useNavigate();
   const categories = useCategories();
   const colorHex = watch("color_hex");
-
-  // Watch the is_published checkbox
   const isPublished = watch("is_published");
 
   const onSubmit: SubmitHandler<NewProductFormData> = (data) => {
@@ -296,7 +294,7 @@ export default function NewProduct() {
             </label>
           </div>
 
-          {/* Publication Date - Only show if published */}
+          {/* Publication Date */}
           {isPublished && (
             <div className="flex flex-col gap-1 max-w-[20rem]">
               <label htmlFor="published_date" className="font-bold">

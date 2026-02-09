@@ -26,7 +26,6 @@ export default function Categories() {
       setCategories((prevCategories) =>
         prevCategories.filter((category) => category.id !== id),
       );
-      console.log("Successfully removed:", title);
     }
   };
 

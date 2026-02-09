@@ -27,7 +27,6 @@ export default function Products() {
       setProducts((prevProducts) =>
         prevProducts.filter((product) => product.id !== id),
       );
-      console.log("Successfully removed:", title);
     }
   };
 

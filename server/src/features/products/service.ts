@@ -61,19 +61,15 @@ export function slugify(title: string): string {
 }
 
 export function postNewProduct(product: CreateProduct) {
-  console.log('Service received:', product);
   const slug = slugify(product.title);
 
-  // Remove category_ids before passing to repo (it's not a product field)
   const { category_ids, ...productData } = product;
 
-  // Add the product
   const result = repo.addNewProduct({
     ...productData,
     slug,
   });
 
-  // If categories were selected, add them to the junction table
   if (category_ids && category_ids.length > 0) {
     const productId = result.lastInsertRowid as number;
     repo.addProductCategories(productId, category_ids);

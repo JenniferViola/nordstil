@@ -24,14 +24,11 @@ export interface CustomerInfo {
   newsletter: boolean;
 }
 
-// Sent to the backend
 export interface OrderPayload {
   customer: CustomerInfo;
   items: OrderItem[];
   total_amount: number;
 }
-
-// Fetched from the backend
 
 export interface FetchedOrder {
   id: number;
@@ -43,8 +40,9 @@ export interface FetchedOrder {
   email: string;
   phone?: string;
   street: string;
-  postalCode: string;
+  postal_code: string;
   city: string;
+  items: OrderItem[];
   item_count: number;
   total_amount: number;
 }

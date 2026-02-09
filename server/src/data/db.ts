@@ -28,7 +28,7 @@ statements.forEach((statement, index) => {
   } catch (err) {
     console.error(`\nFAILED at Statement #${index + 1}:`);
     console.error(`--- SQL CODE ---`);
-    console.error(statement); // This prints exactly what failed
+    console.error(statement);
     console.error(`--- ERROR ---`);
     if (err instanceof Error) {
       console.error(err.message);
