@@ -8,7 +8,7 @@ This project focuses on clean architecture, type safety, and practical features 
 
 ## Overview
 
-Nordstil is a modern online **clothing store** with both a **public storefront** and an **admin dashboard**.
+Nordstil is a modern online **clothing store** with both a **public storefront** (/) and an **admin dashboard** (/admin).
 
 The app uses a **repository pattern** with SQLite for data persistence, separating concerns between the frontend React application and the backend API.
 
@@ -68,7 +68,7 @@ Coming soon...
 
 ## Features
 
-### 🛍 Public Storefront
+### 🛍 Public Storefront (/)
 
 - **Product catalog** with search
 - **Product detail pages**
@@ -77,7 +77,7 @@ Coming soon...
 - **Custom responsive design** built with Tailwind CSS
 - **Client-side routing** with React Router
 
-### 🛠 Admin Dashboard
+### 🛠 Admin Dashboard (/admin)
 
 - **Add new products** with image size and color
 - **Delete products** from the database
