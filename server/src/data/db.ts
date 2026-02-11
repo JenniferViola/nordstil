@@ -5,7 +5,7 @@ import path from 'path';
 let db: Database.Database;
 
 export async function initDb() {
-  const sqlFile = path.join(__dirname, 'data.sql');
+  const sqlFile = path.join(__dirname, '../../src/data/data.sql');
   const dbFile = path.join(__dirname, 'data.db');
 
   const sql = fs.readFileSync(sqlFile, 'utf8');
