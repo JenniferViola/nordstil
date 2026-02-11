@@ -1,5 +1,5 @@
 // hero/hero.repo.js
-import db from '../../data/db';
+import { db } from '../../data/db';
 import type { Hero } from './types';
 
 export function findActiveHero(): Hero | null {

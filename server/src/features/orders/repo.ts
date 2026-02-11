@@ -1,5 +1,5 @@
 // orders/repo.ts
-import db from '../../data/db';
+import { db } from '../../data/db';
 import { Order, OrderPayload } from './types';
 
 export function saveOrder(data: OrderPayload): number | bigint {
