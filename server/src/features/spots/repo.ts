@@ -1,5 +1,5 @@
 // spots.repo.ts
-import db from '../../data/db';
+import { db } from '../../data/db';
 import type { Spot } from './types';
 
 export function findSpots(): Spot[] {
