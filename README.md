@@ -16,6 +16,12 @@ The admin dashboard includes tools for managing products, categories, publishing
 
 ---
 
+## 🚀 Live Demo
+
+Coming soon...
+
+---
+
 ## Features
 
 ### 🛍 Public Storefront
