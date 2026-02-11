@@ -55,12 +55,12 @@ Coming soon...
 ### Admin Dashboard
 
 <div align="center">
-  <img src="client/public/images/demo/admin-dashboard.png" alt="Admin Dashboard" width="800">
+  <img src="client/public/images/demo/admin-dashboard.png" alt="Admin Dashboard" width="1024">
   <p><em>Admin dashboard overview</em></p>
 </div>
 
 <div align="center">
-  <img src="client/public/images/demo/admin-products.png" alt="Admin Products Management" width="800">
+  <img src="client/public/images/demo/admin-products.png" alt="Admin Products Management" width="1024">
   <p><em>Product management interface</em></p>
 </div>
 
